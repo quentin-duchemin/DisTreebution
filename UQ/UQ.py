@@ -253,7 +253,7 @@ class UQ():
         return interval_JK, sample2predset, widths, coverages
     
     
-    def get_quantile_estimate(self, x_train, y_train, x_test, trees=None, y_test=None):
+    def get_quantile_estimate(self, x_train, y_train, x_test, quantiles=None, trees=None, y_test=None):
         """
         Estimates quantiles for the test set using trained trees and returns predicted quantiles for each sample.
 
@@ -282,7 +282,8 @@ class UQ():
         - The method supports different types of trees, including 'PQRT'.
         - If `y_test` is provided, the method also computes the empirical coverage of the predicted quantiles.
         """
-        quantiles = self.params['nominal_quantiles']
+        if quantiles is None:
+            quantiles = self.params['nominal_quantiles']
         sample2predset = {i_q:np.zeros(x_test.shape[0]) for i_q in range(len(quantiles))}
         if trees is None:
             trees, _ = self.train_trees(x_train, y_train)
