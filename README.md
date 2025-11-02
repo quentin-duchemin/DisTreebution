@@ -1,4 +1,8 @@
+![Project Logo](docs/source/_static/logo.png)
+
+
 # DisTreebution
+
 
 **DisTreebution** fits **distributional regression trees and forests** to generate **calibrated probabilistic forecasts**.
 
