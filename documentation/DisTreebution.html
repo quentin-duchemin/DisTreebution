@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DisTreebution &#8212; DisTreebution</title>
+    <title>DisTreebution package &#8212; DisTreebution</title>
   
   
   
@@ -50,6 +50,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/DisTreebution';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DisTreebution.CRPSRT package" href="DisTreebution.CRPSRT.html" />
+    <link rel="prev" title="DisTreebution" href="modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -153,6 +155,20 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../tutorials/index.html">
     Tutorials
   </a>
@@ -165,20 +181,28 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../references.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../references.html">
     References
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../team.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../team.html">
     Team
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -248,9 +272,7 @@ document.write(`
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -268,6 +290,20 @@ document.write(`
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../presentation.html">
     Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    DisTreebution
   </a>
 </li>
 
@@ -325,6 +361,24 @@ document.write(`
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">DisTreebution package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html">DisTreebution.CRPSRT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html">DisTreebution.QRT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.RT.html">DisTreebution.RT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html">DisTreebution.UQ package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -357,7 +411,10 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">DisTreebution</li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">DisTreebution</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">DisTreebutio...</li>
   </ul>
 </nav>
 </div>
@@ -374,56 +431,246 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="distreebution">
-<h1>DisTreebution<a class="headerlink" href="#distreebution" title="Link to this heading">#</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>DisTreebution is a Python toolkit for decision-tree based uncertainty quantification and conformal prediction. It bundles several tree learners (quantile, quadratic and CRPS-optimized trees) together with conformalization backends (CQR variants and a
-distributional approach) to produce prediction sets with finite-sample coverage guarantees.</p>
-<p>This documentation page summarizes the purpose of the main modules and gives quick links to installation and example usage.</p>
-</section>
-<section id="package-layout-top-level-modules">
-<h2>Package layout (top-level modules)<a class="headerlink" href="#package-layout-top-level-modules" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Regression trees: tree learners in <cite>QRT/</cite> implement quantile or quadratic objectives.</p></li>
-<li><p>CRPS trees: <cite>CRPRT/</cite> implements tree splitting based on CRPS-related entropies.</p></li>
-<li><p>Conformalization backends: <cite>UQ/Conformalisation_CQR.py</cite> (CQR variants) and
-<cite>UQ/Conformalisation_distributional.py</cite> (distributional nested-sets) provide the
-calibration and prediction-set machinery used by the top-level <cite>UQ</cite> orchestrator.</p></li>
-</ul>
-</section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
-<p>See the installation page (with clone and virtualenv instructions):</p>
+  <section id="distreebution-package">
+<h1>DisTreebution package<a class="headerlink" href="#distreebution-package" title="Link to this heading">#</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DisTreebution.CRPSRT.html">DisTreebution.CRPSRT package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html#module-DisTreebution.CRPSRT.FenwickTree">DisTreebution.CRPSRT.FenwickTree module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.FenwickTree.FenwickTree"><code class="docutils literal notranslate"><span class="pre">FenwickTree</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.FenwickTree.FenwickTree.prefix_sum"><code class="docutils literal notranslate"><span class="pre">FenwickTree.prefix_sum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.FenwickTree.FenwickTree.range_sum"><code class="docutils literal notranslate"><span class="pre">FenwickTree.range_sum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.FenwickTree.FenwickTree.frequencies"><code class="docutils literal notranslate"><span class="pre">FenwickTree.frequencies()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.FenwickTree.FenwickTree.add"><code class="docutils literal notranslate"><span class="pre">FenwickTree.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.FenwickTree.FenwickTree.init"><code class="docutils literal notranslate"><span class="pre">FenwickTree.init()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html#module-DisTreebution.CRPSRT.MinMaxHeap">DisTreebution.CRPSRT.MinMaxHeap module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.insert"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmin"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.peekmin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmax"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.peekmax()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmin"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.popmin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmax"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.popmax()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.level"><code class="docutils literal notranslate"><span class="pre">level()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.trickledown"><code class="docutils literal notranslate"><span class="pre">trickledown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.trickledownmin"><code class="docutils literal notranslate"><span class="pre">trickledownmin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.trickledownmax"><code class="docutils literal notranslate"><span class="pre">trickledownmax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.bubbleup"><code class="docutils literal notranslate"><span class="pre">bubbleup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.bubbleupmin"><code class="docutils literal notranslate"><span class="pre">bubbleupmin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.bubbleupmax"><code class="docutils literal notranslate"><span class="pre">bubbleupmax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.peekmin"><code class="docutils literal notranslate"><span class="pre">peekmin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.peekmax"><code class="docutils literal notranslate"><span class="pre">peekmax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.removemin"><code class="docutils literal notranslate"><span class="pre">removemin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.removemax"><code class="docutils literal notranslate"><span class="pre">removemax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.insert"><code class="docutils literal notranslate"><span class="pre">insert()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.minmaxheapproperty"><code class="docutils literal notranslate"><span class="pre">minmaxheapproperty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.test"><code class="docutils literal notranslate"><span class="pre">test()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.MinMaxHeap.test_heap"><code class="docutils literal notranslate"><span class="pre">test_heap()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html#module-DisTreebution.CRPSRT.RegressionTree">DisTreebution.CRPSRT.RegressionTree module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.RegressionTree.RegressionTree"><code class="docutils literal notranslate"><span class="pre">RegressionTree</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.RegressionTree.RegressionTree.fit"><code class="docutils literal notranslate"><span class="pre">RegressionTree.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.RegressionTree.RegressionTree.find_best_split"><code class="docutils literal notranslate"><span class="pre">RegressionTree.find_best_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.RegressionTree.RegressionTree.predict"><code class="docutils literal notranslate"><span class="pre">RegressionTree.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf_and_groups"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf_and_groups()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#id0"><code class="docutils literal notranslate"><span class="pre">RegressionTree.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#id1"><code class="docutils literal notranslate"><span class="pre">RegressionTree.find_best_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#id2"><code class="docutils literal notranslate"><span class="pre">RegressionTree.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#id3"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#id4"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf_and_groups()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html#module-DisTreebution.CRPSRT.WBTree">DisTreebution.CRPSRT.WBTree module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree"><code class="docutils literal notranslate"><span class="pre">WBTree</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.EQ"><code class="docutils literal notranslate"><span class="pre">WBTree.EQ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.EQG"><code class="docutils literal notranslate"><span class="pre">WBTree.EQG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.LT"><code class="docutils literal notranslate"><span class="pre">WBTree.LT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.LE"><code class="docutils literal notranslate"><span class="pre">WBTree.LE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.GT"><code class="docutils literal notranslate"><span class="pre">WBTree.GT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.GE"><code class="docutils literal notranslate"><span class="pre">WBTree.GE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.Node"><code class="docutils literal notranslate"><span class="pre">WBTree.Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.clear"><code class="docutils literal notranslate"><span class="pre">WBTree.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.first"><code class="docutils literal notranslate"><span class="pre">WBTree.first()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.last"><code class="docutils literal notranslate"><span class="pre">WBTree.last()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.find"><code class="docutils literal notranslate"><span class="pre">WBTree.find()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.add"><code class="docutils literal notranslate"><span class="pre">WBTree.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.remove"><code class="docutils literal notranslate"><span class="pre">WBTree.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.removenode"><code class="docutils literal notranslate"><span class="pre">WBTree.removenode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.WBTree.WBTree.rebalance"><code class="docutils literal notranslate"><span class="pre">WBTree.rebalance()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html#module-DisTreebution.CRPSRT.entropies_CRPS">DisTreebution.CRPSRT.entropies_CRPS module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.entropies_CRPS.entropies_CRPS"><code class="docutils literal notranslate"><span class="pre">entropies_CRPS()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html#module-DisTreebution.CRPSRT">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DisTreebution.QRT.html">DisTreebution.QRT package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html#module-DisTreebution.QRT.MinMaxHeap">DisTreebution.QRT.MinMaxHeap module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.MinMaxHeap"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.MinMaxHeap.insert"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.MinMaxHeap.peekmin"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.peekmin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.MinMaxHeap.peekmax"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.peekmax()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.MinMaxHeap.popmin"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.popmin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.MinMaxHeap.popmax"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.popmax()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.level"><code class="docutils literal notranslate"><span class="pre">level()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.trickledown"><code class="docutils literal notranslate"><span class="pre">trickledown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.trickledownmin"><code class="docutils literal notranslate"><span class="pre">trickledownmin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.trickledownmax"><code class="docutils literal notranslate"><span class="pre">trickledownmax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.bubbleup"><code class="docutils literal notranslate"><span class="pre">bubbleup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.bubbleupmin"><code class="docutils literal notranslate"><span class="pre">bubbleupmin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.bubbleupmax"><code class="docutils literal notranslate"><span class="pre">bubbleupmax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.peekmin"><code class="docutils literal notranslate"><span class="pre">peekmin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.peekmax"><code class="docutils literal notranslate"><span class="pre">peekmax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.removemin"><code class="docutils literal notranslate"><span class="pre">removemin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.removemax"><code class="docutils literal notranslate"><span class="pre">removemax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.insert"><code class="docutils literal notranslate"><span class="pre">insert()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.minmaxheapproperty"><code class="docutils literal notranslate"><span class="pre">minmaxheapproperty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.test"><code class="docutils literal notranslate"><span class="pre">test()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.MinMaxHeap.test_heap"><code class="docutils literal notranslate"><span class="pre">test_heap()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html#module-DisTreebution.QRT.RegressionTreeQuantile">DisTreebution.QRT.RegressionTreeQuantile module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuantile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile.fit"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuantile.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile.find_best_split"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuantile.find_best_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile.predict"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuantile.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile.get_values_leaf"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuantile.get_values_leaf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile.get_values_leaf_and_groups"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuantile.get_values_leaf_and_groups()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html#module-DisTreebution.QRT.entropies_MultiQuantiles">DisTreebution.QRT.entropies_MultiQuantiles module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.level2idx"><code class="docutils literal notranslate"><span class="pre">level2idx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.get_entropy"><code class="docutils literal notranslate"><span class="pre">get_entropy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.get_entropy_multiquantiles"><code class="docutils literal notranslate"><span class="pre">get_entropy_multiquantiles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.get_max_heaps_minus"><code class="docutils literal notranslate"><span class="pre">get_max_heaps_minus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.get_min_heaps_plus"><code class="docutils literal notranslate"><span class="pre">get_min_heaps_plus()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.OLD_LOO_quantiles"><code class="docutils literal notranslate"><span class="pre">OLD_LOO_quantiles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.LOO_quantiles"><code class="docutils literal notranslate"><span class="pre">LOO_quantiles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.entropies_MultiQuantiles"><code class="docutils literal notranslate"><span class="pre">entropies_MultiQuantiles()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html#module-DisTreebution.QRT">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DisTreebution.RT.html">DisTreebution.RT package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.RT.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.RT.html#module-DisTreebution.RT.RegressionTreeQuadratic">DisTreebution.RT.RegressionTreeQuadratic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.RT.html#DisTreebution.RT.RegressionTreeQuadratic.RegressionTreeQuadratic"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuadratic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.RT.html#DisTreebution.RT.RegressionTreeQuadratic.RegressionTreeQuadratic.fit"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuadratic.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.RT.html#DisTreebution.RT.RegressionTreeQuadratic.RegressionTreeQuadratic.find_best_split"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuadratic.find_best_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.RT.html#DisTreebution.RT.RegressionTreeQuadratic.RegressionTreeQuadratic.get_values_leaf"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuadratic.get_values_leaf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.RT.html#DisTreebution.RT.RegressionTreeQuadratic.RegressionTreeQuadratic.get_values_leaf_and_groups"><code class="docutils literal notranslate"><span class="pre">RegressionTreeQuadratic.get_values_leaf_and_groups()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.RT.html#module-DisTreebution.RT.entropies_Quadratic">DisTreebution.RT.entropies_Quadratic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.RT.html#DisTreebution.RT.entropies_Quadratic.entropies_Quadratic"><code class="docutils literal notranslate"><span class="pre">entropies_Quadratic()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.RT.html#module-DisTreebution.RT">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DisTreebution.UQ.html">DisTreebution.UQ package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#module-DisTreebution.UQ.Conformalisation">DisTreebution.UQ.Conformalisation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation.get_quantile"><code class="docutils literal notranslate"><span class="pre">get_quantile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation.Conformalisation"><code class="docutils literal notranslate"><span class="pre">Conformalisation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees_with_groups"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees_with_groups()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation.Conformalisation.operation_leaf"><code class="docutils literal notranslate"><span class="pre">Conformalisation.operation_leaf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#id0"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#id1"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees_with_groups()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#id2"><code class="docutils literal notranslate"><span class="pre">Conformalisation.operation_leaf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#module-DisTreebution.UQ.Conformalisation_CQR">DisTreebution.UQ.Conformalisation_CQR module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.conformalize_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.predict_conformal_set_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.conformalize_split_group_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.predict_conformal_set_split_group_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_test_i"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.get_low_up_test_i()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_score"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.get_low_up_score()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#module-DisTreebution.UQ.Conformalisation_distributional">DisTreebution.UQ.Conformalisation_distributional module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.conformalize_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.predict_conformal_set_split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.conformalize_split_group_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.predict_conformal_set_split_group_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_test_i"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.get_low_up_test_i()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_score"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.get_low_up_score()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#module-DisTreebution.UQ.UQ">DisTreebution.UQ.UQ module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ"><code class="docutils literal notranslate"><span class="pre">UQ</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.compute_width_coverage"><code class="docutils literal notranslate"><span class="pre">UQ.compute_width_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.compute_group_width_coverage"><code class="docutils literal notranslate"><span class="pre">UQ.compute_group_width_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.train_trees"><code class="docutils literal notranslate"><span class="pre">UQ.train_trees()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.conformalize"><code class="docutils literal notranslate"><span class="pre">UQ.conformalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.predict_conformal_set"><code class="docutils literal notranslate"><span class="pre">UQ.predict_conformal_set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.get_quantile_estimate"><code class="docutils literal notranslate"><span class="pre">UQ.get_quantile_estimate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#module-DisTreebution.UQ.datasets">DisTreebution.UQ.datasets module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.level2idx"><code class="docutils literal notranslate"><span class="pre">level2idx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.sine_skew"><code class="docutils literal notranslate"><span class="pre">sine_skew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.griewank"><code class="docutils literal notranslate"><span class="pre">griewank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.michalewicz"><code class="docutils literal notranslate"><span class="pre">michalewicz()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.candes_sesia"><code class="docutils literal notranslate"><span class="pre">candes_sesia()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.bimodal"><code class="docutils literal notranslate"><span class="pre">bimodal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.asymmetric"><code class="docutils literal notranslate"><span class="pre">asymmetric()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.homoscedastic"><code class="docutils literal notranslate"><span class="pre">homoscedastic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.heteroscedastic"><code class="docutils literal notranslate"><span class="pre">heteroscedastic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.datasets.sales"><code class="docutils literal notranslate"><span class="pre">sales()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#module-DisTreebution.UQ.utils">DisTreebution.UQ.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.utils.filter_dict"><code class="docutils literal notranslate"><span class="pre">filter_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.utils.crps_from_quantiles"><code class="docutils literal notranslate"><span class="pre">crps_from_quantiles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.utils.compute_crps"><code class="docutils literal notranslate"><span class="pre">compute_crps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DisTreebution.UQ.html#DisTreebution.UQ.utils.load_dataset"><code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html#module-DisTreebution.UQ">Module contents</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </section>
-<section id="quick-start-conceptual">
-<h2>Quick start (conceptual)<a class="headerlink" href="#quick-start-conceptual" title="Link to this heading">#</a></h2>
-<p>The common workflow is:</p>
-<ol class="arabic simple">
-<li><p>Train an ensemble of trees with <cite>UQ.train_trees</cite>.</p></li>
-<li><p>Conformalize calibration data with <cite>UQ.conformalize</cite> (pass <cite>nominal_quantiles</cite> for CQR).</p></li>
-<li><p>Predict conformal sets on test inputs with <cite>UQ.predict_conformal_set</cite>.</p></li>
-<li><p>Evaluate widths and coverage with <cite>UQ.compute_width_coverage</cite> or <cite>UQ.compute_group_width_coverage</cite>.</p></li>
-</ol>
-<p>See the simple runnable example in <cite>package_docs/examples/quick_start.py</cite> for a short smoke-test.</p>
-</section>
-<section id="api-and-developer-notes">
-<h2>API and developer notes<a class="headerlink" href="#api-and-developer-notes" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><cite>UQ.UQ</cite> — main entry-point. Use <cite>type_tree</cite> to choose tree type (<cite>PQRT</cite>, <cite>PMQRT</cite>, <cite>RT</cite>, <cite>CRPS</cite>) and
-<cite>nested_set</cite> to choose conformal backend (<cite>CQR</cite>, <cite>distributional</cite>). Pass a <cite>params</cite> dict with keys such as
-<cite>nTrees</cite>, <cite>max_depth</cite>, <cite>min_samples_split</cite>, and for distributional methods <cite>list_distri_low_quantiles</cite>.</p></li>
-<li><p><cite>Conformalisation_CQR</cite> — offers <cite>conformalize_split</cite>, <cite>predict_conformal_set_split</cite>, and group-aware variants.</p></li>
-<li><p><cite>Conformalisation_distributional</cite> — distributional procedure supporting a grid of low quantiles and group coverage.</p></li>
-<li><p><cite>QRT.RegressionTreeQuantile</cite> and <cite>QRT.RegressionTreeQuadratic</cite> — tree learners exposing <cite>fit</cite>, <cite>predict</cite>,
-and <cite>get_values_leaf[_and_groups]</cite> helpers used by conformalization preprocessors.</p></li>
-</ul>
-</section>
-<section id="contact">
-<h2>Contact<a class="headerlink" href="#contact" title="Link to this heading">#</a></h2>
-<p>If you need help or want to contribute, open an issue describing the change you propose.</p>
+<section id="module-DisTreebution">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DisTreebution" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -437,6 +684,24 @@ and <cite>get_values_leaf[_and_groups]</cite> helpers used by conformalization p
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="modules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DisTreebution</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="DisTreebution.CRPSRT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DisTreebution.CRPSRT package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -455,12 +720,8 @@ and <cite>get_values_leaf[_and_groups]</cite> helpers used by conformalization p
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-layout-top-level-modules">Package layout (top-level modules)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start-conceptual">Quick start (conceptual)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-and-developer-notes">API and developer notes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution">Module contents</a></li>
 </ul>
   </nav></div>
 

@@ -1,0 +1,1149 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DisTreebution.CRPSRT package &#8212; DisTreebution</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=dd5beb26" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/sphinx_gallery.css?v=370a08b5" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_logo.css?v=f521e7f3" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/DisTreebution.CRPSRT';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DisTreebution.QRT package" href="DisTreebution.QRT.html" />
+    <link rel="prev" title="DisTreebution package" href="DisTreebution.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="DisTreebution - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="DisTreebution - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../presentation.html">
+    Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer/index.html">
+    Developer
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../references.html">
+    References
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../team.html">
+    Team
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../presentation.html">
+    Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer/index.html">
+    Developer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../team.html">
+    Team
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="DisTreebution.html">DisTreebution package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">DisTreebution.CRPSRT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html">DisTreebution.QRT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.RT.html">DisTreebution.RT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.UQ.html">DisTreebution.UQ package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">DisTreebution</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="DisTreebution.html" class="nav-link">DisTreebution package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">DisTreebutio...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="distreebution-crpsrt-package">
+<h1>DisTreebution.CRPSRT package<a class="headerlink" href="#distreebution-crpsrt-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-DisTreebution.CRPSRT.FenwickTree">
+<span id="distreebution-crpsrt-fenwicktree-module"></span><h2>DisTreebution.CRPSRT.FenwickTree module<a class="headerlink" href="#module-DisTreebution.CRPSRT.FenwickTree" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.FenwickTree.FenwickTree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.FenwickTree.</span></span><span class="sig-name descname"><span class="pre">FenwickTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/FenwickTree.html#FenwickTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A data structure for maintaining cumulative (prefix) sums.
+(aka “binary indexed tree”)
+Incrementing a value is O(log n).
+Calculating a cumulative sum is O(log n).
+Retrieving a single frequency is a special case of calculating a cumulative
+sum, and is thus O(log n).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.FenwickTree.FenwickTree.prefix_sum">
+<span class="sig-name descname"><span class="pre">prefix_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/FenwickTree.html#FenwickTree.prefix_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.prefix_sum" title="Link to this definition">#</a></dt>
+<dd><p>Returns sum of first elements (sum up to <em>stop</em>, exclusive).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.FenwickTree.FenwickTree.range_sum">
+<span class="sig-name descname"><span class="pre">range_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/FenwickTree.html#FenwickTree.range_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.range_sum" title="Link to this definition">#</a></dt>
+<dd><p>Returns sum from start (inclusive) to stop (exclusive).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.FenwickTree.FenwickTree.frequencies">
+<span class="sig-name descname"><span class="pre">frequencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/FenwickTree.html#FenwickTree.frequencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.frequencies" title="Link to this definition">#</a></dt>
+<dd><p>Retrieves all frequencies in O(n).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.FenwickTree.FenwickTree.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/FenwickTree.html#FenwickTree.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.add" title="Link to this definition">#</a></dt>
+<dd><p>Adds k to idx’th element (0-based indexing).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.FenwickTree.FenwickTree.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/FenwickTree.html#FenwickTree.init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.init" title="Link to this definition">#</a></dt>
+<dd><p>Initialize in O(n) with specified frequencies.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DisTreebution.CRPSRT.MinMaxHeap">
+<span id="distreebution-crpsrt-minmaxheap-module"></span><h2>DisTreebution.CRPSRT.MinMaxHeap module<a class="headerlink" href="#module-DisTreebution.CRPSRT.MinMaxHeap" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">MinMaxHeap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reserve</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#MinMaxHeap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Implementation of a Min-max heap following Atkinson, Sack, Santoro, and
+Strothotte (1986): <a class="reference external" href="https://doi.org/10.1145/6617.6621">https://doi.org/10.1145/6617.6621</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#MinMaxHeap.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.insert" title="Link to this definition">#</a></dt>
+<dd><p>Insert key into heap. Complexity: O(log(n))</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmin">
+<span class="sig-name descname"><span class="pre">peekmin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#MinMaxHeap.peekmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmin" title="Link to this definition">#</a></dt>
+<dd><p>Get minimum element. Complexity: O(1)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmax">
+<span class="sig-name descname"><span class="pre">peekmax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#MinMaxHeap.peekmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmax" title="Link to this definition">#</a></dt>
+<dd><p>Get maximum element. Complexity: O(1)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmin">
+<span class="sig-name descname"><span class="pre">popmin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#MinMaxHeap.popmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmin" title="Link to this definition">#</a></dt>
+<dd><p>Remove and return minimum element. Complexity: O(log(n))</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmax">
+<span class="sig-name descname"><span class="pre">popmax</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#MinMaxHeap.popmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmax" title="Link to this definition">#</a></dt>
+<dd><p>Remove and return maximum element. Complexity: O(log(n))</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.level">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.level" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.trickledown">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">trickledown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#trickledown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.trickledown" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.trickledownmin">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">trickledownmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#trickledownmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.trickledownmin" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.trickledownmax">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">trickledownmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#trickledownmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.trickledownmax" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.bubbleup">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">bubbleup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#bubbleup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.bubbleup" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.bubbleupmin">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">bubbleupmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#bubbleupmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.bubbleupmin" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.bubbleupmax">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">bubbleupmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#bubbleupmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.bubbleupmax" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.peekmin">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">peekmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#peekmin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.peekmin" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.peekmax">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">peekmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#peekmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.peekmax" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.removemin">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">removemin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#removemin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.removemin" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.removemax">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">removemax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#removemax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.removemax" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.insert">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.insert" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.minmaxheapproperty">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">minmaxheapproperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#minmaxheapproperty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.minmaxheapproperty" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.test">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.test" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.MinMaxHeap.test_heap">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.MinMaxHeap.</span></span><span class="sig-name descname"><span class="pre">test_heap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/MinMaxHeap.html#test_heap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.MinMaxHeap.test_heap" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-DisTreebution.CRPSRT.RegressionTree">
+<span id="distreebution-crpsrt-regressiontree-module"></span><h2>DisTreebution.CRPSRT.RegressionTree module<a class="headerlink" href="#module-DisTreebution.CRPSRT.RegressionTree" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.RegressionTree.RegressionTree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.RegressionTree.</span></span><span class="sig-name descname"><span class="pre">RegressionTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_samples_split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_use_CRPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_LOO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A custom regression tree class computing information gains based on the entropy associated with the CRPS loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>max_depth</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>The maximum depth of the tree. If None, nodes are expanded until all leaves are pure or contain fewer than
+<code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code> samples.</p>
+</dd>
+<dt><strong>min_samples_split</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>(default=2)
+The minimum number of samples required to split an internal node.</p>
+</dd>
+<dt><strong>limit_use_CRPS</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em></span></dt></dt><dd><p>If set, use CRPS loss for nodes with sample size &lt;= <code class="docutils literal notranslate"><span class="pre">limit_use_CRPS</span></code>, otherwise use multiple quantile loss.</p>
+</dd>
+<dt><strong>quantiles</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> or </em><em>None</em></span></dt></dt><dd><p>List of quantiles to use for the multiple quantile loss. Required if <code class="docutils literal notranslate"><span class="pre">limit_use_CRPS</span></code> is set.</p>
+</dd>
+<dt><strong>use_LOO</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a></span></dt></dt><dd><p>(default=True)
+Whether to use leave-one-out estimation in the entropy/loss calculation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>feature_index</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>Index of the feature used for splitting at the current node.</p>
+</dd>
+<dt><strong>threshold</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Threshold value for the split at the current node.</p>
+</dd>
+<dt><strong>left</strong> <span class="classifier"><a class="reference internal" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree" title="DisTreebution.CRPSRT.RegressionTree.RegressionTree"><em>RegressionTree</em></a></span></dt></dt><dd><p>Left child node.</p>
+</dd>
+<dt><strong>right</strong> <span class="classifier"><a class="reference internal" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree" title="DisTreebution.CRPSRT.RegressionTree.RegressionTree"><em>RegressionTree</em></a></span></dt></dt><dd><p>Right child node.</p>
+</dd>
+<dt><strong>y</strong> <span class="classifier"><em>array-like</em></span></dt></dt><dd><p>Target values at the leaf node.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.RegressionTree.RegressionTree.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_ref_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.fit" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Fit</span> <span class="pre">the</span> <span class="pre">regression</span> <span class="pre">tree</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">data.</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.RegressionTree.RegressionTree.find_best_split">
+<span class="sig-name descname"><span class="pre">find_best_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.find_best_split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.find_best_split" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Find</span> <span class="pre">the</span> <span class="pre">best</span> <span class="pre">feature</span> <span class="pre">and</span> <span class="pre">threshold</span> <span class="pre">to</span> <span class="pre">split</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">at</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">node.</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.RegressionTree.RegressionTree.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.predict" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Predict</span> <span class="pre">target</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">given</span> <span class="pre">input</span> <span class="pre">samples.</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf">
+<span class="sig-name descname"><span class="pre">get_values_leaf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.get_values_leaf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Retrieve</span> <span class="pre">the</span> <span class="pre">samples</span> <span class="pre">and</span> <span class="pre">their</span> <span class="pre">target</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">each</span> <span class="pre">leaf.</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf_and_groups">
+<span class="sig-name descname"><span class="pre">get_values_leaf_and_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_group_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">str()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.get_values_leaf_and_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf_and_groups" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Retrieve</span> <span class="pre">the</span> <span class="pre">samples,</span> <span class="pre">their</span> <span class="pre">target</span> <span class="pre">values,</span> <span class="pre">and</span> <span class="pre">group</span> <span class="pre">identifiers</span> <span class="pre">for</span> <span class="pre">each</span> <span class="pre">leaf</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">specified</span> <span class="pre">group</span> <span class="pre">depth.</span></span></dt>
+<dd></dd></dl>
+
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>This implementation supports custom loss functions CRPS for splitting.</p></li>
+<li><p>The tree can optionally follow the structure of a reference tree up to a certain depth.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_ref_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd><p>Recursively fits the regression tree to the provided data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+</dd>
+<dt><strong>y</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Target values of shape (n_samples,).</p>
+</dd>
+<dt><strong>depth</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>(default=0)
+Current depth of the tree.</p>
+</dd>
+<dt><strong>ref_tree</strong> <span class="classifier"><a class="reference internal" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree" title="DisTreebution.CRPSRT.RegressionTree.RegressionTree"><em>RegressionTree</em></a><em> or </em><em>None</em></span></dt></dt><dd><p>(default=None)
+Reference tree to guide the splitting process. If provided, the tree will copy splits from the reference
+tree up to <code class="docutils literal notranslate"><span class="pre">max_depth_ref_tree</span></code>.</p>
+</dd>
+<dt><strong>max_depth_ref_tree</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>(default=-1)
+Maximum depth up to which the reference tree is used for splitting. A value of -1 means not used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>If the maximum depth is reached or the number of samples is less than <code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>, the node becomes a leaf and stores the target values.</p></li>
+<li><p>If a reference tree is provided and the current depth is less than <code class="docutils literal notranslate"><span class="pre">max_depth_ref_tree</span></code>, the split is copied from the reference tree.</p></li>
+<li><p>Otherwise, the best split is found using the <code class="docutils literal notranslate"><span class="pre">find_best_split</span></code> method.</p></li>
+<li><p>The method recursively fits the left and right child nodes.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">find_best_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.find_best_split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
+<dd><p>Finds the best feature and threshold to split the data for a regression tree node.</p>
+<p>This method evaluates all possible splits across all features to determine the optimal split point
+that minimizes a custom score based on the CRPS entropy. It ensures that the resulting child nodes
+satisfy the minimum sample split constraint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+</dd>
+<dt><strong>y</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Target values of shape (n_samples,).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns tuple or None<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple <code class="docutils literal notranslate"><span class="pre">(feature_index,</span> <span class="pre">threshold)</span></code> representing the best split found,
+or None if no valid split exists.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">#</a></dt>
+<dd><p>Predict target values for the given input samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns np.ndarray<span class="colon">:</span></dt>
+<dd class="field-even"><p>Predicted target values of shape (n_samples,).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">get_values_leaf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.get_values_leaf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the samples and their target values for each leaf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+</dd>
+<dt><strong>indexes</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Array of sample indexes corresponding to the rows in X.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns list<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of lists, where each sublist contains the sample indexes and target values for each leaf.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">get_values_leaf_and_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_group_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/RegressionTree.html#RegressionTree.get_values_leaf_and_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the samples, their target values, and group identifiers for each leaf up to a specified group depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+</dd>
+<dt><strong>indexes</strong> <span class="classifier"><em>np.ndarray</em></span></dt></dt><dd><p>Array of sample indexes corresponding to the rows in X.</p>
+</dd>
+<dt><strong>current_group_depth</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a></span></dt></dt><dd><p>(optional)
+Current group depth identifier (default is an empty string).</p>
+</dd>
+<dt><strong>max_depth_group</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>(optional)
+Maximum depth for group identifiers (default is 1).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns list<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of lists, where each sublist contains the sample indexes, target values, and group identifier for each leaf.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DisTreebution.CRPSRT.WBTree">
+<span id="distreebution-crpsrt-wbtree-module"></span><h2>DisTreebution.CRPSRT.WBTree module<a class="headerlink" href="#module-DisTreebution.CRPSRT.WBTree" title="Link to this heading">#</a></h2>
+<p>WBTree.py - v1.01</p>
+<p>Copyright 2022 Alec Dee - MIT license - SPDX: MIT
+deegen1.github.io - <a class="reference external" href="mailto:akdee144&#37;&#52;&#48;gmail&#46;com">akdee144<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>A weight balanced search tree implementation.</p>
+<p>Balancing is performed by keeping the weights of children within a ratio of 2.5.</p>
+<p>Because weights are used, we can lexicographically index nodes. Ex: tree[0] will
+return the smallest node in the tree.</p>
+<p>Adding and removing values are stable with respect to sorting.</p>
+<p>weight(null) = 0</p>
+<p>Tree height &lt; 2.07 * log2(nodes+1)</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.WBTree.</span></span><span class="sig-name descname"><span class="pre">WBTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.EQ">
+<span class="sig-name descname"><span class="pre">EQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.EQ" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.EQG">
+<span class="sig-name descname"><span class="pre">EQG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.EQG" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.LT">
+<span class="sig-name descname"><span class="pre">LT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.LT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.LE">
+<span class="sig-name descname"><span class="pre">LE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.LE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.GT">
+<span class="sig-name descname"><span class="pre">GT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.GT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.GE">
+<span class="sig-name descname"><span class="pre">GE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.GE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.Node">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.Node.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.Node.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.next" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.Node.prev">
+<span class="sig-name descname"><span class="pre">prev</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.Node.prev"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.prev" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.Node.rotleft">
+<span class="sig-name descname"><span class="pre">rotleft</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.Node.rotleft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.rotleft" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.Node.rotright">
+<span class="sig-name descname"><span class="pre">rotright</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.Node.rotright"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.rotright" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.Node.calcweight">
+<span class="sig-name descname"><span class="pre">calcweight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.Node.calcweight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.calcweight" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.Node.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.Node.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.clear" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.first">
+<span class="sig-name descname"><span class="pre">first</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.first"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.first" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.last">
+<span class="sig-name descname"><span class="pre">last</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.last"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.last" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.find" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.add" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.remove" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.removenode">
+<span class="sig-name descname"><span class="pre">removenode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.removenode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.removenode" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.WBTree.WBTree.rebalance">
+<span class="sig-name descname"><span class="pre">rebalance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/WBTree.html#WBTree.rebalance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.WBTree.WBTree.rebalance" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DisTreebution.CRPSRT.entropies_CRPS">
+<span id="distreebution-crpsrt-entropies-crps-module"></span><h2>DisTreebution.CRPSRT.entropies_CRPS module<a class="headerlink" href="#module-DisTreebution.CRPSRT.entropies_CRPS" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.CRPSRT.entropies_CRPS.entropies_CRPS">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.CRPSRT.entropies_CRPS.</span></span><span class="sig-name descname"><span class="pre">entropies_CRPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_LOO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/CRPSRT/entropies_CRPS.html#entropies_CRPS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.CRPSRT.entropies_CRPS.entropies_CRPS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-DisTreebution.CRPSRT">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DisTreebution.CRPSRT" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DisTreebution.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DisTreebution package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="DisTreebution.QRT.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DisTreebution.QRT package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.CRPSRT.FenwickTree">DisTreebution.CRPSRT.FenwickTree module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree"><code class="docutils literal notranslate"><span class="pre">FenwickTree</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.prefix_sum"><code class="docutils literal notranslate"><span class="pre">FenwickTree.prefix_sum()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.range_sum"><code class="docutils literal notranslate"><span class="pre">FenwickTree.range_sum()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.frequencies"><code class="docutils literal notranslate"><span class="pre">FenwickTree.frequencies()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.add"><code class="docutils literal notranslate"><span class="pre">FenwickTree.add()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.FenwickTree.FenwickTree.init"><code class="docutils literal notranslate"><span class="pre">FenwickTree.init()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.CRPSRT.MinMaxHeap">DisTreebution.CRPSRT.MinMaxHeap module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.insert"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.insert()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmin"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.peekmin()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.peekmax"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.peekmax()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmin"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.popmin()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.MinMaxHeap.popmax"><code class="docutils literal notranslate"><span class="pre">MinMaxHeap.popmax()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.level"><code class="docutils literal notranslate"><span class="pre">level()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.trickledown"><code class="docutils literal notranslate"><span class="pre">trickledown()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.trickledownmin"><code class="docutils literal notranslate"><span class="pre">trickledownmin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.trickledownmax"><code class="docutils literal notranslate"><span class="pre">trickledownmax()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.bubbleup"><code class="docutils literal notranslate"><span class="pre">bubbleup()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.bubbleupmin"><code class="docutils literal notranslate"><span class="pre">bubbleupmin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.bubbleupmax"><code class="docutils literal notranslate"><span class="pre">bubbleupmax()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.peekmin"><code class="docutils literal notranslate"><span class="pre">peekmin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.peekmax"><code class="docutils literal notranslate"><span class="pre">peekmax()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.removemin"><code class="docutils literal notranslate"><span class="pre">removemin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.removemax"><code class="docutils literal notranslate"><span class="pre">removemax()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.insert"><code class="docutils literal notranslate"><span class="pre">insert()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.minmaxheapproperty"><code class="docutils literal notranslate"><span class="pre">minmaxheapproperty()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.test"><code class="docutils literal notranslate"><span class="pre">test()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.MinMaxHeap.test_heap"><code class="docutils literal notranslate"><span class="pre">test_heap()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.CRPSRT.RegressionTree">DisTreebution.CRPSRT.RegressionTree module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree"><code class="docutils literal notranslate"><span class="pre">RegressionTree</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.fit"><code class="docutils literal notranslate"><span class="pre">RegressionTree.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.find_best_split"><code class="docutils literal notranslate"><span class="pre">RegressionTree.find_best_split()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.predict"><code class="docutils literal notranslate"><span class="pre">RegressionTree.predict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.RegressionTree.RegressionTree.get_values_leaf_and_groups"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf_and_groups()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">RegressionTree.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">RegressionTree.find_best_split()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><code class="docutils literal notranslate"><span class="pre">RegressionTree.predict()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">RegressionTree.get_values_leaf_and_groups()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.CRPSRT.WBTree">DisTreebution.CRPSRT.WBTree module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree"><code class="docutils literal notranslate"><span class="pre">WBTree</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.EQ"><code class="docutils literal notranslate"><span class="pre">WBTree.EQ</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.EQG"><code class="docutils literal notranslate"><span class="pre">WBTree.EQG</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.LT"><code class="docutils literal notranslate"><span class="pre">WBTree.LT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.LE"><code class="docutils literal notranslate"><span class="pre">WBTree.LE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.GT"><code class="docutils literal notranslate"><span class="pre">WBTree.GT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.GE"><code class="docutils literal notranslate"><span class="pre">WBTree.GE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node"><code class="docutils literal notranslate"><span class="pre">WBTree.Node</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.next"><code class="docutils literal notranslate"><span class="pre">WBTree.Node.next()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.prev"><code class="docutils literal notranslate"><span class="pre">WBTree.Node.prev()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.rotleft"><code class="docutils literal notranslate"><span class="pre">WBTree.Node.rotleft()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.rotright"><code class="docutils literal notranslate"><span class="pre">WBTree.Node.rotright()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.calcweight"><code class="docutils literal notranslate"><span class="pre">WBTree.Node.calcweight()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.Node.index"><code class="docutils literal notranslate"><span class="pre">WBTree.Node.index()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.clear"><code class="docutils literal notranslate"><span class="pre">WBTree.clear()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.first"><code class="docutils literal notranslate"><span class="pre">WBTree.first()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.last"><code class="docutils literal notranslate"><span class="pre">WBTree.last()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.find"><code class="docutils literal notranslate"><span class="pre">WBTree.find()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.add"><code class="docutils literal notranslate"><span class="pre">WBTree.add()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.remove"><code class="docutils literal notranslate"><span class="pre">WBTree.remove()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.removenode"><code class="docutils literal notranslate"><span class="pre">WBTree.removenode()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.WBTree.WBTree.rebalance"><code class="docutils literal notranslate"><span class="pre">WBTree.rebalance()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.CRPSRT.entropies_CRPS">DisTreebution.CRPSRT.entropies_CRPS module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.CRPSRT.entropies_CRPS.entropies_CRPS"><code class="docutils literal notranslate"><span class="pre">entropies_CRPS()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.CRPSRT">Module contents</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/documentation/DisTreebution.CRPSRT.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Q.Duchemin and G.Obozinski.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

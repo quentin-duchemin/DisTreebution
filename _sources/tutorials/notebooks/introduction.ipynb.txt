@@ -11,7 +11,7 @@
     "1) Choosing `type_tree`\n",
     "\t- 'PMQRT'        : train quantile regression trees (multi-quantile support). Use when you want direct quantile estimates.\n",
     "\t- 'RT'           : standard regression tree with squared-error splitting (uses `RegressionTreeQuadratic`).\n",
-    "\t- 'CRPS'         : specialized tree optimized for CRPS (Continuous Ranked Probability Score) available in `CRPStreeC/RegressionTree.py`.\n",
+    "\t- 'CRPS'         : specialized tree optimized for CRPS (Continuous Ranked Probability Score) available in `CRPSRT/RegressionTree.py`.\n",
     "\n",
     "\n",
     "2) Choosing `type_conformal`\n",

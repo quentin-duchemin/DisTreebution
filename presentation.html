@@ -50,7 +50,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'presentation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorials" href="tutorials/index.html" />
+    <link rel="next" title="GitHub Repository" href="repository.html" />
     <link rel="prev" title="Documentation" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -155,6 +155,20 @@
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="documentation/modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="tutorials/index.html">
     Tutorials
   </a>
@@ -167,20 +181,28 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="references.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="references.html">
     References
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="team.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="team.html">
     Team
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -268,6 +290,20 @@ document.write(`
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="documentation/modules.html">
+    DisTreebution
   </a>
 </li>
 
@@ -392,8 +428,10 @@ document.write(`
 <section id="our-contributions">
 <h2>Our contributions<a class="headerlink" href="#our-contributions" title="Link to this heading">#</a></h2>
 <p>Two novel tree algorithms for probabilistic forecasting:</p>
-<p>PMQRT (Pinball Multi-Quantile Regression Tree) — a tree that simultaneously predicts multiple quantiles by minimizing a generalized entropy derived from the WIS (a sum of pinball losses across quantile levels).</p>
-<p>CRPS-RT (CRPS Regression Tree) — a tree that directly minimizes the CRPS, a strictly proper scoring rule for full-distribution predictions.</p>
+<ul class="simple">
+<li><p>PMQRT (Pinball Multi-Quantile Regression Tree) — a tree that simultaneously predicts multiple quantiles by minimizing a generalized entropy derived from the WIS (a sum of pinball losses across quantile levels).</p></li>
+<li><p>CRPS-RT (CRPS Regression Tree) — a tree that directly minimizes the CRPS, a strictly proper scoring rule for full-distribution predictions.</p></li>
+</ul>
 <p>Ensemble extensions: We extend both approaches to forests—PMQRF and CRPS-RF—which aggregate multiple probabilistic trees to enhance smoothness and predictive performance.</p>
 </section>
 <section id="efficient-implementation">
@@ -408,7 +446,9 @@ document.write(`
 <section id="empirical-evaluation">
 <h2>Empirical evaluation<a class="headerlink" href="#empirical-evaluation" title="Link to this heading">#</a></h2>
 <p>Through a series of experiments, we show that our methods are competitive with state-of-the-art probabilistic forecasting models. The proposed trees and forests provide well-calibrated predictive distributions while retaining the interpretability of tree-based models. We also demonstrate that our framework integrates naturally with conformal prediction techniques, enabling models that achieve calibrated uncertainty and group-conditional coverage guarantees.</p>
-<p>When to use our methods</p>
+</section>
+<section id="when-to-use-our-methods">
+<h2>When to use our methods<a class="headerlink" href="#when-to-use-our-methods" title="Link to this heading">#</a></h2>
 <p>Our approach is particularly suited for applications that require:</p>
 <ul class="simple">
 <li><p>Nonparametric, interpretable probabilistic forecasts;</p></li>
@@ -419,7 +459,9 @@ document.write(`
 <section id="limitations-and-outlook">
 <h2>Limitations and outlook<a class="headerlink" href="#limitations-and-outlook" title="Link to this heading">#</a></h2>
 <p>Our current methods focus on univariate outputs, and while the proposed optimizations make distributional trees practical, they remain less expressive than large neural generative models for complex conditional densities. Nevertheless, our framework provides a strong balance of interpretability, calibration, and computational efficiency.</p>
-<p>Further reading</p>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
 <p>For algorithmic details, refer to Sections 2–2.4 of the paper (PMQRT, CRPS-RT, and the leave-one-out estimator). Implementation specifics and pseudocode are provided in Appendix, and benchmark results are discussed in Section 3. The full paper and accompanying code are available on arXiv under Efficient distributional regression trees learning algorithms for calibrated non-parametric probabilistic forecasts (Duchemin &amp; Obozinski, 2025).</p>
 </section>
 </section>
@@ -444,11 +486,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="tutorials/index.html"
+       href="repository.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tutorials</p>
+        <p class="prev-next-title">GitHub Repository</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -475,7 +517,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-implementation">Efficient implementation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-framework">Theoretical framework</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empirical-evaluation">Empirical evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-our-methods">When to use our methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-outlook">Limitations and outlook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
 </ul>
   </nav></div>
 

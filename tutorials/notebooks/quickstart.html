@@ -157,6 +157,20 @@
 </li>
 
 
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Tutorials
@@ -170,20 +184,28 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../references.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../references.html">
     References
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../team.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../team.html">
     Team
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -271,6 +293,20 @@ document.write(`
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../presentation.html">
     Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/modules.html">
+    DisTreebution
   </a>
 </li>
 
@@ -404,15 +440,18 @@ document.write(`
                   
   <section id="Quick-start-example">
 <h1>Quick start example<a class="headerlink" href="#Quick-start-example" title="Link to this heading">#</a></h1>
-<p>This script shows a minimal pipeline to train a forest of PMQRTs to predict confidence intervals targeting a marginal coverage of <span class="math notranslate nohighlight">\(1-\alpha\)</span>: - either by predicting the quantiles of order <span class="math notranslate nohighlight">\(\alpha/2\)</span> and <span class="math notranslate nohighlight">\(1-\alpha/2\)</span>, i.e. confidence intervals are</p>
+<p>This script shows a minimal pipeline to train a forest of PMQRTs to predict confidence intervals targeting a marginal coverage of <span class="math notranslate nohighlight">\(1-\alpha\)</span>:</p>
+<ul>
+<li><p>either by predicting the quantiles of order <span class="math notranslate nohighlight">\(\alpha/2\)</span> and <span class="math notranslate nohighlight">\(1-\alpha/2\)</span>, i.e. confidence intervals are</p>
 <div class="math notranslate nohighlight">
 \[|\hat q_{\alpha/2}, \hat q_{1-\alpha/2}]\]</div>
-<ul class="simple">
-<li><p>or using conformal prediction with CQR nested sets with a norminal quantile level equal to <span class="math notranslate nohighlight">\(2\alpha\)</span>, meaning that the conformal prediction intervals are of the form:</p></li>
-</ul>
+</li>
+<li><p>or using conformal prediction with CQR nested sets with a norminal quantile level equal to <span class="math notranslate nohighlight">\(2\alpha\)</span>, meaning that the conformal prediction intervals are of the form:</p>
 <div class="math notranslate nohighlight">
 \[[\hat q_{2\alpha}-t, \hat q_{1-2\alpha}+t]\]</div>
 <p>where <span class="math notranslate nohighlight">\(t\)</span> is a real parameter ajdusted at the conformalization step. For more information on CQR, one can check this paper : <a class="reference external" href="https://arxiv.org/abs/1905.03222">https://arxiv.org/abs/1905.03222</a>.</p>
+</li>
+</ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>

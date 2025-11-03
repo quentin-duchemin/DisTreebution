@@ -7,7 +7,9 @@
     "# Quick start example\n",
     "\n",
     "This script shows a minimal pipeline to train a forest of PMQRTs to predict confidence intervals targeting a marginal coverage of $1-\\alpha$:\n",
+    "\n",
     "- either by predicting the quantiles of order $\\alpha/2$ and $1-\\alpha/2$, i.e. confidence intervals are $$|\\hat q_{\\alpha/2}, \\hat q_{1-\\alpha/2}]$$\n",
+    "\n",
     "- or using conformal prediction with CQR nested sets with a norminal quantile level equal to $2\\alpha$, meaning that the conformal prediction intervals are of the form:\n",
     "$$ [\\hat q_{2\\alpha}-t, \\hat q_{1-2\\alpha}+t]$$\n",
     "where $t$ is a real parameter ajdusted at the conformalization step. For more information on CQR, one can check this paper : https://arxiv.org/abs/1905.03222. "

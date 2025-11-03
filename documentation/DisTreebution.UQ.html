@@ -1,0 +1,1579 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DisTreebution.UQ package &#8212; DisTreebution</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=dd5beb26" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/sphinx_gallery.css?v=370a08b5" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_logo.css?v=f521e7f3" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/DisTreebution.UQ';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorials" href="../tutorials/index.html" />
+    <link rel="prev" title="DisTreebution.RT package" href="DisTreebution.RT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="DisTreebution - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="DisTreebution - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../presentation.html">
+    Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer/index.html">
+    Developer
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../references.html">
+    References
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../team.html">
+    Team
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../presentation.html">
+    Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer/index.html">
+    Developer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../team.html">
+    Team
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="DisTreebution.html">DisTreebution package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.CRPSRT.html">DisTreebution.CRPSRT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.QRT.html">DisTreebution.QRT package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DisTreebution.RT.html">DisTreebution.RT package</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">DisTreebution.UQ package</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="modules.html" class="nav-link">DisTreebution</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="DisTreebution.html" class="nav-link">DisTreebution package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">DisTreebutio...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="distreebution-uq-package">
+<h1>DisTreebution.UQ package<a class="headerlink" href="#distreebution-uq-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-DisTreebution.UQ.Conformalisation">
+<span id="distreebution-uq-conformalisation-module"></span><h2>DisTreebution.UQ.Conformalisation module<a class="headerlink" href="#module-DisTreebution.UQ.Conformalisation" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation.get_quantile">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.Conformalisation.</span></span><span class="sig-name descname"><span class="pre">get_quantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#get_quantile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation.get_quantile" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation.Conformalisation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.Conformalisation.</span></span><span class="sig-name descname"><span class="pre">Conformalisation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#Conformalisation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation.Conformalisation" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Handles conformalisation processes on tree-based models, including preprocessing of trees
+for training and test data, optionally with group information, and performing operations on leaf values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>settings</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>(optional) Configuration settings for the conformalisation process, such as the type of tree.</p>
+</dd>
+<dt><strong>params</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>(optional) Additional parameters for the conformalisation process.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees">
+<span class="sig-name descname"><span class="pre">preprocess_trees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#Conformalisation.preprocess_trees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Preprocesses</span> <span class="pre">the</span> <span class="pre">given</span> <span class="pre">trees</span> <span class="pre">to</span> <span class="pre">extract</span> <span class="pre">and</span> <span class="pre">organize</span> <span class="pre">leaf</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">each</span> <span class="pre">sample</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">training</span> <span class="pre">and</span> <span class="pre">test</span> <span class="pre">sets.</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Handles</span> <span class="pre">both</span> <span class="pre">standard</span> <span class="pre">and</span> <span class="pre">PQRT</span> <span class="pre">tree</span> <span class="pre">types.</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees_with_groups">
+<span class="sig-name descname"><span class="pre">preprocess_trees_with_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#Conformalisation.preprocess_trees_with_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees_with_groups" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Preprocesses</span> <span class="pre">the</span> <span class="pre">given</span> <span class="pre">trees</span> <span class="pre">to</span> <span class="pre">extract</span> <span class="pre">leaf</span> <span class="pre">values</span> <span class="pre">and</span> <span class="pre">group</span> <span class="pre">information</span> <span class="pre">for</span> <span class="pre">each</span> <span class="pre">sample</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">training</span> <span class="pre">and</span> <span class="pre">test</span> <span class="pre">sets,</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">up</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">specified</span> <span class="pre">maximum</span> <span class="pre">group</span> <span class="pre">depth.</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation.Conformalisation.operation_leaf">
+<span class="sig-name descname"><span class="pre">operation_leaf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#Conformalisation.operation_leaf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation.Conformalisation.operation_leaf" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Computes</span> <span class="pre">the</span> <span class="pre">q-th</span> <span class="pre">quantile</span> <span class="pre">value</span> <span class="pre">from</span> <span class="pre">a</span> <span class="pre">sorted</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">leaf</span> <span class="pre">values,</span> <span class="pre">optionally</span> <span class="pre">using</span> <span class="pre">sample</span> <span class="pre">weights.</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">preprocess_trees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#Conformalisation.preprocess_trees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd><p>Preprocesses the given trees to extract and organize leaf values for each sample in the dataset.
+Handles both standard and PQRT tree types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of tree objects to preprocess.</p>
+</dd>
+<dt><strong>x</strong> <span class="classifier"><em>array-like</em></span></dt></dt><dd><p>Input data for which to extract leaf values.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary mapping tree IDs to another dictionary that maps sample IDs to sorted leaf values.
+Format: {tree_id: {sample_id: sorted_leaf_values}}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">preprocess_trees_with_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#Conformalisation.preprocess_trees_with_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
+<dd><p>Preprocesses the given trees to extract leaf values and group information for each sample in the training set,
+up to a specified maximum group depth.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of tree objects to preprocess.</p>
+</dd>
+<dt><strong>x_train</strong> <span class="classifier"><em>array-like</em></span></dt></dt><dd><p>Training input data for which to extract leaf values and group information.</p>
+</dd>
+<dt><strong>max_depth_group</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>Maximum depth for group coverage in the trees.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns tuple<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>treeID2trainID2values</strong> (<em>dict</em>): A dictionary mapping tree IDs to another dictionary</p></li>
+</ul>
+<p>that maps training sample IDs to sorted leaf values.</p>
+<ul class="simple">
+<li><p><strong>treeID2trainID2group</strong> (<em>dict</em>): A dictionary mapping tree IDs to another dictionary</p></li>
+</ul>
+<p>that maps training sample IDs to their group information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">operation_leaf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation.html#Conformalisation.operation_leaf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">#</a></dt>
+<dd><p>Computes the q-th quantile value from a sorted list of leaf values, optionally using sample weights.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>ls</strong> <span class="classifier"><em>array-like</em></span></dt></dt><dd><p>Sorted list or array of leaf values.</p>
+</dd>
+<dt><strong>q</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Quantile to compute, between 0 and 1.</p>
+</dd>
+<dt><strong>weights</strong> <span class="classifier"><em>array-like</em></span></dt></dt><dd><p>Weights for each value in <cite>ls</cite>. If None, uniform weights are used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns float<span class="colon">:</span></dt>
+<dd class="field-even"><p>The q-th quantile value from the list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DisTreebution.UQ.Conformalisation_CQR">
+<span id="distreebution-uq-conformalisation-cqr-module"></span><h2>DisTreebution.UQ.Conformalisation_CQR module<a class="headerlink" href="#module-DisTreebution.UQ.Conformalisation_CQR" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.Conformalisation_CQR.</span></span><span class="sig-name descname"><span class="pre">Conformalisation_CQR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_CQR.html#Conformalisation_CQR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#DisTreebution.UQ.Conformalisation.Conformalisation" title="DisTreebution.UQ.Conformalisation.Conformalisation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation</span></code></a></p>
+<p>Conformalized Quantile Regression (CQR) for tree-based models.</p>
+<p>Implements CQR-style conformalization on tree ensembles producing
+quantile predictions. Extends <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation</span></code> with methods to
+compute global and group-wise conformity thresholds and to predict
+conformalized quantile sets on new inputs.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split">
+<span class="sig-name descname"><span class="pre">conformalize_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nominal_quantiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_CQR.html#Conformalisation_CQR.conformalize_split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split" title="Link to this definition">#</a></dt>
+<dd><p>Compute CQR conformity thresholds for nominal quantiles.</p>
+<p>The method computes conformity scores for each provided nominal
+quantile and sets <code class="docutils literal notranslate"><span class="pre">self.conf_thresh</span></code> to a list of thresholds
+corresponding to each nominal quantile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration input features.</p>
+</dd>
+<dt><strong>y_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration target values.</p>
+</dd>
+<dt><strong>alpha</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Significance level for conformalization (e.g. 0.1 for 90% sets).</p>
+</dd>
+<dt><strong>nominal_quantiles</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Nominal quantile(s) to conformalize. A single float will be converted to a list.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None. Sets <code class="docutils literal notranslate"><span class="pre">self.conf_thresh</span></code> to a list of thresholds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AssertionError" title="(in Python v3.14)"><strong>AssertionError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">nominal_quantiles</span></code> is not provided.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split">
+<span class="sig-name descname"><span class="pre">predict_conformal_set_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_CQR.html#Conformalisation_CQR.predict_conformal_set_split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split" title="Link to this definition">#</a></dt>
+<dd><p>Predict conformalized quantile sets on test inputs.</p>
+<p>Uses <code class="docutils literal notranslate"><span class="pre">self.conf_thresh</span></code> computed by <a class="reference internal" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split" title="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split"><code class="xref py py-meth docutils literal notranslate"><span class="pre">conformalize_split()</span></code></a> to
+produce, for each nominal quantile, a dictionary mapping test sample
+indices to conformal intervals [low, up].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Test input features.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping from nominal quantile index to a mapping of test index to [low, up].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AssertionError" title="(in Python v3.14)"><strong>AssertionError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">self.conf_thresh</span></code> has not been computed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split_group_coverage">
+<span class="sig-name descname"><span class="pre">conformalize_split_group_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nominal_quantiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_CQR.html#Conformalisation_CQR.conformalize_split_group_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split_group_coverage" title="Link to this definition">#</a></dt>
+<dd><p>Compute group-wise CQR thresholds to guarantee group coverage.</p>
+<p>For each nominal quantile and for each group defined by tree
+partitions up to <code class="docutils literal notranslate"><span class="pre">max_depth_group</span></code>, compute an empirical threshold
+stored in <code class="docutils literal notranslate"><span class="pre">self.group2conf_thresh</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration input features.</p>
+</dd>
+<dt><strong>y_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration target values.</p>
+</dd>
+<dt><strong>alpha</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Significance level for conformalization.</p>
+</dd>
+<dt><strong>nominal_quantiles</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Nominal quantile(s) to conformalize.</p>
+</dd>
+<dt><strong>max_depth_group</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>Maximum depth used to define groups in the tree partitioning.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None. Sets <code class="docutils literal notranslate"><span class="pre">self.group2conf_thresh</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AssertionError" title="(in Python v3.14)"><strong>AssertionError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">nominal_quantiles</span></code> or <code class="docutils literal notranslate"><span class="pre">max_depth_group</span></code> is not provided.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split_group_coverage">
+<span class="sig-name descname"><span class="pre">predict_conformal_set_split_group_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_CQR.html#Conformalisation_CQR.predict_conformal_set_split_group_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split_group_coverage" title="Link to this definition">#</a></dt>
+<dd><p>Predict group-aware conformalized quantile sets for test inputs.</p>
+<p>Uses thresholds in <code class="docutils literal notranslate"><span class="pre">self.group2conf_thresh</span></code> to produce per-group
+conformal intervals for each nominal quantile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Test input features.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple <code class="docutils literal notranslate"><span class="pre">(treeID2testID2group[0],</span> <span class="pre">sample2predset)</span></code> where
+<code class="docutils literal notranslate"><span class="pre">sample2predset</span></code> maps nominal-quantile indices to per-sample [low, up].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_test_i">
+<span class="sig-name descname"><span class="pre">get_low_up_test_i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_up</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_low_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_up_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qmedian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qmedian_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_CQR.html#Conformalisation_CQR.get_low_up_test_i"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_test_i" title="Link to this definition">#</a></dt>
+<dd><p>Compute conformalized lower and upper quantiles for one test sample.</p>
+<p>Behavior depends on <code class="docutils literal notranslate"><span class="pre">self.settings['nested_set']</span></code> and supports
+variants ‘CQR’, ‘CQR-m’, and ‘CQR-r’. If <code class="docutils literal notranslate"><span class="pre">t</span></code> is not provided the
+method searches for the smallest adjustment making the calibration
+value <code class="docutils literal notranslate"><span class="pre">yj</span></code> fall inside the adjusted interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>yj</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Calibration output value.</p>
+</dd>
+<dt><strong>qhat_low</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Predicted lower quantile on calibration data.</p>
+</dd>
+<dt><strong>qhat_up</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Predicted upper quantile on calibration data.</p>
+</dd>
+<dt><strong>qhat_low_test</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Predicted lower quantile for the test sample.</p>
+</dd>
+<dt><strong>qhat_up_test</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Predicted upper quantile for the test sample.</p>
+</dd>
+<dt><strong>qmedian</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Predicted median on calibration data.</p>
+</dd>
+<dt><strong>qmedian_test</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Predicted median for the test sample.</p>
+</dd>
+<dt><strong>t</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em><em>, </em><em>optional</em></span></dt></dt><dd><p>Optional conformalization adjustment parameter; if <code class="docutils literal notranslate"><span class="pre">None</span></code> it will be computed.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(low_test,</span> <span class="pre">up_test,</span> <span class="pre">t)</span></code> where <code class="docutils literal notranslate"><span class="pre">low_test</span></code> and <code class="docutils literal notranslate"><span class="pre">up_test</span></code> are the adjusted bounds and <code class="docutils literal notranslate"><span class="pre">t</span></code> is the used threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_score">
+<span class="sig-name descname"><span class="pre">get_low_up_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample2calib_trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2trainID2values_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2testID2values_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2trainID2values_up</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2testID2values_up</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2trainID2values_median</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2testID2values_median</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_fixed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_CQR.html#Conformalisation_CQR.get_low_up_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_score" title="Link to this definition">#</a></dt>
+<dd><p>Compute conformalized quantile predictions and conformity scores.</p>
+<p>Aggregates tree-level quantile estimates according to
+<code class="docutils literal notranslate"><span class="pre">self.settings['type_aggregation_trees']</span></code> and for each calibration
+sample returns a conformalized lower bound, upper bound and a
+conformity score index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>i</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>Index of the test sample.</p>
+</dd>
+<dt><strong>q</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Nominal quantile level (e.g. 0.1).</p>
+</dd>
+<dt><strong>y_train</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> or </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration output values.</p>
+</dd>
+<dt><strong>sample2calib_trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping from calibration sample index to list of tree IDs.</p>
+</dd>
+<dt><strong>treeID2trainID2values_low</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping of tree ID to training sample IDs to lower quantile leaf values.</p>
+</dd>
+<dt><strong>treeID2testID2values_low</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping of tree ID to test sample IDs to lower quantile leaf values.</p>
+</dd>
+<dt><strong>treeID2trainID2values_up</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping of tree ID to training sample IDs to upper quantile leaf values.</p>
+</dd>
+<dt><strong>treeID2testID2values_up</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping of tree ID to test sample IDs to upper quantile leaf values.</p>
+</dd>
+<dt><strong>treeID2trainID2values_median</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping of tree ID to training sample IDs to median quantile leaf values.</p>
+</dd>
+<dt><strong>treeID2testID2values_median</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping of tree ID to test sample IDs to median quantile leaf values.</p>
+</dd>
+<dt><strong>t_fixed</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em><em>, </em><em>optional</em></span></dt></dt><dd><p>Optional fixed conformalization threshold/index. If <code class="docutils literal notranslate"><span class="pre">None</span></code> the method will compute it per calibration sample.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple <code class="docutils literal notranslate"><span class="pre">(lower,</span> <span class="pre">upper,</span> <span class="pre">conf_scores)</span></code> where each is a list with one entry per calibration sample in <code class="docutils literal notranslate"><span class="pre">y_train</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DisTreebution.UQ.Conformalisation_distributional">
+<span id="distreebution-uq-conformalisation-distributional-module"></span><h2>DisTreebution.UQ.Conformalisation_distributional module<a class="headerlink" href="#module-DisTreebution.UQ.Conformalisation_distributional" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.Conformalisation_distributional.</span></span><span class="sig-name descname"><span class="pre">Conformalisation_distributional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_distributional.html#Conformalisation_distributional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#DisTreebution.UQ.Conformalisation.Conformalisation" title="DisTreebution.UQ.Conformalisation.Conformalisation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation</span></code></a></p>
+<p>Conformalisation for distributional tree-based models.</p>
+<p>This class implements conformalisation utilities for tree ensembles that
+produce distributional (quantile/interval) predictions. It extends
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation</span></code> and provides methods to compute conformity
+thresholds on a calibration set and to produce conformal prediction sets
+for test inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>settings</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>Configuration settings for the conformalisation process, such as the type of tree.</p>
+</dd>
+<dt><strong>params</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>Hyperparameters for the conformalisation process.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split">
+<span class="sig-name descname"><span class="pre">conformalize_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_distributional.html#Conformalisation_distributional.conformalize_split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split" title="Link to this definition">#</a></dt>
+<dd><p>Compute conformity threshold from a calibration set.</p>
+<p>The method computes conformity scores on the provided calibration
+dataset and sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">self.conf_thresh</span></code> to the empirical quantile
+corresponding to <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration input data.</p>
+</dd>
+<dt><strong>y_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration output data.</p>
+</dd>
+<dt><strong>alpha</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Significance level for conformalization (e.g. 0.1 for 90% sets).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None. Sets <code class="docutils literal notranslate"><span class="pre">self.conf_thresh</span></code> on success.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split">
+<span class="sig-name descname"><span class="pre">predict_conformal_set_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_distributional.html#Conformalisation_distributional.predict_conformal_set_split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split" title="Link to this definition">#</a></dt>
+<dd><p>Predict conformal prediction sets for test inputs using a fixed threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Test input data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping from test sample index to conformal prediction set [low, up].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AssertionError" title="(in Python v3.14)"><strong>AssertionError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">self.conf_thresh</span></code> has not been set by a previous calibration.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split_group_coverage">
+<span class="sig-name descname"><span class="pre">conformalize_split_group_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_res_on_calib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_distributional.html#Conformalisation_distributional.conformalize_split_group_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split_group_coverage" title="Link to this definition">#</a></dt>
+<dd><p>Compute group-specific conformity thresholds from a calibration set.</p>
+<p>For each group (as defined by the tree partitioning up to
+<code class="docutils literal notranslate"><span class="pre">max_depth_group</span></code>) this method computes an empirical conformity
+threshold and stores the results in <code class="docutils literal notranslate"><span class="pre">self.group2conf_thresh</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration input data.</p>
+</dd>
+<dt><strong>y_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration output data.</p>
+</dd>
+<dt><strong>alpha</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Significance level for conformalization.</p>
+</dd>
+<dt><strong>max_depth_group</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>Maximum depth for defining groups (tree levels).</p>
+</dd>
+<dt><strong>get_res_on_calib</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>If True, also return calibration set statistics.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None. On success sets <code class="docutils literal notranslate"><span class="pre">self.group2conf_thresh</span></code>. If
+<code class="docutils literal notranslate"><span class="pre">get_res_on_calib</span></code> is True the method additionally computes and
+would return calibration group sizes and coverages (the caller
+should call the corresponding predict method to retrieve them).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split_group_coverage">
+<span class="sig-name descname"><span class="pre">predict_conformal_set_split_group_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_res_on_calib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_calib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_calib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_distributional.html#Conformalisation_distributional.predict_conformal_set_split_group_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split_group_coverage" title="Link to this definition">#</a></dt>
+<dd><p>Predict conformal sets for test inputs with group-wise thresholds.</p>
+<p>Uses <code class="docutils literal notranslate"><span class="pre">self.group2conf_thresh</span></code> (computed by
+<a class="reference internal" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split_group_coverage" title="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split_group_coverage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">conformalize_split_group_coverage()</span></code></a>) to produce conformal sets for
+each test sample, adapting the threshold to the group that a sample
+belongs to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of trained tree models.</p>
+</dd>
+<dt><strong>x_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Test input data.</p>
+</dd>
+<dt><strong>get_res_on_calib</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>If True, also compute and return calibration-set statistics.</p>
+</dd>
+<dt><strong>x_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>Calibration input data (required when <code class="docutils literal notranslate"><span class="pre">get_res_on_calib</span></code> is True).</p>
+</dd>
+<dt><strong>y_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>Calibration output data (required when <code class="docutils literal notranslate"><span class="pre">get_res_on_calib</span></code> is True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>When <code class="docutils literal notranslate"><span class="pre">get_res_on_calib</span></code> is True returns a tuple
+<code class="docutils literal notranslate"><span class="pre">(group2sizecalib,</span> <span class="pre">group2covcalib,</span> <span class="pre">treeID2testID2group,</span> <span class="pre">sample2predset)</span></code>.
+Otherwise returns <code class="docutils literal notranslate"><span class="pre">(treeID2testID2group[0],</span> <span class="pre">sample2predset)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AssertionError" title="(in Python v3.14)"><strong>AssertionError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">self.group2conf_thresh</span></code> has not been computed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_test_i">
+<span class="sig-name descname"><span class="pre">get_low_up_test_i</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_up</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_low_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qhat_up_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_distributional.html#Conformalisation_distributional.get_low_up_test_i"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_test_i" title="Link to this definition">#</a></dt>
+<dd><p>Select lower/upper bounds for a test sample using conformity thresholds.</p>
+<p>The method inspects arrays of calibration quantile estimates and their
+corresponding test quantile estimates and either uses the provided
+threshold index <code class="docutils literal notranslate"><span class="pre">t</span></code> or searches for the largest index where the
+calibration value covers <code class="docutils literal notranslate"><span class="pre">yj</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>yj</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Calibration sample true value.</p>
+</dd>
+<dt><strong>qhat_low</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Lower quantile estimates from calibration.</p>
+</dd>
+<dt><strong>qhat_up</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Upper quantile estimates from calibration.</p>
+</dd>
+<dt><strong>qhat_low_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Lower quantile estimates for the test sample.</p>
+</dd>
+<dt><strong>qhat_up_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Upper quantile estimates for the test sample.</p>
+</dd>
+<dt><strong>t</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em><em>, </em><em>optional</em></span></dt></dt><dd><p>Optional fixed threshold index to use. If <code class="docutils literal notranslate"><span class="pre">None</span></code> the method searches.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(low_j,</span> <span class="pre">up_j,</span> <span class="pre">t_idx)</span></code> where <code class="docutils literal notranslate"><span class="pre">low_j</span></code> and <code class="docutils literal notranslate"><span class="pre">up_j</span></code> are the
+selected bounds for the test sample and <code class="docutils literal notranslate"><span class="pre">t_idx</span></code> is the chosen threshold index.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_score">
+<span class="sig-name descname"><span class="pre">get_low_up_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample2calib_trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2trainID2values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">treeID2testID2values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_fixed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/Conformalisation_distributional.html#Conformalisation_distributional.get_low_up_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_score" title="Link to this definition">#</a></dt>
+<dd><p>Compute lower/upper bounds and conformity scores for one test index.</p>
+<p>This method aggregates quantile estimates across trees (according to the
+aggregation configured in <code class="docutils literal notranslate"><span class="pre">self.settings['type_aggregation_trees']</span></code>)
+and returns, for the test sample at index <code class="docutils literal notranslate"><span class="pre">i</span></code>, three lists:
+the lower bounds, the upper bounds and the conformity score indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>i</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>Index of the test sample.</p>
+</dd>
+<dt><strong>y_train</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>Array of calibration/training output values used to compute scores.</p>
+</dd>
+<dt><strong>sample2calib_trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping from sample indices to lists of tree IDs used for calibration.</p>
+</dd>
+<dt><strong>treeID2trainID2values</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping from tree ID to a mapping of training sample IDs to leaf values.</p>
+</dd>
+<dt><strong>treeID2testID2values</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Mapping from tree ID to a mapping of test sample IDs to leaf values.</p>
+</dd>
+<dt><strong>t_fixed</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em></span></dt></dt><dd><p>Optional fixed threshold/index to use when selecting bounds. If <code class="docutils literal notranslate"><span class="pre">None</span></code> the method will search.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple <code class="docutils literal notranslate"><span class="pre">(lower,</span> <span class="pre">upper,</span> <span class="pre">conf_scores)</span></code> where each entry is a list
+with one element per calibration sample in <code class="docutils literal notranslate"><span class="pre">y_train</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DisTreebution.UQ.UQ">
+<span id="distreebution-uq-uq-module"></span><h2>DisTreebution.UQ.UQ module<a class="headerlink" href="#module-DisTreebution.UQ.UQ" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DisTreebution.UQ.UQ.UQ">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.UQ.</span></span><span class="sig-name descname"><span class="pre">UQ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'PQRT'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nested_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CQR'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_conformal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'split'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_coverage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_aggregation_trees</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/UQ.html#UQ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.UQ.UQ" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Uncertainty quantification and conformal prediction helper.</p>
+<p>This class wraps training of forest-like quantile/regression trees,
+conformalization, and construction/analysis of predictive sets.</p>
+<p>It centralizes configuration (<code class="xref py py-attr docutils literal notranslate"><span class="pre">settings</span></code>), builds a non-conformal
+quantile estimator (<code class="xref py py-attr docutils literal notranslate"><span class="pre">noconf</span></code>) for querying, selects a conformal
+backend (<code class="xref py py-attr docutils literal notranslate"><span class="pre">conf</span></code>) based on settings, and exposes utilities to train
+trees, conformalize them, predict conformal sets, and extract quantile
+estimates.</p>
+<p><strong>Constructor Parameters</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>type_tree</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a></span></dt></dt><dd><p><p>Type of tree learner used.
+Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'PMQRT'</span></code> – per-tree quantile regression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'CRPS'</span></code> – CRPS-optimized regression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'RT'</span></code> – quadratic regression tree</p></li>
+</ul>
+<p>Other strings may be supported by external tree classes.</p>
+</p>
+</dd>
+<dt><strong>nested_set</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a></span></dt></dt><dd><p>Strategy for nested prediction sets (e.g. <code class="docutils literal notranslate"><span class="pre">'CQR'</span></code>, <code class="docutils literal notranslate"><span class="pre">'distri'</span></code>).
+Used to choose the conformal backend.
+- If it contains <code class="docutils literal notranslate"><span class="pre">'CQR'</span></code> → <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation_CQR</span></code> backend.
+- If it contains <code class="docutils literal notranslate"><span class="pre">'distri'</span></code> → <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation_distributional</span></code> backend.</p>
+</dd>
+<dt><strong>type_conformal</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em></span></dt></dt><dd><p>Controls conformalization mode.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a generic <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation</span></code> backend is instantiated;
+otherwise <code class="docutils literal notranslate"><span class="pre">nested_set</span></code> determines which backend is used.</p>
+</dd>
+<dt><strong>group_coverage</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a></span></dt></dt><dd><p>Whether to use group-aware conformal methods and
+prediction routines (calls to <code class="docutils literal notranslate"><span class="pre">conf.*_group_coverage</span></code>).</p>
+</dd>
+<dt><strong>type_aggregation_trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a></span></dt></dt><dd><p>How per-tree quantiles are aggregated across trees.
+Examples:
+- <code class="docutils literal notranslate"><span class="pre">'vr'</span></code> – quantile bagging: average quantiles across trees
+- <code class="docutils literal notranslate"><span class="pre">'vr-avg'</span></code> – distributional bagging: aggregates conditional CDFs before querying</p>
+</dd>
+<dt><strong>params</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Miscellaneous hyperparameters, may include:
+- <code class="docutils literal notranslate"><span class="pre">'nTrees'</span></code> – number of trees to train
+- <code class="docutils literal notranslate"><span class="pre">'treeID2quantiles_train'</span></code> – mapping tree IDs → quantiles (for PMQRT)
+- <code class="docutils literal notranslate"><span class="pre">'max_depth'</span></code> – maximum depth for trees
+- <code class="docutils literal notranslate"><span class="pre">'min_samples_split'</span></code> – minimum samples to split
+- <code class="docutils literal notranslate"><span class="pre">'use_LOO'</span></code> – whether to use leave-one-out info gains
+- <code class="docutils literal notranslate"><span class="pre">'max_depth_group'</span></code> – max depth for group coverage trees
+- <code class="docutils literal notranslate"><span class="pre">'list_distri_low_quantiles'</span></code> – lower quantiles for distributional conformal prediction</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Behavior / Side Effects</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self.settings</span></code> is a dict of configuration options.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.params</span></code> stores the params dictionary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.noconf</span></code> is always constructed as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation_CQR</span></code> instance
+with the same settings except <code class="docutils literal notranslate"><span class="pre">nested_set='CQR'</span></code> (used for querying quantiles
+without conformalization).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.conf</span></code> is chosen based on <code class="docutils literal notranslate"><span class="pre">type_conformal</span></code> and <code class="docutils literal notranslate"><span class="pre">nested_set</span></code>.</p></li>
+</ul>
+<p><strong>Public Attributes</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>settings</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Configuration options described above.</p>
+</dd>
+<dt><strong>params</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>Hyperparameters.</p>
+</dd>
+<dt><strong>noconf</strong></dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation_CQR</span></code> instance for non-conformal queries.</p>
+</dd>
+<dt><strong>conf</strong></dt><dd><p>Selected conformalization backend instance
+(<code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation_CQR</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation</span></code>,
+or <code class="xref py py-class docutils literal notranslate"><span class="pre">Conformalisation_distributional</span></code>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uq</span> <span class="o">=</span> <span class="n">UQ</span><span class="p">(</span><span class="n">type_tree</span><span class="o">=</span><span class="s1">&#39;CRPS&#39;</span><span class="p">,</span> <span class="n">nested_set</span><span class="o">=</span><span class="s1">&#39;CQR&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;nTrees&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+<span class="n">trees</span><span class="p">,</span> <span class="n">sample2calib</span> <span class="o">=</span> <span class="n">uq</span><span class="o">.</span><span class="n">train_trees</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">uq</span><span class="o">.</span><span class="n">conformalize</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span> <span class="n">X_calib</span><span class="p">,</span> <span class="n">y_calib</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">sample2predset</span> <span class="o">=</span> <span class="n">uq</span><span class="o">.</span><span class="n">predict_conformal_set</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+<span class="n">widths</span><span class="p">,</span> <span class="n">coverages</span> <span class="o">=</span> <span class="n">uq</span><span class="o">.</span><span class="n">compute_width_coverage</span><span class="p">(</span><span class="n">sample2predset</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.UQ.UQ.compute_width_coverage">
+<span class="sig-name descname"><span class="pre">compute_width_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample2predset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/UQ.html#UQ.compute_width_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.UQ.UQ.compute_width_coverage" title="Link to this definition">#</a></dt>
+<dd><p>Computes the total width of prediction sets and coverage indicators for each test sample.</p>
+<p>For each test sample, this method calculates:</p>
+<ul class="simple">
+<li><p>The sum of the widths of all predicted intervals (sub-intervals) associated with the sample.</p></li>
+<li><p>Whether the true value falls within any of the predicted intervals (coverage).</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sample2predset</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>]</em></span></dt></dt><dd><p>A list where each element corresponds to a test sample and contains a tuple
+of the form <code class="docutils literal notranslate"><span class="pre">(lower_bound,</span> <span class="pre">upper_bound)</span></code>.</p>
+</dd>
+<dt><strong>y_test</strong> <span class="classifier"><em>array-like</em></span></dt></dt><dd><p>The true target values for the test samples.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>widths</strong> (<em>numpy.ndarray</em>) – Total widths of the predicted intervals for each test sample.</p></li>
+<li><p><strong>coverages</strong> (<em>numpy.ndarray</em>) – Binary indicators (1 if the true value is covered by any interval,</p></li>
+</ul>
+<p>0 otherwise) for each test sample.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.UQ.UQ.compute_group_width_coverage">
+<span class="sig-name descname"><span class="pre">compute_group_width_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample2predset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testID2group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/UQ.html#UQ.compute_group_width_coverage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.UQ.UQ.compute_group_width_coverage" title="Link to this definition">#</a></dt>
+<dd><p>Computes the average prediction interval width and empirical coverage per group.</p>
+<p>Groups are defined by the <code class="docutils literal notranslate"><span class="pre">testID2group</span></code> mapping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sample2predset</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>]</em><em>]</em></span></dt></dt><dd><p>A list where each element corresponds to a test sample and contains one or more tuples
+of the form <code class="docutils literal notranslate"><span class="pre">(lower_bound,</span> <span class="pre">upper_bound)</span></code> representing predicted intervals.</p>
+</dd>
+<dt><strong>y_test</strong> <span class="classifier"><em>array-like</em></span></dt></dt><dd><p>The true target values for the test samples.</p>
+</dd>
+<dt><strong>testID2group</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a></span></dt></dt><dd><p>A mapping from test sample indices to group identifiers.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>group2width</strong> (<em>dict</em>) – Mapping <code class="docutils literal notranslate"><span class="pre">group_id</span> <span class="pre">→</span> <span class="pre">average</span> <span class="pre">interval</span> <span class="pre">width</span></code> across all samples in the group.</p></li>
+<li><p><strong>group2cov</strong> (<em>dict</em>) – Mapping <code class="docutils literal notranslate"><span class="pre">group_id</span> <span class="pre">→</span> <span class="pre">empirical</span> <span class="pre">coverage</span></code>, i.e., the fraction of samples in the group</p></li>
+</ul>
+<p>whose true value lies within any of the predicted intervals.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.UQ.UQ.train_trees">
+<span class="sig-name descname"><span class="pre">train_trees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth_ref_tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/UQ.html#UQ.train_trees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.UQ.UQ.train_trees" title="Link to this definition">#</a></dt>
+<dd><p>Trains an ensemble of regression trees and tracks calibration indices for Out-of-Bag (OOB)
+conformal methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x_train</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Training feature matrix of shape <code class="docutils literal notranslate"><span class="pre">(n_train,</span> <span class="pre">n_features)</span></code>.</p>
+</dd>
+<dt><strong>y_train</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Training target values of shape <code class="docutils literal notranslate"><span class="pre">(n_train,)</span></code>.</p>
+</dd>
+<dt><strong>max_depth_ref_tree</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>If not equal to <code class="docutils literal notranslate"><span class="pre">-1</span></code>, a reference tree is constructed and fitted
+(used by certain tree-training routines). If <code class="docutils literal notranslate"><span class="pre">-1</span></code>, no reference tree is used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>trees</strong> (<em>list</em>) – List of fitted tree objects, ordered by training loop.</p></li>
+<li><p><strong>sample2calib_trees</strong> (<em>dict</em>) – Mapping <code class="docutils literal notranslate"><span class="pre">sample_index</span> <span class="pre">→</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">tree</span> <span class="pre">indices</span></code> for which</p></li>
+</ul>
+<p>the sample was placed in the calibration set (i.e., excluded from that tree’s training set).
+Useful for split-conformal calibration.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.UQ.UQ.conformalize">
+<span class="sig-name descname"><span class="pre">conformalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_calib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/UQ.html#UQ.conformalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.UQ.UQ.conformalize" title="Link to this definition">#</a></dt>
+<dd><p>Runs conformalization (split-conformal) on the provided trees and calibration data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>List of fitted tree objects (the same trees returned by <a class="reference internal" href="#DisTreebution.UQ.UQ.UQ.train_trees" title="DisTreebution.UQ.UQ.UQ.train_trees"><code class="xref py py-meth docutils literal notranslate"><span class="pre">train_trees()</span></code></a>).</p>
+</dd>
+<dt><strong>x_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration feature matrix.</p>
+</dd>
+<dt><strong>y_calib</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Calibration target values.</p>
+</dd>
+<dt><strong>alpha</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a></span></dt></dt><dd><p>Miscoverage level (e.g., <code class="docutils literal notranslate"><span class="pre">0.1</span></code> for 90% coverage).</p>
+</dd>
+<dt><strong>kwargs</strong></dt><dd><p>Additional keyword arguments forwarded to the conformal backend.
+For CQR nested sets, the <code class="docutils literal notranslate"><span class="pre">nominal_quantiles</span></code> parameter should be provided.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">self.settings['group_coverage']</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, calls</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">self.conf.conformalize_split_group_coverage(...)</span></code>.
+- Otherwise, calls <code class="docutils literal notranslate"><span class="pre">self.conf.conformalize_split(...)</span></code>.
+- The conformal backend is expected to update its internal state used by
+<a class="reference internal" href="#DisTreebution.UQ.UQ.UQ.predict_conformal_set" title="DisTreebution.UQ.UQ.UQ.predict_conformal_set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">predict_conformal_set()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.UQ.UQ.predict_conformal_set">
+<span class="sig-name descname"><span class="pre">predict_conformal_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_testID2group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/UQ.html#UQ.predict_conformal_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.UQ.UQ.predict_conformal_set" title="Link to this definition">#</a></dt>
+<dd><p>Predict conformalized sets for test points using the conformal backend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>Trained trees (same as passed to <a class="reference internal" href="#DisTreebution.UQ.UQ.UQ.conformalize" title="DisTreebution.UQ.UQ.UQ.conformalize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">conformalize()</span></code></a>).</p>
+</dd>
+<dt><strong>x_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Test feature matrix of shape (n_test, n_features).</p>
+</dd>
+<dt><strong>return_testID2group</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a></span></dt></dt><dd><p>When <code class="docutils literal notranslate"><span class="pre">group_coverage</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, optionally return the mapping from
+test indices to groups alongside the prediction sets.</p>
+</dd>
+<dt><strong>kwargs</strong></dt><dd><p>Additional keyword arguments forwarded to the conformal backend’s prediction routine.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">group_coverage</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p></li>
+</ul>
+<p><strong>sample2predset</strong> – Sequence-like (length n_test) of (low, up) prediction interval pairs.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">group_coverage</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">return_testID2group</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>:</p>
+<blockquote>
+<div><p><strong>sample2predset</strong> as above.</p>
+</div></blockquote>
+</li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">return_testID2group</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<blockquote>
+<div><p>Tuple <code class="docutils literal notranslate"><span class="pre">(testID2group,</span> <span class="pre">sample2predset)</span></code> where <code class="docutils literal notranslate"><span class="pre">testID2group</span></code> is the mapping used.</p>
+</div></blockquote>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+<p><strong>Notes:</strong></p>
+<ul class="simple">
+<li><p>Delegates to either <code class="xref py py-meth docutils literal notranslate"><span class="pre">predict_conformal_set_split()</span></code> or</p></li>
+</ul>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">predict_conformal_set_split_group_coverage()</span></code> on <code class="docutils literal notranslate"><span class="pre">self.conf</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DisTreebution.UQ.UQ.UQ.get_quantile_estimate">
+<span class="sig-name descname"><span class="pre">get_quantile_estimate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/UQ.html#UQ.get_quantile_estimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.UQ.UQ.get_quantile_estimate" title="Link to this definition">#</a></dt>
+<dd><p>Query aggregate quantile estimates for each test sample from the (non- or pre-) conformal tree predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trees</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>Trained tree objects.</p>
+</dd>
+<dt><strong>x_test</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Test features matrix of shape (n_test, n_features).</p>
+</dd>
+<dt><strong>quantiles</strong> <span class="classifier"><em>iterable</em></span></dt></dt><dd><p>List or array of quantile levels to estimate (values in [0, 1]).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>sample2quantiles</strong> (<em>dict</em>) – Mapping from sample index to list of estimated quantile values.
+The inner list has the same ordering as the input <cite>quantiles</cite> argument.</p>
+</dd>
+</dl>
+<p><strong>Behavior / Implementation details:</strong></p>
+<ul class="simple">
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">self.conf.preprocess_trees(trees,</span> <span class="pre">x_test)</span></code> to obtain a structure</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">treeID2testID2values</span></code> mapping tree IDs to test sample leaf/value indexes.</p>
+<ul class="simple">
+<li><p>For each requested quantile <code class="docutils literal notranslate"><span class="pre">q</span></code>, finds the nearest available query quantile</p></li>
+</ul>
+<p>in <code class="docutils literal notranslate"><span class="pre">self.conf.quantiles_query</span></code> (via argmin on absolute distance) and obtains
+the set of tree IDs associated with that query from
+<code class="docutils literal notranslate"><span class="pre">self.conf.quantile_query2treeIDs</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DisTreebution.UQ.datasets">
+<span id="distreebution-uq-datasets-module"></span><h2>DisTreebution.UQ.datasets module<a class="headerlink" href="#module-DisTreebution.UQ.datasets" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.level2idx">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">level2idx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#level2idx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.level2idx" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.sine_skew">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">sine_skew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#sine_skew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.sine_skew" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.griewank">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">griewank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#griewank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.griewank" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.michalewicz">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">michalewicz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#michalewicz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.michalewicz" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.candes_sesia">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">candes_sesia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#candes_sesia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.candes_sesia" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.bimodal">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">bimodal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#bimodal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.bimodal" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.asymmetric">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">asymmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#asymmetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.asymmetric" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.homoscedastic">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">homoscedastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#homoscedastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.homoscedastic" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.heteroscedastic">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">heteroscedastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#heteroscedastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.heteroscedastic" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.datasets.sales">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.datasets.</span></span><span class="sig-name descname"><span class="pre">sales</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/datasets.html#sales"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.datasets.sales" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-DisTreebution.UQ.utils">
+<span id="distreebution-uq-utils-module"></span><h2>DisTreebution.UQ.utils module<a class="headerlink" href="#module-DisTreebution.UQ.utils" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.utils.filter_dict">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.utils.</span></span><span class="sig-name descname"><span class="pre">filter_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys_to_keep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/utils.html#filter_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.utils.filter_dict" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.utils.crps_from_quantiles">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.utils.</span></span><span class="sig-name descname"><span class="pre">crps_from_quantiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/utils.html#crps_from_quantiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.utils.crps_from_quantiles" title="Link to this definition">#</a></dt>
+<dd><p>Compute CRPS from predicted quantiles.</p>
+<p>Parameters:
+- quantiles: List or numpy array of predicted quantiles.
+- tau: List or numpy array of corresponding quantile levels (e.g., [0.1, 0.2, …, 0.9]).
+- y: The observed value.</p>
+<p>Returns:
+- crps: The computed CRPS score.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.utils.compute_crps">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.utils.</span></span><span class="sig-name descname"><span class="pre">compute_crps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample2predset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls_q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/utils.html#compute_crps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.utils.compute_crps" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DisTreebution.UQ.utils.load_dataset">
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.UQ.utils.</span></span><span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/UQ/utils.html#load_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.UQ.utils.load_dataset" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-DisTreebution.UQ">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DisTreebution.UQ" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DisTreebution.RT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DisTreebution.RT package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../tutorials/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorials</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.UQ.Conformalisation">DisTreebution.UQ.Conformalisation module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation.get_quantile"><code class="docutils literal notranslate"><span class="pre">get_quantile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation.Conformalisation"><code class="docutils literal notranslate"><span class="pre">Conformalisation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation.Conformalisation.preprocess_trees_with_groups"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees_with_groups()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation.Conformalisation.operation_leaf"><code class="docutils literal notranslate"><span class="pre">Conformalisation.operation_leaf()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">Conformalisation.preprocess_trees_with_groups()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><code class="docutils literal notranslate"><span class="pre">Conformalisation.operation_leaf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.UQ.Conformalisation_CQR">DisTreebution.UQ.Conformalisation_CQR module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.conformalize_split()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.predict_conformal_set_split()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.conformalize_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.conformalize_split_group_coverage()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.predict_conformal_set_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.predict_conformal_set_split_group_coverage()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_test_i"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.get_low_up_test_i()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_CQR.Conformalisation_CQR.get_low_up_score"><code class="docutils literal notranslate"><span class="pre">Conformalisation_CQR.get_low_up_score()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.UQ.Conformalisation_distributional">DisTreebution.UQ.Conformalisation_distributional module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.conformalize_split()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.predict_conformal_set_split()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.conformalize_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.conformalize_split_group_coverage()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.predict_conformal_set_split_group_coverage"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.predict_conformal_set_split_group_coverage()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_test_i"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.get_low_up_test_i()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.Conformalisation_distributional.Conformalisation_distributional.get_low_up_score"><code class="docutils literal notranslate"><span class="pre">Conformalisation_distributional.get_low_up_score()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.UQ.UQ">DisTreebution.UQ.UQ module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.UQ.UQ"><code class="docutils literal notranslate"><span class="pre">UQ</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.UQ.UQ.compute_width_coverage"><code class="docutils literal notranslate"><span class="pre">UQ.compute_width_coverage()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.UQ.UQ.compute_group_width_coverage"><code class="docutils literal notranslate"><span class="pre">UQ.compute_group_width_coverage()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.UQ.UQ.train_trees"><code class="docutils literal notranslate"><span class="pre">UQ.train_trees()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.UQ.UQ.conformalize"><code class="docutils literal notranslate"><span class="pre">UQ.conformalize()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.UQ.UQ.predict_conformal_set"><code class="docutils literal notranslate"><span class="pre">UQ.predict_conformal_set()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.UQ.UQ.get_quantile_estimate"><code class="docutils literal notranslate"><span class="pre">UQ.get_quantile_estimate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.UQ.datasets">DisTreebution.UQ.datasets module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.level2idx"><code class="docutils literal notranslate"><span class="pre">level2idx()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.sine_skew"><code class="docutils literal notranslate"><span class="pre">sine_skew()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.griewank"><code class="docutils literal notranslate"><span class="pre">griewank()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.michalewicz"><code class="docutils literal notranslate"><span class="pre">michalewicz()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.candes_sesia"><code class="docutils literal notranslate"><span class="pre">candes_sesia()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.bimodal"><code class="docutils literal notranslate"><span class="pre">bimodal()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.asymmetric"><code class="docutils literal notranslate"><span class="pre">asymmetric()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.homoscedastic"><code class="docutils literal notranslate"><span class="pre">homoscedastic()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.heteroscedastic"><code class="docutils literal notranslate"><span class="pre">heteroscedastic()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.datasets.sales"><code class="docutils literal notranslate"><span class="pre">sales()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.UQ.utils">DisTreebution.UQ.utils module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.utils.filter_dict"><code class="docutils literal notranslate"><span class="pre">filter_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.utils.crps_from_quantiles"><code class="docutils literal notranslate"><span class="pre">crps_from_quantiles()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.utils.compute_crps"><code class="docutils literal notranslate"><span class="pre">compute_crps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#DisTreebution.UQ.utils.load_dataset"><code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-DisTreebution.UQ">Module contents</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/documentation/DisTreebution.UQ.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Q.Duchemin and G.Obozinski.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

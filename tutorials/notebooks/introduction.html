@@ -156,6 +156,20 @@
 </li>
 
 
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Tutorials
@@ -169,20 +183,28 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../references.html">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../references.html">
     References
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../team.html">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../team.html">
     Team
   </a>
 </li>
 
+                </ul>
+            </li>
+            
   </ul>
 </nav></div>
       
@@ -270,6 +292,20 @@ document.write(`
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../presentation.html">
     Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/modules.html">
+    DisTreebution
   </a>
 </li>
 
@@ -408,7 +444,7 @@ document.write(`
 <ul class="simple">
 <li><p>‘PMQRT’ : train quantile regression trees (multi-quantile support). Use when you want direct quantile estimates.</p></li>
 <li><p>‘RT’ : standard regression tree with squared-error splitting (uses <code class="docutils literal notranslate"><span class="pre">RegressionTreeQuadratic</span></code>).</p></li>
-<li><p>‘CRPS’ : specialized tree optimized for CRPS (Continuous Ranked Probability Score) available in <code class="docutils literal notranslate"><span class="pre">CRPStreeC/RegressionTree.py</span></code>.</p></li>
+<li><p>‘CRPS’ : specialized tree optimized for CRPS (Continuous Ranked Probability Score) available in <code class="docutils literal notranslate"><span class="pre">CRPSRT/RegressionTree.py</span></code>.</p></li>
 </ul>
 </li>
 <li><p>Choosing <code class="docutils literal notranslate"><span class="pre">type_conformal</span></code></p>

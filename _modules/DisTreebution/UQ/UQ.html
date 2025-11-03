@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DisTreebution.UQ.UQ &#8212; DisTreebution</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/override.css?v=dd5beb26" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/sphinx_gallery.css?v=370a08b5" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_logo.css?v=f521e7f3" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/DisTreebution/UQ/UQ';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="DisTreebution - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="DisTreebution - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../presentation.html">
+    Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developer/index.html">
+    Developer
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../team.html">
+    Team
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../presentation.html">
+    Presentation of the project
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../repository.html">
+    GitHub Repository
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/modules.html">
+    DisTreebution
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../developer/index.html">
+    Developer
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../team.html">
+    Team
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">DisTreebution.UQ.UQ</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for DisTreebution.UQ.UQ</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">..QRT.RegressionTreeQuantile</span> <span class="kn">import</span> <span class="n">RegressionTreeQuantile</span>
+<span class="kn">from</span> <span class="nn">..RT.RegressionTreeQuadratic</span> <span class="kn">import</span> <span class="n">RegressionTreeQuadratic</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">filter_dict</span>
+
+<span class="kn">from</span> <span class="nn">..CRPSRT.RegressionTree</span> <span class="kn">import</span> <span class="n">RegressionTree</span>
+
+<span class="kn">from</span> <span class="nn">.Conformalisation_CQR</span> <span class="kn">import</span> <span class="n">Conformalisation_CQR</span>
+
+<span class="kn">from</span> <span class="nn">.Conformalisation_distributional</span> <span class="kn">import</span> <span class="n">Conformalisation_distributional</span>
+<span class="kn">from</span> <span class="nn">.Conformalisation</span> <span class="kn">import</span> <span class="n">Conformalisation</span>
+
+
+<span class="n">available_settings</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Possible choices of regression trees </span>
+<span class="n">available_settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RT&#39;</span><span class="p">,</span><span class="s1">&#39;PMQRT&#39;</span><span class="p">,</span><span class="s1">&#39;CRPS&#39;</span><span class="p">]</span>
+
+<span class="c1"># Possible choices of nested sets</span>
+<span class="n">available_settings</span><span class="p">[</span><span class="s1">&#39;nested_set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CQR&#39;</span><span class="p">,</span> <span class="s1">&#39;CQR-m&#39;</span><span class="p">,</span> <span class="s1">&#39;CQR-r&#39;</span><span class="p">,</span> <span class="s1">&#39;distributional&#39;</span><span class="p">]</span>
+
+<span class="c1"># Possible choices of conformal framework</span>
+<span class="n">available_settings</span><span class="p">[</span><span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;vr&#39;</span><span class="p">,</span> <span class="s1">&#39;vr-avg&#39;</span><span class="p">]</span>
+<span class="n">available_settings</span><span class="p">[</span><span class="s1">&#39;type_conformal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;split&#39;</span><span class="p">]</span>
+
+<span class="c1"># Currently, only symmetric uncertainty intervals are implemented</span>
+<span class="c1"># available_settings[&#39;symmetry&#39;] = [&#39;symmetric&#39;]</span>
+
+<span class="c1"># Possibility to use group coverage</span>
+<span class="n">available_settings</span><span class="p">[</span><span class="s1">&#39;group_coverage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+
+<span class="c1"># Hyperparameters to train the regression trees</span>
+<span class="n">all_params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nTrees&#39;</span><span class="p">,</span> <span class="s1">&#39;treeID2quantiles_train&#39;</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">,</span> <span class="s1">&#39;use_LOO&#39;</span><span class="p">,</span> <span class="s1">&#39;min_samples_split&#39;</span><span class="p">,</span> <span class="s1">&#39;max_depth_group&#39;</span><span class="p">,</span> <span class="s1">&#39;list_distri_low_quantiles&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="UQ">
+<a class="viewcode-back" href="../../../documentation/DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ">[docs]</a>
+<span class="k">class</span> <span class="nc">UQ</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uncertainty quantification and conformal prediction helper.</span>
+
+<span class="sd">    This class wraps training of forest-like quantile/regression trees,</span>
+<span class="sd">    conformalization, and construction/analysis of predictive sets.</span>
+
+<span class="sd">    It centralizes configuration (:attr:`settings`), builds a non-conformal</span>
+<span class="sd">    quantile estimator (:attr:`noconf`) for querying, selects a conformal</span>
+<span class="sd">    backend (:attr:`conf`) based on settings, and exposes utilities to train</span>
+<span class="sd">    trees, conformalize them, predict conformal sets, and extract quantile</span>
+<span class="sd">    estimates.</span>
+
+<span class="sd">    **Constructor Parameters**</span>
+<span class="sd">    </span>
+<span class="sd">    :param str type_tree: Type of tree learner used.</span>
+<span class="sd">        Examples:</span>
+<span class="sd">        </span>
+<span class="sd">        - ``&#39;PMQRT&#39;`` – per-tree quantile regression</span>
+<span class="sd">        - ``&#39;CRPS&#39;`` – CRPS-optimized regression</span>
+<span class="sd">        - ``&#39;RT&#39;`` – quadratic regression tree</span>
+<span class="sd">        </span>
+<span class="sd">        Other strings may be supported by external tree classes.</span>
+
+<span class="sd">    :param str nested_set: Strategy for nested prediction sets (e.g. ``&#39;CQR&#39;``, ``&#39;distri&#39;``).</span>
+<span class="sd">        Used to choose the conformal backend.</span>
+<span class="sd">        - If it contains ``&#39;CQR&#39;`` → :class:`Conformalisation_CQR` backend.</span>
+<span class="sd">        - If it contains ``&#39;distri&#39;`` → :class:`Conformalisation_distributional` backend.</span>
+
+<span class="sd">    :param str or None type_conformal: Controls conformalization mode.</span>
+<span class="sd">        If ``None``, a generic :class:`Conformalisation` backend is instantiated;</span>
+<span class="sd">        otherwise ``nested_set`` determines which backend is used.</span>
+
+<span class="sd">    :param bool group_coverage: Whether to use group-aware conformal methods and</span>
+<span class="sd">        prediction routines (calls to ``conf.*_group_coverage``).</span>
+
+<span class="sd">    :param str type_aggregation_trees: How per-tree quantiles are aggregated across trees.</span>
+<span class="sd">        Examples:</span>
+<span class="sd">        - ``&#39;vr&#39;`` – quantile bagging: average quantiles across trees</span>
+<span class="sd">        - ``&#39;vr-avg&#39;`` – distributional bagging: aggregates conditional CDFs before querying</span>
+
+<span class="sd">    :param dict params: Miscellaneous hyperparameters, may include:</span>
+<span class="sd">        - ``&#39;nTrees&#39;`` – number of trees to train</span>
+<span class="sd">        - ``&#39;treeID2quantiles_train&#39;`` – mapping tree IDs → quantiles (for PMQRT)</span>
+<span class="sd">        - ``&#39;max_depth&#39;`` – maximum depth for trees</span>
+<span class="sd">        - ``&#39;min_samples_split&#39;`` – minimum samples to split</span>
+<span class="sd">        - ``&#39;use_LOO&#39;`` – whether to use leave-one-out info gains</span>
+<span class="sd">        - ``&#39;max_depth_group&#39;`` – max depth for group coverage trees</span>
+<span class="sd">        - ``&#39;list_distri_low_quantiles&#39;`` – lower quantiles for distributional conformal prediction</span>
+
+<span class="sd">    **Behavior / Side Effects**</span>
+<span class="sd">    </span>
+<span class="sd">    - ``self.settings`` is a dict of configuration options.</span>
+<span class="sd">    - ``self.params`` stores the params dictionary.</span>
+<span class="sd">    - ``self.noconf`` is always constructed as a :class:`Conformalisation_CQR` instance</span>
+<span class="sd">      with the same settings except ``nested_set=&#39;CQR&#39;`` (used for querying quantiles</span>
+<span class="sd">      without conformalization).</span>
+<span class="sd">    - ``self.conf`` is chosen based on ``type_conformal`` and ``nested_set``.</span>
+
+<span class="sd">    **Public Attributes**</span>
+
+<span class="sd">    :ivar dict settings: Configuration options described above.</span>
+<span class="sd">    :ivar dict params: Hyperparameters.</span>
+<span class="sd">    :ivar noconf: A :class:`Conformalisation_CQR` instance for non-conformal queries.</span>
+<span class="sd">    :ivar conf: Selected conformalization backend instance</span>
+<span class="sd">        (:class:`Conformalisation_CQR`, :class:`Conformalisation`,</span>
+<span class="sd">        or :class:`Conformalisation_distributional`).</span>
+
+<span class="sd">    **Example:**</span>
+<span class="sd">    </span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        uq = UQ(type_tree=&#39;CRPS&#39;, nested_set=&#39;CQR&#39;, params={&#39;nTrees&#39;: 100, &#39;max_depth&#39;: 6})</span>
+<span class="sd">        trees, sample2calib = uq.train_trees(X_train, y_train)</span>
+<span class="sd">        uq.conformalize(trees, X_calib, y_calib, alpha=0.1)</span>
+<span class="sd">        sample2predset = uq.predict_conformal_set(trees, X_test)</span>
+<span class="sd">        widths, coverages = uq.compute_width_coverage(sample2predset, y_test)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_tree</span><span class="o">=</span><span class="s1">&#39;PQRT&#39;</span><span class="p">,</span> <span class="n">nested_set</span><span class="o">=</span><span class="s1">&#39;CQR&#39;</span><span class="p">,</span> <span class="n">type_conformal</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">,</span> <span class="n">group_coverage</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">type_aggregation_trees</span><span class="o">=</span><span class="s1">&#39;vr&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_tree</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;nested_set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nested_set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_conformal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_conformal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;group_coverage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_coverage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">type_aggregation_trees</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
+        
+        <span class="c1"># used to query quantiles without conformalization</span>
+        <span class="n">settings_noconf</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
+        <span class="n">settings_noconf</span><span class="p">[</span><span class="s1">&#39;nested_set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;CQR&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noconf</span> <span class="o">=</span> <span class="n">Conformalisation_CQR</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings_noconf</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">type_conformal</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conf</span> <span class="o">=</span> <span class="n">Conformalisation</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span> 
+        <span class="k">elif</span> <span class="s1">&#39;CQR&#39;</span> <span class="ow">in</span> <span class="n">nested_set</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conf</span> <span class="o">=</span> <span class="n">Conformalisation_CQR</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s1">&#39;distri&#39;</span> <span class="ow">in</span> <span class="n">nested_set</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conf</span> <span class="o">=</span> <span class="n">Conformalisation_distributional</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;No conformalisation method found for the given nested set&quot;</span>
+
+            
+<div class="viewcode-block" id="UQ.compute_width_coverage">
+<a class="viewcode-back" href="../../../documentation/DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.compute_width_coverage">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_width_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample2predset</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the total width of prediction sets and coverage indicators for each test sample.</span>
+
+<span class="sd">        For each test sample, this method calculates:</span>
+
+<span class="sd">        - The sum of the widths of all predicted intervals (sub-intervals) associated with the sample.</span>
+<span class="sd">        - Whether the true value falls within any of the predicted intervals (coverage).</span>
+
+<span class="sd">        :param list[tuple] sample2predset: </span>
+<span class="sd">            A list where each element corresponds to a test sample and contains a tuple</span>
+<span class="sd">            of the form ``(lower_bound, upper_bound)``.</span>
+
+<span class="sd">        :param array-like y_test: </span>
+<span class="sd">            The true target values for the test samples.</span>
+
+<span class="sd">        :returns: </span>
+<span class="sd">            - **widths** (*numpy.ndarray*) – Total widths of the predicted intervals for each test sample.</span>
+<span class="sd">            - **coverages** (*numpy.ndarray*) – Binary indicators (1 if the true value is covered by any interval,</span>
+<span class="sd">            0 otherwise) for each test sample.</span>
+<span class="sd">        :rtype: tuple[numpy.ndarray, numpy.ndarray]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">widths</span><span class="p">,</span> <span class="n">coverages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">yj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_test</span><span class="p">):</span>
+            <span class="n">MC</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">low</span><span class="p">,</span> <span class="n">up</span> <span class="o">=</span> <span class="n">sample2predset</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">width</span> <span class="o">+=</span> <span class="n">up</span><span class="o">-</span><span class="n">low</span>
+            <span class="n">MC</span> <span class="o">=</span> <span class="n">MC</span> <span class="ow">or</span> <span class="p">((</span><span class="n">yj</span> <span class="o">&gt;=</span> <span class="n">low</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">yj</span> <span class="o">&lt;=</span> <span class="n">up</span><span class="p">))</span>
+            <span class="n">widths</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">width</span>
+            <span class="n">coverages</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">*</span> <span class="n">MC</span>
+        <span class="k">return</span> <span class="n">widths</span><span class="p">,</span> <span class="n">coverages</span></div>
+
+
+<div class="viewcode-block" id="UQ.compute_group_width_coverage">
+<a class="viewcode-back" href="../../../documentation/DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.compute_group_width_coverage">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_group_width_coverage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample2predset</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">testID2group</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the average prediction interval width and empirical coverage per group.</span>
+
+<span class="sd">        Groups are defined by the ``testID2group`` mapping.</span>
+
+<span class="sd">        :param list[list[tuple]] sample2predset:</span>
+<span class="sd">            A list where each element corresponds to a test sample and contains one or more tuples</span>
+<span class="sd">            of the form ``(lower_bound, upper_bound)`` representing predicted intervals.</span>
+
+<span class="sd">        :param array-like y_test:</span>
+<span class="sd">            The true target values for the test samples.</span>
+
+<span class="sd">        :param dict testID2group:</span>
+<span class="sd">            A mapping from test sample indices to group identifiers.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            - **group2width** (*dict*) – Mapping ``group_id → average interval width`` across all samples in the group.  </span>
+<span class="sd">            - **group2cov** (*dict*) – Mapping ``group_id → empirical coverage``, i.e., the fraction of samples in the group</span>
+<span class="sd">            whose true value lies within any of the predicted intervals.</span>
+<span class="sd">        :rtype: tuple[dict, dict]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">testID2group</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="n">group2size</span> <span class="o">=</span> <span class="p">{</span><span class="n">group</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="p">}</span>
+        <span class="n">group2cov</span> <span class="o">=</span> <span class="p">{</span><span class="n">group</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="p">}</span>
+        <span class="n">group2width</span> <span class="o">=</span> <span class="p">{</span><span class="n">group</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)):</span>
+            <span class="n">group2size</span><span class="p">[</span><span class="n">testID2group</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">group2cov</span><span class="p">[</span><span class="n">testID2group</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mf">1.</span><span class="o">*</span><span class="p">(</span> <span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">sample2predset</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y_test</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">sample2predset</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="p">)</span>
+            <span class="n">group2width</span><span class="p">[</span><span class="n">testID2group</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sample2predset</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">sample2predset</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">cov</span> <span class="ow">in</span> <span class="n">group2cov</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">group2cov</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="n">cov</span><span class="o">/</span><span class="n">group2size</span><span class="p">[</span><span class="n">group</span><span class="p">]</span>
+            <span class="n">group2width</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="o">=</span> <span class="n">group2width</span><span class="p">[</span><span class="n">group</span><span class="p">]</span><span class="o">/</span><span class="n">group2size</span><span class="p">[</span><span class="n">group</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">group2width</span><span class="p">,</span> <span class="n">group2cov</span></div>
+
+
+<div class="viewcode-block" id="UQ.train_trees">
+<a class="viewcode-back" href="../../../documentation/DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.train_trees">[docs]</a>
+    <span class="k">def</span> <span class="nf">train_trees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">max_depth_ref_tree</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trains an ensemble of regression trees and tracks calibration indices for Out-of-Bag (OOB)</span>
+<span class="sd">        conformal methods.</span>
+
+<span class="sd">        :param numpy.ndarray x_train:</span>
+<span class="sd">            Training feature matrix of shape ``(n_train, n_features)``.</span>
+
+<span class="sd">        :param numpy.ndarray y_train:</span>
+<span class="sd">            Training target values of shape ``(n_train,)``.</span>
+
+<span class="sd">        :param int max_depth_ref_tree:</span>
+<span class="sd">            If not equal to ``-1``, a reference tree is constructed and fitted</span>
+<span class="sd">            (used by certain tree-training routines). If ``-1``, no reference tree is used.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            - **trees** (*list*) – List of fitted tree objects, ordered by training loop.  </span>
+<span class="sd">            - **sample2calib_trees** (*dict*) – Mapping ``sample_index → list of tree indices`` for which</span>
+<span class="sd">            the sample was placed in the calibration set (i.e., excluded from that tree’s training set).</span>
+<span class="sd">            Useful for split-conformal calibration.</span>
+<span class="sd">        :rtype: tuple[list, dict]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nTrees</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;nTrees&#39;</span><span class="p">]</span>
+        <span class="n">trees</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ntrain</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">sample2calib_trees</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">))}</span>
+        <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ntrain</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">max_depth_ref_tree</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">ref_tree</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PMQRT&#39;</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">treeID2quantiles_train</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+                <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">vals</span><span class="p">)))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;All trees should be trained using the same set of quantiles if one want to use group conformal prediction&quot;</span>
+                <span class="n">ref_tree</span> <span class="o">=</span> <span class="n">RegressionTreeQuantile</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">],</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">],</span> <span class="n">quantiles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">treeID2quantiles_train</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">use_LOO</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_LOO&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CRPS&#39;</span><span class="p">:</span>
+                <span class="n">ref_tree</span> <span class="o">=</span> <span class="n">RegressionTree</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">],</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">],</span> <span class="n">limit_use_CRPS</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;limit_use_CRPS&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">quantiles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">treeID2quantiles_train</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">use_LOO</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_LOO&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;RT&#39;</span><span class="p">:</span>
+                <span class="n">ref_tree</span> <span class="o">=</span> <span class="n">RegressionTreeQuadratic</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">],</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">],</span> <span class="n">use_LOO</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_LOO&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+            <span class="n">ref_tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nTrees</span><span class="p">)):</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span>
+            <span class="n">ntrain_tree</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">ntrain</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nTrees</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">ntrain_tree</span> <span class="o">=</span> <span class="n">ntrain</span>
+            <span class="n">index_train</span><span class="p">,</span> <span class="n">index_calib</span> <span class="o">=</span> <span class="n">indexes</span><span class="p">[:</span><span class="n">ntrain_tree</span><span class="p">],</span> <span class="n">indexes</span><span class="p">[</span><span class="n">ntrain_tree</span><span class="p">:]</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PMQRT&#39;</span><span class="p">:</span>
+                <span class="n">tree</span> <span class="o">=</span> <span class="n">RegressionTreeQuantile</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">],</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">],</span> <span class="n">quantiles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">treeID2quantiles_train</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">use_LOO</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_LOO&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CRPS&#39;</span><span class="p">:</span>
+                <span class="n">tree</span> <span class="o">=</span> <span class="n">RegressionTree</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">],</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">],</span> <span class="n">limit_use_CRPS</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;limit_use_CRPS&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">quantiles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">treeID2quantiles_train</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">use_LOO</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_LOO&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;RT&#39;</span><span class="p">:</span>
+                <span class="n">tree</span> <span class="o">=</span> <span class="n">RegressionTreeQuadratic</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">],</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">],</span> <span class="n">use_LOO</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_LOO&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">index_train</span><span class="p">,:],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">index_train</span><span class="p">],</span> <span class="n">ref_tree</span><span class="o">=</span><span class="n">ref_tree</span><span class="p">,</span> <span class="n">max_depth_ref_tree</span><span class="o">=</span><span class="n">max_depth_ref_tree</span><span class="p">)</span>
+            <span class="n">trees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">icalib</span> <span class="ow">in</span> <span class="n">index_calib</span><span class="p">:</span>
+                <span class="n">sample2calib_trees</span><span class="p">[</span><span class="n">icalib</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">trees</span><span class="p">,</span> <span class="n">sample2calib_trees</span></div>
+
+    
+<div class="viewcode-block" id="UQ.conformalize">
+<a class="viewcode-back" href="../../../documentation/DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.conformalize">[docs]</a>
+    <span class="k">def</span> <span class="nf">conformalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trees</span><span class="p">,</span> <span class="n">x_calib</span><span class="p">,</span> <span class="n">y_calib</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs conformalization (split-conformal) on the provided trees and calibration data.</span>
+
+<span class="sd">        :param list trees:</span>
+<span class="sd">            List of fitted tree objects (the same trees returned by :meth:`train_trees`).</span>
+
+<span class="sd">        :param numpy.ndarray x_calib:</span>
+<span class="sd">            Calibration feature matrix.</span>
+
+<span class="sd">        :param numpy.ndarray y_calib:</span>
+<span class="sd">            Calibration target values.</span>
+
+<span class="sd">        :param float alpha:</span>
+<span class="sd">            Miscoverage level (e.g., ``0.1`` for 90% coverage).</span>
+
+<span class="sd">        :param kwargs:</span>
+<span class="sd">            Additional keyword arguments forwarded to the conformal backend.</span>
+<span class="sd">            For CQR nested sets, the ``nominal_quantiles`` parameter should be provided.</span>
+
+<span class="sd">        **Behavior:**</span>
+
+<span class="sd">        - If ``self.settings[&#39;group_coverage&#39;]`` is ``True``, calls</span>
+<span class="sd">        ``self.conf.conformalize_split_group_coverage(...)``.</span>
+<span class="sd">        - Otherwise, calls ``self.conf.conformalize_split(...)``.</span>
+<span class="sd">        - The conformal backend is expected to update its internal state used by</span>
+<span class="sd">        :meth:`predict_conformal_set`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;group_coverage&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">conformalize_split_group_coverage</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span> <span class="n">x_calib</span><span class="p">,</span> <span class="n">y_calib</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">conformalize_split</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span> <span class="n">x_calib</span><span class="p">,</span> <span class="n">y_calib</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+                
+<div class="viewcode-block" id="UQ.predict_conformal_set">
+<a class="viewcode-back" href="../../../documentation/DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.predict_conformal_set">[docs]</a>
+    <span class="k">def</span> <span class="nf">predict_conformal_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trees</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">return_testID2group</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Predict conformalized sets for test points using the conformal backend.</span>
+
+<span class="sd">        :param list trees:</span>
+<span class="sd">            Trained trees (same as passed to :meth:`conformalize`).</span>
+
+<span class="sd">        :param numpy.ndarray x_test:</span>
+<span class="sd">            Test feature matrix of shape (n_test, n_features).</span>
+
+<span class="sd">        :param bool return_testID2group:</span>
+<span class="sd">            When ``group_coverage`` is ``True``, optionally return the mapping from</span>
+<span class="sd">            test indices to groups alongside the prediction sets.</span>
+
+<span class="sd">        :param kwargs:</span>
+<span class="sd">            Additional keyword arguments forwarded to the conformal backend&#39;s prediction routine.</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            - If ``group_coverage`` is ``False``:</span>
+<span class="sd">            </span>
+<span class="sd">            **sample2predset** – Sequence-like (length n_test) of (low, up) prediction interval pairs.</span>
+<span class="sd">            </span>
+<span class="sd">            - If ``group_coverage`` is ``True``:</span>
+<span class="sd">            </span>
+<span class="sd">            - If ``return_testID2group`` is ``False``:</span>
+<span class="sd">                </span>
+<span class="sd">                **sample2predset** as above.</span>
+<span class="sd">            </span>
+<span class="sd">            - If ``return_testID2group`` is ``True``:</span>
+<span class="sd">                </span>
+<span class="sd">                Tuple ``(testID2group, sample2predset)`` where ``testID2group`` is the mapping used.</span>
+
+<span class="sd">        **Notes:**</span>
+
+<span class="sd">        - Delegates to either :meth:`predict_conformal_set_split` or</span>
+<span class="sd">        :meth:`predict_conformal_set_split_group_coverage` on ``self.conf``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;group_coverage&#39;</span><span class="p">]:</span>
+            <span class="n">testID2group</span><span class="p">,</span> <span class="n">sample2predset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">predict_conformal_set_split_group_coverage</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">return_testID2group</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">testID2group</span><span class="p">,</span> <span class="n">sample2predset</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sample2predset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">predict_conformal_set_split</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample2predset</span></div>
+
+    
+<div class="viewcode-block" id="UQ.get_quantile_estimate">
+<a class="viewcode-back" href="../../../documentation/DisTreebution.UQ.html#DisTreebution.UQ.UQ.UQ.get_quantile_estimate">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_quantile_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trees</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query aggregate quantile estimates for each test sample from the (non- or pre-) conformal tree predictions.</span>
+
+<span class="sd">        :param list trees:</span>
+<span class="sd">            Trained tree objects.</span>
+
+<span class="sd">        :param numpy.ndarray x_test:</span>
+<span class="sd">            Test features matrix of shape (n_test, n_features).</span>
+
+<span class="sd">        :param iterable quantiles:</span>
+<span class="sd">            List or array of quantile levels to estimate (values in [0, 1]).</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">            **sample2quantiles** (*dict*) – Mapping from sample index to list of estimated quantile values.</span>
+<span class="sd">            The inner list has the same ordering as the input `quantiles` argument.</span>
+
+<span class="sd">        **Behavior / Implementation details:**</span>
+
+<span class="sd">        - Calls ``self.conf.preprocess_trees(trees, x_test)`` to obtain a structure</span>
+<span class="sd">        ``treeID2testID2values`` mapping tree IDs to test sample leaf/value indexes.</span>
+
+<span class="sd">        - For each requested quantile ``q``, finds the nearest available query quantile</span>
+<span class="sd">        in ``self.conf.quantiles_query`` (via argmin on absolute distance) and obtains</span>
+<span class="sd">        the set of tree IDs associated with that query from</span>
+<span class="sd">        ``self.conf.quantile_query2treeIDs``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">treeID2testID2values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">preprocess_trees</span><span class="p">(</span><span class="n">trees</span><span class="p">,</span> <span class="n">x_test</span><span class="p">)</span>
+        <span class="n">sample2quantiles</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span>
+        <span class="k">for</span> <span class="n">i_q</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">quantiles</span><span class="p">):</span>
+            <span class="n">i_q_query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">quantiles_query</span><span class="p">))</span>
+            <span class="n">IDs_trees</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">quantile_query2treeIDs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">quantiles_query</span><span class="p">[</span><span class="n">i_q_query</span><span class="p">]]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                <span class="k">if</span> <span class="s1">&#39;vr-avg&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">]:</span>
+                    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">quant</span><span class="p">,</span> <span class="n">treeID2sampleID2values</span><span class="p">):</span>
+                        <span class="n">qhat_test</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="n">weights_test</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="n">ls_leaves_test</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">treeID2sampleID2values</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                            <span class="n">ls_new</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">treeID2sampleID2values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                            <span class="n">ls_leaves_test</span> <span class="o">=</span> <span class="n">ls_leaves_test</span> <span class="o">+</span> <span class="n">ls_new</span>
+                            <span class="n">weights_test</span> <span class="o">=</span> <span class="n">weights_test</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ls_new</span><span class="p">))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">ls_new</span><span class="p">))</span>
+
+                        <span class="n">ls_leaves_test_unique</span><span class="p">,</span> <span class="n">indices_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ls_leaves_test</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="n">summed_weights_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">indices_test</span><span class="p">,</span> <span class="n">weights_test</span><span class="p">)</span>
+                        <span class="n">order_unique_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ls_leaves_test_unique</span><span class="p">)</span>
+                        <span class="n">ls_leaves_test_unique</span> <span class="o">=</span> <span class="n">ls_leaves_test_unique</span><span class="p">[</span><span class="n">order_unique_test</span><span class="p">]</span>
+                        <span class="n">summed_weights_test</span> <span class="o">=</span> <span class="n">summed_weights_test</span><span class="p">[</span><span class="n">order_unique_test</span><span class="p">]</span>
+                        <span class="n">qhat_test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">operation_leaf</span><span class="p">(</span><span class="n">ls_leaves_test_unique</span><span class="p">,</span> <span class="n">quant</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">summed_weights_test</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">qhat_test</span>
+                    
+                <span class="k">elif</span> <span class="s1">&#39;vr&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">]:</span>
+                    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">quant</span><span class="p">,</span> <span class="n">treeID2sampleID2values</span><span class="p">):</span>
+                        <span class="n">qhat_test</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="n">count_test</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">treeID2sampleID2values</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                            <span class="n">ls_leaves_test</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">treeID2sampleID2values</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                            <span class="n">qhat_test</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">operation_leaf</span><span class="p">(</span><span class="n">ls_leaves_test</span><span class="p">,</span> <span class="n">quant</span><span class="p">)</span>
+                            <span class="n">count_test</span> <span class="o">+=</span> <span class="mi">1</span> 
+                        <span class="n">avg_test</span> <span class="o">=</span> <span class="n">qhat_test</span> <span class="o">/</span> <span class="n">count_test</span> <span class="k">if</span> <span class="n">count_test</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+                        <span class="k">return</span> <span class="n">avg_test</span>
+                    
+                <span class="n">qhat_test</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">filter_dict</span><span class="p">(</span><span class="n">treeID2testID2values</span><span class="p">,</span> <span class="n">IDs_trees</span><span class="p">))</span>
+                <span class="n">sample2quantiles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qhat_test</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample2quantiles</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Q.Duchemin and G.Obozinski.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
