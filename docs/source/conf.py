@@ -62,7 +62,7 @@ extensions = [
     *[p.stem for p in (HERE / "extensions").glob("*.py")],
     "sphinx_copybutton",
     "sphinx_gallery.load_style",
-    "sphinx_tabs.tabs",
+    "sphinx_tabs.tabs"
 ]
 
 
@@ -105,6 +105,8 @@ html_theme = "pydata_sphinx_theme"
 
 html_theme_options = {
     # Toc options
+    "repository_url": "https://github.com/quentin-duchemin/DisTreebution",
+     "use_repository_button": True,
     'collapse_navigation': True
 }
 

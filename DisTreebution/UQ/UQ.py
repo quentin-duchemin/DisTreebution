@@ -39,59 +39,77 @@ all_params = ['nTrees', 'treeID2quantiles_train', 'max_depth', 'use_LOO', 'min_s
 
 class UQ():
     """
-    UQ class — Uncertainty quantification and conformal prediction helper.
-    This class wraps training of forest-like quantile/regression trees, conformalization,
-    and construction/analysis of predictive sets. It centralizes configuration (self.settings),
-    builds a non-conformal quantile estimator for querying (self.noconf), selects a conformal
-    backend (self.conf) based on settings, and exposes utilities to train trees, conformalize
-    them, predict conformal sets, and extract quantile estimates.
-    Constructor
-        __init__(type_tree='PQRT',
-                 nested_set='CQR',
-                 type_conformal='split',
-                 group_coverage=False,
-                 type_aggregation_trees='vr',
-                 params=None)
-        Parameters
-            type_tree (str): Type of tree learner used. Examples in code:
-                - 'PMQRT' (per-tree quantile regression)
-                - 'CRPS'  (CRPS-optimized regression)
-                - 'RT'    (quadratic regression tree)
-                Note: other strings may be supported by external tree classes.
-            nested_set (str): Strategy for nested prediction sets (e.g. 'CQR', 'distri', ...).
-                Used to choose the conformal backend. If it contains 'CQR' the Conformalisation_CQR
-                backend is selected; if it contains 'distri' Conformalisation_distributional is used.
-            type_conformal (str or None): Controls conformalization mode. If None, a generic
-                Conformalisation backend is instantiated; otherwise nested_set determines backend.
-            group_coverage (bool): If True, group-aware conformal methods/prediction routines
-                are used (calls to conf.*_group_coverage).
-            type_aggregation_trees (str): How per-tree quantiles are aggregated across trees.
-                Examples used in the code:
-                - 'vr'      : corresponds to quantile bagging: simple average of quantile obtained from single trees in the forest
-                - 'vr-avg'  : corresponds to distributional bagging: aggregates conditional CDF from all trees before querying the desired quantile
-            params (dict): Miscellaneous hyperparameters:
-                - 'nTrees'              : number of trees to train
-                - 'treeID2quantiles_train': dict mapping tree IDs to quantiles to train for (used in PMQRT)
-                - 'max_depth'           : maximum depth passed to tree constructors
-                - 'min_samples_split'   : minimum samples to split passed to tree constructors
-                - 'use_LOO'             : whether tree fit uses leave-one-out computations of information gains
-                - 'max_depth_group'     : maximum depth for group coverage trees
-                - 'list_distri_low_quantiles': list of lower quantiles for distributional conformal prediction
-        Behavior / Side effects
-            - self.settings is a dict of configuration options.
-            - self.params stores the params dict.
-            - self.noconf is always constructed as a Conformalisation_CQR instance with the same
-              settings except nested_set forced to 'CQR' (used for querying quantiles without
-              applying conformalization).
-            - self.conf is chosen based on type_conformal and nested_set.
-    Public attributes (set by constructor)
-        - settings (dict): configuration options described above.
-        - params (dict): hyperparameters.
-        - noconf: a Conformalisation_CQR instance for non-conformal queries.
-        - conf: selected conformalization backend instance (Conformalisation_CQR, Conformalisation,
-          or Conformalisation_distributional).
-    Example (conceptual)
-        uq = UQ(type_tree='CRPS', nested_set='CQR', params={'nTrees': 100, 'max_depth': 6, ...})
+    Uncertainty quantification and conformal prediction helper.
+
+    This class wraps training of forest-like quantile/regression trees,
+    conformalization, and construction/analysis of predictive sets.
+
+    It centralizes configuration (:attr:`settings`), builds a non-conformal
+    quantile estimator (:attr:`noconf`) for querying, selects a conformal
+    backend (:attr:`conf`) based on settings, and exposes utilities to train
+    trees, conformalize them, predict conformal sets, and extract quantile
+    estimates.
+
+    **Constructor Parameters**
+    
+    :param str type_tree: Type of tree learner used.
+        Examples:
+        
+        - ``'PMQRT'`` – per-tree quantile regression
+        - ``'CRPS'`` – CRPS-optimized regression
+        - ``'RT'`` – quadratic regression tree
+        
+        Other strings may be supported by external tree classes.
+
+    :param str nested_set: Strategy for nested prediction sets (e.g. ``'CQR'``, ``'distri'``).
+        Used to choose the conformal backend.
+        - If it contains ``'CQR'`` → :class:`Conformalisation_CQR` backend.
+        - If it contains ``'distri'`` → :class:`Conformalisation_distributional` backend.
+
+    :param str or None type_conformal: Controls conformalization mode.
+        If ``None``, a generic :class:`Conformalisation` backend is instantiated;
+        otherwise ``nested_set`` determines which backend is used.
+
+    :param bool group_coverage: Whether to use group-aware conformal methods and
+        prediction routines (calls to ``conf.*_group_coverage``).
+
+    :param str type_aggregation_trees: How per-tree quantiles are aggregated across trees.
+        Examples:
+        - ``'vr'`` – quantile bagging: average quantiles across trees
+        - ``'vr-avg'`` – distributional bagging: aggregates conditional CDFs before querying
+
+    :param dict params: Miscellaneous hyperparameters, may include:
+        - ``'nTrees'`` – number of trees to train
+        - ``'treeID2quantiles_train'`` – mapping tree IDs → quantiles (for PMQRT)
+        - ``'max_depth'`` – maximum depth for trees
+        - ``'min_samples_split'`` – minimum samples to split
+        - ``'use_LOO'`` – whether to use leave-one-out info gains
+        - ``'max_depth_group'`` – max depth for group coverage trees
+        - ``'list_distri_low_quantiles'`` – lower quantiles for distributional conformal prediction
+
+    **Behavior / Side Effects**
+    
+    - ``self.settings`` is a dict of configuration options.
+    - ``self.params`` stores the params dictionary.
+    - ``self.noconf`` is always constructed as a :class:`Conformalisation_CQR` instance
+      with the same settings except ``nested_set='CQR'`` (used for querying quantiles
+      without conformalization).
+    - ``self.conf`` is chosen based on ``type_conformal`` and ``nested_set``.
+
+    **Public Attributes**
+
+    :ivar dict settings: Configuration options described above.
+    :ivar dict params: Hyperparameters.
+    :ivar noconf: A :class:`Conformalisation_CQR` instance for non-conformal queries.
+    :ivar conf: Selected conformalization backend instance
+        (:class:`Conformalisation_CQR`, :class:`Conformalisation`,
+        or :class:`Conformalisation_distributional`).
+
+    **Example:**
+    
+    .. code-block:: python
+
+        uq = UQ(type_tree='CRPS', nested_set='CQR', params={'nTrees': 100, 'max_depth': 6})
         trees, sample2calib = uq.train_trees(X_train, y_train)
         uq.conformalize(trees, X_calib, y_calib, alpha=0.1)
         sample2predset = uq.predict_conformal_set(trees, X_test)
@@ -125,20 +143,22 @@ class UQ():
         Computes the total width of prediction sets and coverage indicators for each test sample.
 
         For each test sample, this method calculates:
-          - The sum of the widths of all predicted intervals (sub-intervals) associated with the sample.
-          - Whether the true value falls within any of the predicted intervals (coverage).
 
-        Args:
-            sample2predset (list of tuples): 
-                A list where each element corresponds to a test sample and contains a tuple of the form (lower_bound, upper_bound).
-            y_test (array-like): 
-                The true target values for the test samples.
+        - The sum of the widths of all predicted intervals (sub-intervals) associated with the sample.
+        - Whether the true value falls within any of the predicted intervals (coverage).
 
-        Returns:
-            widths (np.ndarray): 
-                Array of total widths of the predicted intervals for each test sample.
-            coverages (np.ndarray): 
-                Array of binary indicators (1 if the true value is covered by any interval, 0 otherwise) for each test sample.
+        :param list[tuple] sample2predset: 
+            A list where each element corresponds to a test sample and contains a tuple
+            of the form ``(lower_bound, upper_bound)``.
+
+        :param array-like y_test: 
+            The true target values for the test samples.
+
+        :returns: 
+            - **widths** (*numpy.ndarray*) – Total widths of the predicted intervals for each test sample.
+            - **coverages** (*numpy.ndarray*) – Binary indicators (1 if the true value is covered by any interval,
+            0 otherwise) for each test sample.
+        :rtype: tuple[numpy.ndarray, numpy.ndarray]
         """
         widths, coverages = np.zeros(len(y_test)), np.zeros(len(y_test))
         for j,yj in enumerate(y_test):
@@ -153,20 +173,25 @@ class UQ():
 
     def compute_group_width_coverage(self, sample2predset, y_test, testID2group):
         """
-        Compute average width and coverage per group. Groups are defined by testID2group mapping.
+        Computes the average prediction interval width and empirical coverage per group.
 
-        Args:
-            sample2predset (list of list of tuple): 
-                A list where each element corresponds to a test sample and contains a tuple of the form (lower_bound, upper_bound).
-            y_test (array-like): 
-                The true target values for the test samples.
-            testID2group (dict): 
-                A mapping from test sample indices to group identifiers.
-                            
-        Returns:
-            group2width (dict): mapping group_id -> average interval width across samples in group.
-            group2cov (dict): mapping group_id -> empirical coverage (fraction of samples in group
-                                whose y lies in the predicted interval).
+        Groups are defined by the ``testID2group`` mapping.
+
+        :param list[list[tuple]] sample2predset:
+            A list where each element corresponds to a test sample and contains one or more tuples
+            of the form ``(lower_bound, upper_bound)`` representing predicted intervals.
+
+        :param array-like y_test:
+            The true target values for the test samples.
+
+        :param dict testID2group:
+            A mapping from test sample indices to group identifiers.
+
+        :returns:
+            - **group2width** (*dict*) – Mapping ``group_id → average interval width`` across all samples in the group.  
+            - **group2cov** (*dict*) – Mapping ``group_id → empirical coverage``, i.e., the fraction of samples in the group
+            whose true value lies within any of the predicted intervals.
+        :rtype: tuple[dict, dict]
         """
         all_groups = np.unique(list(testID2group.values()))
         group2size = {group:0 for group in all_groups}
@@ -183,22 +208,25 @@ class UQ():
 
     def train_trees(self, x_train, y_train, max_depth_ref_tree=-1):
         """
-        Train an ensemble of regression trees (and track calibration indices for Out-of-Bag conformal methods).
-        Args:
-            x_train (np.ndarray, shape (n_train, n_features)): 
-                Training features.
-            y_train (np.ndarray, shape (n_train,)): 
-                Training targets.
-            max_depth_ref_tree (int): 
-                If != -1, a reference tree is constructed and fitted
-                (used by certain tree-training routines). If -1, no reference tree is used.
-        Returns:
-            trees (list): 
-                List of fitted tree objects (in order of training loops).
-            sample2calib_trees (dict): 
-                Mapping sample_index -> list of tree indices for which
-                the sample was put into the calibration set (i.e., not in that tree's training set).
-                This is useful for split-conformal calibration.
+        Trains an ensemble of regression trees and tracks calibration indices for Out-of-Bag (OOB)
+        conformal methods.
+
+        :param numpy.ndarray x_train:
+            Training feature matrix of shape ``(n_train, n_features)``.
+
+        :param numpy.ndarray y_train:
+            Training target values of shape ``(n_train,)``.
+
+        :param int max_depth_ref_tree:
+            If not equal to ``-1``, a reference tree is constructed and fitted
+            (used by certain tree-training routines). If ``-1``, no reference tree is used.
+
+        :returns:
+            - **trees** (*list*) – List of fitted tree objects, ordered by training loop.  
+            - **sample2calib_trees** (*dict*) – Mapping ``sample_index → list of tree indices`` for which
+            the sample was placed in the calibration set (i.e., excluded from that tree’s training set).
+            Useful for split-conformal calibration.
+        :rtype: tuple[list, dict]
         """
         nTrees = self.params['nTrees']
         trees = []
@@ -239,25 +267,33 @@ class UQ():
     
     def conformalize(self, trees, x_calib, y_calib, alpha, **kwargs):
         """
-        Run conformalization (split conformal) on provided trees and calibration data.
-        Args:
-            trees (list): 
-                List of tree objects (the same trees returned by train_trees).
-            x_calib (np.ndarray): 
-                Calibration features.
-            y_calib (np.ndarray): 
-                Calibration targets.
-            alpha (float): 
-                Miscoverage level (e.g., 0.1 for 90% coverage).
-            **kwargs: 
-                Forwarded to the conformal backend. For CQR nested_sets, the nominal_quantiles
-                parameter should be provided.
-        Behavior:
-            - If self.settings['group_coverage'] is True, calls
-              self.conf.conformalize_split_group_coverage(...).
-            - Otherwise calls self.conf.conformalize_split(...).
-            - The conformal backend is expected to update internal state used by predict_conformal_set.
+        Runs conformalization (split-conformal) on the provided trees and calibration data.
+
+        :param list trees:
+            List of fitted tree objects (the same trees returned by :meth:`train_trees`).
+
+        :param numpy.ndarray x_calib:
+            Calibration feature matrix.
+
+        :param numpy.ndarray y_calib:
+            Calibration target values.
+
+        :param float alpha:
+            Miscoverage level (e.g., ``0.1`` for 90% coverage).
+
+        :param kwargs:
+            Additional keyword arguments forwarded to the conformal backend.
+            For CQR nested sets, the ``nominal_quantiles`` parameter should be provided.
+
+        **Behavior:**
+
+        - If ``self.settings['group_coverage']`` is ``True``, calls
+        ``self.conf.conformalize_split_group_coverage(...)``.
+        - Otherwise, calls ``self.conf.conformalize_split(...)``.
+        - The conformal backend is expected to update its internal state used by
+        :meth:`predict_conformal_set`.
         """
+
         if self.settings['group_coverage']:
             self.conf.conformalize_split_group_coverage(trees, x_calib, y_calib, alpha, **kwargs)
         else:
@@ -265,28 +301,40 @@ class UQ():
                 
     def predict_conformal_set(self, trees, x_test, return_testID2group=False, **kwargs):
         """
-        Predict conformalized sets for test points using the backend.
-        Args:
-            trees (list): 
-                Trained trees (same as passed to conformalize).
-            x_test (np.ndarray): 
-                Test features (n_test x n_features).
-            return_testID2group (bool): 
-                When group_coverage is True, optionally return
-                the mapping from test indices to groups alongside the sample2predset.
-            **kwargs: 
-                Forwarded to the conformal backend's prediction routine.
-        Returns:
-            If group_coverage is False:
-                sample2predset: sequence-like (length n_test) of (low, up) pairs.
-            If group_coverage is True:
-                If return_testID2group is False:
-                    sample2predset (as above).
-                If return_testID2group is True:
-                    (testID2group, sample2predset) where testID2group is the mapping used.
-        Notes:
-            - Delegates to either predict_conformal_set_split or
-              predict_conformal_set_split_group_coverage on self.conf.
+        Predict conformalized sets for test points using the conformal backend.
+
+        :param list trees:
+            Trained trees (same as passed to :meth:`conformalize`).
+
+        :param numpy.ndarray x_test:
+            Test feature matrix of shape (n_test, n_features).
+
+        :param bool return_testID2group:
+            When ``group_coverage`` is ``True``, optionally return the mapping from
+            test indices to groups alongside the prediction sets.
+
+        :param kwargs:
+            Additional keyword arguments forwarded to the conformal backend's prediction routine.
+
+        :returns:
+            - If ``group_coverage`` is ``False``:
+            
+            **sample2predset** – Sequence-like (length n_test) of (low, up) prediction interval pairs.
+            
+            - If ``group_coverage`` is ``True``:
+            
+            - If ``return_testID2group`` is ``False``:
+                
+                **sample2predset** as above.
+            
+            - If ``return_testID2group`` is ``True``:
+                
+                Tuple ``(testID2group, sample2predset)`` where ``testID2group`` is the mapping used.
+
+        **Notes:**
+
+        - Delegates to either :meth:`predict_conformal_set_split` or
+        :meth:`predict_conformal_set_split_group_coverage` on ``self.conf``.
         """
         if self.settings['group_coverage']:
             testID2group, sample2predset = self.conf.predict_conformal_set_split_group_coverage(trees, x_test, **kwargs)
@@ -299,23 +347,29 @@ class UQ():
     def get_quantile_estimate(self, trees, x_test, quantiles):
         """
         Query aggregate quantile estimates for each test sample from the (non- or pre-) conformal tree predictions.
-        Args:
-            trees (list): 
-                Trained tree objects.
-            x_test (np.ndarray): 
-                Test features (n_test x n_features).
-            quantiles (iterable): 
-                List/array of quantile levels to estimate (values in [0,1]).
-        Returns:
-            sample2quantiles (dict): 
-                Mapping sample_index -> list of estimated quantile values.
-                The inner list has the same ordering as the input quantiles argument.
-        Behavior / Implementation details:
-            - Calls self.conf.preprocess_trees(trees, x_test) to obtain a structure
-              treeID2testID2values mapping tree ids to test sample leaf/value indexes.
-            - For each requested quantile 'q', finds the nearest available query quantile
-              in self.conf.quantiles_query (via argmin on absolute distance) and obtains
-              the set of tree IDs associated with that query from self.conf.quantile_query2treeIDs.   
+
+        :param list trees:
+            Trained tree objects.
+
+        :param numpy.ndarray x_test:
+            Test features matrix of shape (n_test, n_features).
+
+        :param iterable quantiles:
+            List or array of quantile levels to estimate (values in [0, 1]).
+
+        :returns:
+            **sample2quantiles** (*dict*) – Mapping from sample index to list of estimated quantile values.
+            The inner list has the same ordering as the input `quantiles` argument.
+
+        **Behavior / Implementation details:**
+
+        - Calls ``self.conf.preprocess_trees(trees, x_test)`` to obtain a structure
+        ``treeID2testID2values`` mapping tree IDs to test sample leaf/value indexes.
+
+        - For each requested quantile ``q``, finds the nearest available query quantile
+        in ``self.conf.quantiles_query`` (via argmin on absolute distance) and obtains
+        the set of tree IDs associated with that query from
+        ``self.conf.quantile_query2treeIDs``.
         """
         treeID2testID2values = self.conf.preprocess_trees(trees, x_test)
         sample2quantiles = {i:[] for i in range(x_test.shape[0])}

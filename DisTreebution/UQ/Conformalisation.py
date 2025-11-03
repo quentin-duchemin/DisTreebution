@@ -12,34 +12,31 @@ def get_quantile(ls, n, q):
 
 class Conformalisation():
     """
-    A class for handling conformalisation processes on tree-based models, including preprocessing of trees
-    for both training and test data, optionally with group information, and performing operations on leaf values.
-    Parameters
-    ----------
-    settings : dict, optional
-        Configuration settings for the conformalisation process, such as the type of tree.
-    params : dict, optional
-        Additional parameters for the conformalisation process.
-    Methods
-    -------
-    preprocess_trees(trees, x_train, x_test)
-        Preprocesses the given trees to extract and organize leaf values for each sample in the training and test sets.
-        Handles both standard and PQRT tree types.
-    preprocess_trees_with_groups(trees, x_train, x_test, max_depth_group)
-        Preprocesses the given trees to extract leaf values and group information for each sample in the training and test sets,
-        up to a specified maximum group depth.
-    operation_leaf(ls, q, weights=None)
-        Computes the q-th quantile value from a sorted list of leaf values, optionally using sample weights.
+    Handles conformalisation processes on tree-based models, including preprocessing of trees
+    for training and test data, optionally with group information, and performing operations on leaf values.
+
+    :param dict settings: (optional) Configuration settings for the conformalisation process, such as the type of tree.
+    :param dict params: (optional) Additional parameters for the conformalisation process.
+
+    .. rubric:: Methods
+
+    .. py:method:: preprocess_trees(trees, x_train, x_test)
+       Preprocesses the given trees to extract and organize leaf values for each sample in the training and test sets.
+       Handles both standard and PQRT tree types.
+
+    .. py:method:: preprocess_trees_with_groups(trees, x_train, x_test, max_depth_group)
+       Preprocesses the given trees to extract leaf values and group information for each sample in the training and test sets,
+       up to a specified maximum group depth.
+
+    .. py:method:: operation_leaf(ls, q, weights=None)
+       Computes the q-th quantile value from a sorted list of leaf values, optionally using sample weights.
     """
     def __init__(self, settings=None, params=None):
         """
         Initializes the Conformalisation object with optional settings and parameters.
-        Parameters
-        ----------
-        settings : dict, optional
-            Configuration settings for the conformalisation process.
-        params : dict, optional
-            Additional parameters for the conformalisation process.
+
+        :param dict settings: (optional) Configuration settings for the conformalisation process.
+        :param dict params: (optional) Additional parameters for the conformalisation process.
         """
         self.settings = settings
         self.params = params
@@ -85,16 +82,16 @@ class Conformalisation():
         """
         Preprocesses the given trees to extract and organize leaf values for each sample in the dataset.
         Handles both standard and PQRT tree types.
-        Parameters
-        ----------
-        trees : list
+
+        :param list trees:
             List of tree objects to preprocess.
-        x : array-like
+
+        :param array-like x:
             Input data for which to extract leaf values.
-        Returns
-        -------
-        treeID2sampleID2values : dict
+
+        :returns dict:
             A dictionary mapping tree IDs to another dictionary that maps sample IDs to sorted leaf values.
+            Format: {tree_id: {sample_id: sorted_leaf_values}}
         """
         treeID2sampleID2values = {}
         for k, tree in enumerate(trees):
@@ -111,20 +108,22 @@ class Conformalisation():
         """
         Preprocesses the given trees to extract leaf values and group information for each sample in the training set,
         up to a specified maximum group depth.
-        Parameters
-        ----------
-        trees : list
+
+        :param list trees:
             List of tree objects to preprocess.
-        x_train : array-like
+
+        :param array-like x_train:
             Training input data for which to extract leaf values and group information.
-        max_depth_group : int
+
+        :param int max_depth_group:
             Maximum depth for group coverage in the trees.
-        Returns
-        -------
-        treeID2trainID2values : dict
-            A dictionary mapping tree IDs to another dictionary that maps training sample IDs to sorted leaf values.
-        treeID2trainID2group : dict
-            A dictionary mapping tree IDs to another dictionary that maps training sample IDs to their group information.
+
+        :returns tuple:
+            - **treeID2trainID2values** (*dict*): A dictionary mapping tree IDs to another dictionary
+            that maps training sample IDs to sorted leaf values.
+
+            - **treeID2trainID2group** (*dict*): A dictionary mapping tree IDs to another dictionary
+            that maps training sample IDs to their group information.
         """
         treeID2trainID2values = {}
         treeID2trainID2group = {}
@@ -143,17 +142,17 @@ class Conformalisation():
     def operation_leaf(self, ls, q, weights=None):
         """
         Computes the q-th quantile value from a sorted list of leaf values, optionally using sample weights.
-        Parameters
-        ----------
-        ls : array-like
+
+        :param array-like ls:
             Sorted list or array of leaf values.
-        q : float
+
+        :param float q:
             Quantile to compute, between 0 and 1.
-        weights : array-like, optional
+
+        :param array-like weights:
             Weights for each value in `ls`. If None, uniform weights are used.
-        Returns
-        -------
-        float
+
+        :returns float:
             The q-th quantile value from the list.
         """
         n = len(ls)

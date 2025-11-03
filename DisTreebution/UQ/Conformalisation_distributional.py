@@ -7,41 +7,46 @@ from .utils import filter_dict
 
 
 class Conformalisation_distributional(Conformalisation):
-    """
-    A class for handling conformalisation processes on tree-based models for distributional nested sets.
-    Parameters
-    ----------
-    settings : dict, optional
-        Configuration settings for the conformalisation process, such as the type of tree.
-    params : dict, optional
-        Hyperparameters for the conformalisation process.
-    Methods
-    -------
-    conformalize_split(trees, x_calib, y_calib, alpha)
-        Performs conformalization on a calibration dataset to determine the conformity threshold.
-    predict_conformal_set_split(trees, x_test)
-        Predicts conformal prediction sets for test data based on the conformity threshold.
-    conformalize_split_group_coverage(trees, x_calib, y_calib, alpha, max_depth_group=None, get_res_on_calib=False)
-        Performs group-wise conformalization on a calibration dataset to determine group-specific conformity thresholds.
-    predict_conformal_set_split_group_coverage(trees, x_test, get_res_on_calib=False, x_calib=None, y_calib=None)
-        Predicts conformal prediction sets for test data with group coverage based on group-specific conformity thresholds.
+    """Conformalisation for distributional tree-based models.
+
+    This class implements conformalisation utilities for tree ensembles that
+    produce distributional (quantile/interval) predictions. It extends
+    :class:`Conformalisation` and provides methods to compute conformity
+    thresholds on a calibration set and to produce conformal prediction sets
+    for test inputs.
+
+    :param settings: Configuration settings for the conformalisation process, such as the type of tree.
+    :type settings: dict, optional
+    :param params: Hyperparameters for the conformalisation process.
+    :type params: dict, optional
     """
     def __init__(self, settings=None, params=None):
+        """Initialize the conformalisation instance.
+
+        :param settings: See class description.
+        :type settings: dict, optional
+        :param params: See class description.
+        :type params: dict, optional
+        """
         super().__init__(settings=settings, params=params)
 
     def conformalize_split(self, trees, x_calib, y_calib, alpha):
-        """
-        Performs conformalization on a calibration dataset by cmoputing conformity scores and taking the appropriate quantile.   
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.
-        x_calib : np.ndarray
-            Calibration input data.
-        y_calib : np.ndarray
-            Calibration output data.
-        alpha : float
-            Significance level for conformalization.
+        """Compute conformity threshold from a calibration set.
+
+        The method computes conformity scores on the provided calibration
+        dataset and sets :attr:`self.conf_thresh` to the empirical quantile
+        corresponding to ``alpha``.
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_calib: Calibration input data.
+        :type x_calib: numpy.ndarray
+        :param y_calib: Calibration output data.
+        :type y_calib: numpy.ndarray
+        :param alpha: Significance level for conformalization (e.g. 0.1 for 90% sets).
+        :type alpha: float
+        :returns: None. Sets ``self.conf_thresh`` on success.
+        :rtype: None
         """
         sample2calib_trees = {j: [i for i in range(len(trees))] for j in range(len(y_calib))}
 
@@ -52,18 +57,15 @@ class Conformalisation_distributional(Conformalisation):
 
 
     def predict_conformal_set_split(self, trees, x_test):
-        """
-        Predicts conformal prediction sets for test data based on the conformity threshold determined during calibration.
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.
-        x_test : np.ndarray
-            Test input data.
-        Returns
-        -------
-        sample2predset : dict
-            Dictionary mapping test sample indices to their conformal prediction sets [lower_bound, upper_bound].
+        """Predict conformal prediction sets for test inputs using a fixed threshold.
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_test: Test input data.
+        :type x_test: numpy.ndarray
+        :returns: Mapping from test sample index to conformal prediction set [low, up].
+        :rtype: dict
+        :raises AssertionError: If ``self.conf_thresh`` has not been set by a previous calibration.
         """
         assert self.conf_thresh is not None
         sample2predset = {}
@@ -76,29 +78,29 @@ class Conformalisation_distributional(Conformalisation):
         return sample2predset
     
     def conformalize_split_group_coverage(self, trees, x_calib, y_calib, alpha, max_depth_group=None, get_res_on_calib=False):
-        """
-        Performs group-wise conformalization on a calibration dataset to determine group-specific conformity thresholds.   
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.
-        x_calib : np.ndarray
-            Calibration input data.
-        y_calib : np.ndarray
-            Calibration output data.
-        alpha : float
-            Significance level for conformalization.
-        max_depth_group : int, optional
-            Maximum depth for group coverage trees.
-        get_res_on_calib : bool, optional
-            Whether to return results on the calibration set.
-        Returns
-        -------
-        If get_res_on_calib is True:
-            group2sizecalib : dict
-                Dictionary mapping group identifiers to the size of the calibration set in that group.
-            group2covcalib : dict
-                Dictionary mapping group identifiers to the coverage of the calibration set in that group.
+        """Compute group-specific conformity thresholds from a calibration set.
+
+        For each group (as defined by the tree partitioning up to
+        ``max_depth_group``) this method computes an empirical conformity
+        threshold and stores the results in ``self.group2conf_thresh``.
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_calib: Calibration input data.
+        :type x_calib: numpy.ndarray
+        :param y_calib: Calibration output data.
+        :type y_calib: numpy.ndarray
+        :param alpha: Significance level for conformalization.
+        :type alpha: float
+        :param max_depth_group: Maximum depth for defining groups (tree levels).
+        :type max_depth_group: int, optional
+        :param get_res_on_calib: If True, also return calibration set statistics.
+        :type get_res_on_calib: bool, optional
+        :returns: None. On success sets ``self.group2conf_thresh``. If
+            ``get_res_on_calib`` is True the method additionally computes and
+            would return calibration group sizes and coverages (the caller
+            should call the corresponding predict method to retrieve them).
+        :rtype: None
         """
         sample2calib_trees = {j: [i for i in range(len(trees))] for j in range(len(y_calib))}
         self.max_depth_group = max_depth_group
@@ -121,36 +123,28 @@ class Conformalisation_distributional(Conformalisation):
             self.group2conf_thresh[group] = conf_scores[int(alpha*len(conf_scores))]
 
     def predict_conformal_set_split_group_coverage(self, trees, x_test, get_res_on_calib=False, x_calib=None, y_calib=None):
-        """
-        Predicts conformal prediction sets for test data with group coverage based on group-specific conformity thresholds.
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.
-        x_test : np.ndarray
-            Test input data.
-        get_res_on_calib : bool, optional
-            Whether to return results on the calibration set.
-        x_calib : np.ndarray, optional
-            Calibration input data (required if get_res_on_calib is True).
-        y_calib : np.ndarray, optional
-            Calibration output data (required if get_res_on_calib is True).
-        Returns
-        -------
-        If get_res_on_calib is True:
-            group2sizecalib : dict
-                Dictionary mapping group identifiers to the size of the calibration set in that group.
-            group2covcalib : dict
-                Dictionary mapping group identifiers to the coverage of the calibration set in that group.
-            treeID2testID2group : dict
-                Dictionary mapping tree IDs to another dictionary that maps test sample IDs to their group information.
-            sample2predset : dict
-                Dictionary mapping test sample indices to their conformal prediction sets [lower_bound, upper_bound].
-        Else:
-            treeID2testID2group : dict
-                Dictionary mapping tree IDs to another dictionary that maps test sample IDs to their group information.
-            sample2predset : dict
-                Dictionary mapping test sample indices to their conformal prediction sets [lower_bound, upper_bound].
+        """Predict conformal sets for test inputs with group-wise thresholds.
+
+        Uses ``self.group2conf_thresh`` (computed by
+        :meth:`conformalize_split_group_coverage`) to produce conformal sets for
+        each test sample, adapting the threshold to the group that a sample
+        belongs to.
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_test: Test input data.
+        :type x_test: numpy.ndarray
+        :param get_res_on_calib: If True, also compute and return calibration-set statistics.
+        :type get_res_on_calib: bool, optional
+        :param x_calib: Calibration input data (required when ``get_res_on_calib`` is True).
+        :type x_calib: numpy.ndarray, optional
+        :param y_calib: Calibration output data (required when ``get_res_on_calib`` is True).
+        :type y_calib: numpy.ndarray, optional
+        :returns: When ``get_res_on_calib`` is True returns a tuple
+            ``(group2sizecalib, group2covcalib, treeID2testID2group, sample2predset)``.
+            Otherwise returns ``(treeID2testID2group[0], sample2predset)``.
+        :rtype: tuple
+        :raises AssertionError: If ``self.group2conf_thresh`` has not been computed.
         """
         assert self.group2conf_thresh is not None
         sample2calib_trees = {0: [i for i in range(len(trees))]}
@@ -183,30 +177,28 @@ class Conformalisation_distributional(Conformalisation):
         
           
     def get_low_up_test_i(self, yj, qhat_low, qhat_up, qhat_low_test, qhat_up_test, t=None):
-        """
-        Determines the appropriate lower and upper bounds for a test sample based on conformity scores and a fixed threshold.
-        Parameters
-        ----------
-        yj : float
-            The true output value for the calibration sample.
-        qhat_low : np.ndarray
-            Array of lower quantile estimates from the calibration data.
-        qhat_up : np.ndarray
-            Array of upper quantile estimates from the calibration data.
-        qhat_low_test : np.ndarray
-            Array of lower quantile estimates for the test data.
-        qhat_up_test : np.ndarray
-            Array of upper quantile estimates for the test data.
-        t : float, optional
-            Fixed conformity threshold. If None, the method searches for the appropriate threshold.
-        Returns
-        -------
-        low_j : float
-            The lower bound for the test sample.
-        up_j : float
-            The upper bound for the test sample.
-        t_idx : int
-            The index of the selected threshold.
+        """Select lower/upper bounds for a test sample using conformity thresholds.
+
+        The method inspects arrays of calibration quantile estimates and their
+        corresponding test quantile estimates and either uses the provided
+        threshold index ``t`` or searches for the largest index where the
+        calibration value covers ``yj``.
+
+        :param yj: Calibration sample true value.
+        :type yj: float
+        :param qhat_low: Lower quantile estimates from calibration.
+        :type qhat_low: numpy.ndarray
+        :param qhat_up: Upper quantile estimates from calibration.
+        :type qhat_up: numpy.ndarray
+        :param qhat_low_test: Lower quantile estimates for the test sample.
+        :type qhat_low_test: numpy.ndarray
+        :param qhat_up_test: Upper quantile estimates for the test sample.
+        :type qhat_up_test: numpy.ndarray
+        :param t: Optional fixed threshold index to use. If ``None`` the method searches.
+        :type t: int or None, optional
+        :returns: ``(low_j, up_j, t_idx)`` where ``low_j`` and ``up_j`` are the
+            selected bounds for the test sample and ``t_idx`` is the chosen threshold index.
+        :rtype: tuple(float, float, int)
         """
         t_idx = t
         low_quantiles = self.params['list_distri_low_quantiles']
@@ -219,30 +211,28 @@ class Conformalisation_distributional(Conformalisation):
         return qhat_low_test[t_idx], qhat_up_test[t_idx], t_idx
 
     def get_low_up_score(self, i, y_train, sample2calib_trees, treeID2trainID2values, treeID2testID2values, t_fixed=None):
-        """
-        Computes lower and upper bounds along with conformity scores for a given test sample.
-        Parameters
-        ----------
-        i : int
-            Index of the test sample.
-        y_train : np.ndarray
-            Array of training output values.
-        sample2calib_trees : dict
-            Dictionary mapping sample indices to lists of tree IDs used for calibration.
-        treeID2trainID2values : dict
-            Dictionary mapping tree IDs to another dictionary that maps training sample IDs to sorted leaf values.
-        treeID2testID2values : dict
-            Dictionary mapping tree IDs to another dictionary that maps test sample IDs to sorted leaf values.
-        t_fixed : float, optional
-            Fixed conformity threshold. If None, the method searches for the appropriate threshold.
-        Returns
-        -------
-        lower : list
-            List of lower bounds for the test sample.
-        upper : list
-            List of upper bounds for the test sample.
-        conf_scores : list
-            List of conformity scores for the test sample.
+        """Compute lower/upper bounds and conformity scores for one test index.
+
+        This method aggregates quantile estimates across trees (according to the
+        aggregation configured in ``self.settings['type_aggregation_trees']``)
+        and returns, for the test sample at index ``i``, three lists:
+        the lower bounds, the upper bounds and the conformity score indices.
+
+        :param i: Index of the test sample.
+        :type i: int
+        :param y_train: Array of calibration/training output values used to compute scores.
+        :type y_train: numpy.ndarray or list
+        :param sample2calib_trees: Mapping from sample indices to lists of tree IDs used for calibration.
+        :type sample2calib_trees: dict
+        :param treeID2trainID2values: Mapping from tree ID to a mapping of training sample IDs to leaf values.
+        :type treeID2trainID2values: dict
+        :param treeID2testID2values: Mapping from tree ID to a mapping of test sample IDs to leaf values.
+        :type treeID2testID2values: dict
+        :param t_fixed: Optional fixed threshold/index to use when selecting bounds. If ``None`` the method will search.
+        :type t_fixed: int or float, optional
+        :returns: A tuple ``(lower, upper, conf_scores)`` where each entry is a list
+            with one element per calibration sample in ``y_train``.
+        :rtype: tuple(list, list, list)
         """
         # i: index of the test sample
         low_quantiles = self.params['list_distri_low_quantiles']

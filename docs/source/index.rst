@@ -22,7 +22,7 @@ If you use `DisTreebution` in your work, please cite our publication.
                 <img src="_static/presentation.svg" class="card-img-top" alt="installation with scvi action icon" height="52">
                 <div class="card-body flex-fill">
                     <h5 class="card-title">Project Presentation</h5>
-                    <p class="card-text">New to <em>watershed responses</em>? Check out the project presentation.
+                    <p class="card-text">New to <em>distributional regression</em>? Check out the project presentation.
                     </p>
 
 .. container:: custom-button
@@ -141,6 +141,8 @@ If you use `DisTreebution` in your work, please cite our publication.
     :titlesonly:
     
     presentation
+    repository
+    documentation/modules
     tutorials/index
     developer/index
     references

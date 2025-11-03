@@ -7,45 +7,60 @@ import random
 
 class RegressionTree:
     """
-    A custom regression tree class computing information gains based on the entropy associated to the CRPS loss.
-    Parameters
-    ----------
-    max_depth : int, optional
-        The maximum depth of the tree. If None, nodes are expanded until all leaves are pure or contain fewer than min_samples_split samples.
-    min_samples_split : int, default=2
+    A custom regression tree class computing information gains based on the entropy associated with the CRPS loss.
+
+    :param int max_depth:
+        The maximum depth of the tree. If None, nodes are expanded until all leaves are pure or contain fewer than
+        ``min_samples_split`` samples.
+
+    :param int min_samples_split: (default=2)
         The minimum number of samples required to split an internal node.
-    limit_use_CRPS : int or None, optional
-        If set, use CRPS loss for nodes with sample size <= limit_use_CRPS, otherwise use multiple quantile loss.
-    quantiles : list or None, optional
-        List of quantiles to use for the multiple quantile loss. Required if limit_use_CRPS is set.
-    use_LOO : bool, default=True
+
+    :param int or None limit_use_CRPS:
+        If set, use CRPS loss for nodes with sample size <= ``limit_use_CRPS``, otherwise use multiple quantile loss.
+
+    :param list or None quantiles:
+        List of quantiles to use for the multiple quantile loss. Required if ``limit_use_CRPS`` is set.
+
+    :param bool use_LOO: (default=True)
         Whether to use leave-one-out estimation in the entropy/loss calculation.
-    Attributes
-    ----------
-    feature_index : int
+
+    .. rubric:: Attributes
+
+    :ivar int feature_index:
         Index of the feature used for splitting at the current node.
-    threshold : float
+
+    :ivar float threshold:
         Threshold value for the split at the current node.
-    left : RegressionTree
+
+    :ivar RegressionTree left:
         Left child node.
-    right : RegressionTree
+
+    :ivar RegressionTree right:
         Right child node.
-    y : array-like
+
+    :ivar array-like y:
         Target values at the leaf node.
-    Methods
-    -------
-    fit(X, y, depth=0, ref_tree=None, max_depth_ref_tree=-1)
-        Fit the regression tree to the data.
-    find_best_split(X, y)
-        Find the best feature and threshold to split the data at the current node.
-    predict(X)
-        Predict target values for given input samples.
-    get_values_leaf(X, indexes)
-        Retrieve the samples and their target values for each leaf.
-    get_values_leaf_and_groups(X, indexes, current_group_depth=str(), max_depth_group=1)
-        Retrieve the samples, their target values, and group identifiers for each leaf up to a specified group depth.
-    Notes
-    -----
+
+    .. rubric:: Methods
+
+    .. py:method:: fit(X, y, depth=0, ref_tree=None, max_depth_ref_tree=-1)
+       Fit the regression tree to the data.
+
+    .. py:method:: find_best_split(X, y)
+       Find the best feature and threshold to split the data at the current node.
+
+    .. py:method:: predict(X)
+       Predict target values for given input samples.
+
+    .. py:method:: get_values_leaf(X, indexes)
+       Retrieve the samples and their target values for each leaf.
+
+    .. py:method:: get_values_leaf_and_groups(X, indexes, current_group_depth=str(), max_depth_group=1)
+       Retrieve the samples, their target values, and group identifiers for each leaf up to a specified group depth.
+
+    .. rubric:: Notes
+
     - This implementation supports custom loss functions CRPS for splitting.
     - The tree can optionally follow the structure of a reference tree up to a certain depth.
     """
@@ -63,28 +78,28 @@ class RegressionTree:
         """
         Recursively fits the regression tree to the provided data.
 
-        Parameters
-        ----------
-        X : np.ndarray
+        :param np.ndarray X:
             Feature matrix of shape (n_samples, n_features).
-        y : np.ndarray
+
+        :param np.ndarray y:
             Target values of shape (n_samples,).
-        depth : int, optional
-            Current depth of the tree (default is 0).
-        ref_tree : RegressionTree or None, optional
-            Reference tree to guide the splitting process (default is None). If provided, the tree will copy splits from the reference tree up to `max_depth_ref_tree`.
-        max_depth_ref_tree : int, optional
-            Maximum depth up to which the reference tree is used for splitting (default is -1, meaning not used).
 
-        Returns
-        -------
-        None
+        :param int depth: (default=0)
+            Current depth of the tree.
 
-        Notes
-        -----
-        - If the maximum depth is reached or the number of samples is less than `min_samples_split`, the node becomes a leaf and stores the target values.
-        - If a reference tree is provided and the current depth is less than `max_depth_ref_tree`, the split is copied from the reference tree.
-        - Otherwise, the best split is found using the `find_best_split` method.
+        :param RegressionTree or None ref_tree: (default=None)
+            Reference tree to guide the splitting process. If provided, the tree will copy splits from the reference
+            tree up to ``max_depth_ref_tree``.
+
+        :param int max_depth_ref_tree: (default=-1)
+            Maximum depth up to which the reference tree is used for splitting. A value of -1 means not used.
+
+        :returns: None
+
+        .. note::
+        - If the maximum depth is reached or the number of samples is less than ``min_samples_split``, the node becomes a leaf and stores the target values.
+        - If a reference tree is provided and the current depth is less than ``max_depth_ref_tree``, the split is copied from the reference tree.
+        - Otherwise, the best split is found using the ``find_best_split`` method.
         - The method recursively fits the left and right child nodes.
         """
         if depth == self.max_depth or X.shape[0] < self.min_samples_split:
@@ -120,18 +135,20 @@ class RegressionTree:
     def find_best_split(self, X, y):
         """
         Finds the best feature and threshold to split the data for a regression tree node.
+
         This method evaluates all possible splits across all features to determine the optimal split point
-        that minimizes a custom score based on the CRPS entropy. It ensures that the resulting child nodes satisfy the minimum sample split constraint.
-        Parameters
-        ----------
-        X : np.ndarray
+        that minimizes a custom score based on the CRPS entropy. It ensures that the resulting child nodes
+        satisfy the minimum sample split constraint.
+
+        :param np.ndarray X:
             Feature matrix of shape (n_samples, n_features).
-        y : np.ndarray
+
+        :param np.ndarray y:
             Target values of shape (n_samples,).
-        Returns
-        -------
-        best_split : tuple or None
-            A tuple (feature_index, threshold) representing the best split found, or None if no valid split exists.
+
+        :returns tuple or None:
+            A tuple ``(feature_index, threshold)`` representing the best split found,
+            or None if no valid split exists.
         """
         num_samples, num_features = X.shape
         if num_samples <= 1:
@@ -181,13 +198,11 @@ class RegressionTree:
     def predict(self, X):
         """
         Predict target values for the given input samples.
-        Parameters
-        ----------
-        X : np.ndarray
+
+        :param np.ndarray X:
             Feature matrix of shape (n_samples, n_features).
-        Returns
-        -------
-        np.ndarray
+
+        :returns np.ndarray:
             Predicted target values of shape (n_samples,).
         """
         if hasattr(self, 'y'):
@@ -209,15 +224,14 @@ class RegressionTree:
     def get_values_leaf(self, X, indexes):
         """
         Retrieve the samples and their target values for each leaf.
-        Parameters
-        ----------
-        X : np.ndarray
+
+        :param np.ndarray X:
             Feature matrix of shape (n_samples, n_features).
-        indexes : np.ndarray
+
+        :param np.ndarray indexes:
             Array of sample indexes corresponding to the rows in X.
-        Returns
-        -------
-        list
+
+        :returns list:
             A list of lists, where each sublist contains the sample indexes and target values for each leaf.
         """
         if hasattr(self, 'y'):
@@ -239,19 +253,20 @@ class RegressionTree:
     def get_values_leaf_and_groups(self, X, indexes, current_group_depth=str(), max_depth_group=1):
         """
         Retrieve the samples, their target values, and group identifiers for each leaf up to a specified group depth.
-        Parameters
-        ----------
-        X : np.ndarray
+
+        :param np.ndarray X:
             Feature matrix of shape (n_samples, n_features).
-        indexes : np.ndarray
+
+        :param np.ndarray indexes:
             Array of sample indexes corresponding to the rows in X.
-        current_group_depth : str, optional
+
+        :param str current_group_depth: (optional)
             Current group depth identifier (default is an empty string).
-        max_depth_group : int, optional
+
+        :param int max_depth_group: (optional)
             Maximum depth for group identifiers (default is 1).
-        Returns
-        -------
-        list
+
+        :returns list:
             A list of lists, where each sublist contains the sample indexes, target values, and group identifier for each leaf.
         """
         if hasattr(self, 'y'):

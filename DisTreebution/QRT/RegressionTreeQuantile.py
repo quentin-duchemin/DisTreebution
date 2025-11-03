@@ -3,13 +3,60 @@ from .entropies_MultiQuantiles import entropies_MultiQuantiles
 import matplotlib.pyplot as plt
 
 class RegressionTreeQuantile:
+    """Regression tree that predicts multiple quantiles.
+
+    This tree recursively partitions the feature space to minimize a
+    multiquantile entropy measure. It produces predictions for a list of
+    requested quantiles at each leaf.
+
+    :param quantiles: Sequence of quantile levels to predict (values in (0,1)).
+    :type quantiles: list or numpy.ndarray
+    :param max_depth: Maximum recursion depth for the tree. If ``None``, splitting continues until the sample-size criterion is met.
+    :type max_depth: int or None
+    :param min_samples_split: Minimum number of samples required in a node to consider a split.
+    :type min_samples_split: int
+    :param use_LOO: Whether to use leave-one-out adjustments in entropy computations.
+    :type use_LOO: bool
+    """
+
     def __init__(self, quantiles, max_depth=None, min_samples_split=2, use_LOO=True):
+        """Initialize a :class:`RegressionTreeQuantile` instance.
+
+        :param quantiles: See class description.
+        :type quantiles: list or numpy.ndarray
+        :param max_depth: See class description.
+        :type max_depth: int or None
+        :param min_samples_split: See class description.
+        :type min_samples_split: int
+        :param use_LOO: See class description.
+        :type use_LOO: bool
+        """
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
         self.quantiles = quantiles
         self.use_LOO = use_LOO
 
     def fit(self, X, y, depth=0, ref_tree=None, max_depth_ref_tree=-1):
+        """Fit the regression-quantile tree to data.
+
+        This method recursively grows the tree. If a split is found it sets
+        ``self.feature_index`` and ``self.threshold`` and creates ``left`` and
+        ``right`` child nodes. Otherwise the node becomes a leaf and stores
+        the observed ``y`` values in ``self.y``.
+
+        :param X: Feature matrix of shape (n_samples, n_features).
+        :type X: numpy.ndarray
+        :param y: Target vector of shape (n_samples,).
+        :type y: numpy.ndarray
+        :param depth: Current depth in recursion (used internally).
+        :type depth: int
+        :param ref_tree: Optional reference tree whose splits will be reused up to ``max_depth_ref_tree``.
+        :type ref_tree: RegressionTreeQuantile or None
+        :param max_depth_ref_tree: Maximum depth on ``ref_tree`` to reuse splits from.
+        :type max_depth_ref_tree: int
+        :returns: None. Tree structure is constructed in-place.
+        :rtype: None
+        """
         if depth == self.max_depth or X.shape[0] < self.min_samples_split:
             self.y = y
             return
@@ -43,6 +90,21 @@ class RegressionTreeQuantile:
             #self.value = [np.sort(y)[min(int(q*len(y)),len(y)-1)] for q in self.quantiles]
 
     def find_best_split(self, X, y):
+        """Find the best split for the current node.
+
+        The method evaluates candidate splits on every feature and returns the
+        best (feature_index, threshold) pair that satisfies the minimum
+        samples per side criterion and improves the multiquantile entropy
+        (when ``self.use_LOO`` is True the entropy uses leave-one-out
+        adjustments).
+
+        :param X: Feature matrix for current node.
+        :type X: numpy.ndarray
+        :param y: Target values for current node.
+        :type y: numpy.ndarray
+        :returns: Tuple ``(feature_index, threshold)`` for the best split, or ``None`` if no valid split found.
+        :rtype: tuple(int, float) or None
+        """
         num_samples, num_features = X.shape
         if num_samples <= 1:
             return None
@@ -90,6 +152,17 @@ class RegressionTreeQuantile:
                                            
 
     def predict(self, X):
+        """Predict quantiles for input samples.
+
+        If the node is a leaf the stored quantile values (``self.value``) are
+        repeated for each input sample. Otherwise the method routes samples
+        down to child nodes and assembles per-sample quantile predictions.
+
+        :param X: Feature matrix of shape (n_samples, n_features).
+        :type X: numpy.ndarray
+        :returns: Array of shape (n_samples, n_quantiles) with predicted quantile values.
+        :rtype: numpy.ndarray
+        """
         if hasattr(self, 'value'):
             return np.tile(np.array(self.value).reshape(1,-1), (X.shape[0], 1))
         else:
@@ -106,6 +179,19 @@ class RegressionTreeQuantile:
             return result
         
     def get_values_leaf(self, X, indexes):
+        """Return leaf values and associated sample indexes.
+
+        Traverses the tree and collects, for each leaf, a pair containing the
+        list of sample indexes that fall in the leaf and the observed target
+        values stored at that leaf.
+
+        :param X: Feature matrix of shape (n_samples, n_features).
+        :type X: numpy.ndarray
+        :param indexes: Array of original sample indices corresponding to rows in ``X``.
+        :type indexes: numpy.ndarray or list
+        :returns: List of items ``[indexes_list, y_values]`` for each leaf encountered.
+        :rtype: list
+        """
         if hasattr(self, 'y'):
             return [[list(indexes), self.y]]
         else:
@@ -124,6 +210,23 @@ class RegressionTreeQuantile:
         
         
     def get_values_leaf_and_groups(self, X, indexes, current_group_depth=str(), max_depth_group=1):
+        """Return leaf values together with group identifiers.
+
+        Similar to :meth:`get_values_leaf` but also returns a group identifier
+        (a string encoding the path down the tree) for each leaf. Groups are
+        truncated at ``max_depth_group``.
+
+        :param X: Feature matrix of shape (n_samples, n_features).
+        :type X: numpy.ndarray
+        :param indexes: Array of original sample indices corresponding to rows in ``X``.
+        :type indexes: numpy.ndarray or list
+        :param current_group_depth: Current group identifier string (used during recursion).
+        :type current_group_depth: str
+        :param max_depth_group: Maximum length of the group identifier to produce.
+        :type max_depth_group: int
+        :returns: List of items ``[indexes_list, y_values, group_id]`` for each leaf.
+        :rtype: list
+        """
         if hasattr(self, 'y'):
             return [[list(indexes), self.y, current_group_depth]]
         else:

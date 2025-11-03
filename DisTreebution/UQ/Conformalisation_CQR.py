@@ -5,28 +5,44 @@ from .Conformalisation import Conformalisation
 from .utils import filter_dict
 
 class Conformalisation_CQR(Conformalisation):
-    """
-    A class for handling conformalised quantile regression (CQR) processes on tree-based models.
+    """Conformalized Quantile Regression (CQR) for tree-based models.
+
+    Implements CQR-style conformalization on tree ensembles producing
+    quantile predictions. Extends :class:`Conformalisation` with methods to
+    compute global and group-wise conformity thresholds and to predict
+    conformalized quantile sets on new inputs.
     """
     def __init__(self, settings=None, params=None):
+        """Initialize the CQR conformalisation instance.
+
+        :param settings: Configuration settings for conformalisation.
+        :type settings: dict, optional
+        :param params: Hyperparameters for conformalisation.
+        :type params: dict, optional
+        """
         super().__init__(settings=settings, params=params)
 
 
     def conformalize_split(self, trees, x_calib, y_calib, alpha, nominal_quantiles=None):
-        """
-        Conformalizes the quantile regression predictions using the CQR method with specified nominal quantiles.
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.
-        x_calib : np.ndarray
-            Calibration input data.
-        y_calib : np.ndarray
-            Calibration output data.
-        alpha : float
-            Significance level for conformalization.
-        nominal_quantiles : list or float, optional
-            List of nominal quantiles to conformalize. If a single float is provided, it is converted to a list.
+        """Compute CQR conformity thresholds for nominal quantiles.
+
+        The method computes conformity scores for each provided nominal
+        quantile and sets ``self.conf_thresh`` to a list of thresholds
+        corresponding to each nominal quantile.
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_calib: Calibration input features.
+        :type x_calib: numpy.ndarray
+        :param y_calib: Calibration target values.
+        :type y_calib: numpy.ndarray
+        :param alpha: Significance level for conformalization (e.g. 0.1 for 90% sets).
+        :type alpha: float
+        :param nominal_quantiles: Nominal quantile(s) to conformalize. A single float will be converted to a list.
+        :type nominal_quantiles: float or list of float
+        :returns: None. Sets ``self.conf_thresh`` to a list of thresholds.
+        :rtype: None
+        :raises AssertionError: If ``nominal_quantiles`` is not provided.
         """
         assert nominal_quantiles is not None, "Please provide nominal_quantiles for CQR conformalization."
         if type(nominal_quantiles)!=list:
@@ -49,18 +65,19 @@ class Conformalisation_CQR(Conformalisation):
             self.conf_thresh.append(conf_scores[int(((1-alpha)+1/ncal)*ncal)])
     
     def predict_conformal_set_split(self, trees, x_test):
-        """
-        Predicts conformalized quantile regression sets for test data using the CQR method.
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.
-        x_test : np.ndarray
-            Test input data.
-        Returns
-        -------
-        sample2predset : dict
-            Dictionary mapping nominal quantile indices to predicted conformal sets for each test sample.
+        """Predict conformalized quantile sets on test inputs.
+
+        Uses ``self.conf_thresh`` computed by :meth:`conformalize_split` to
+        produce, for each nominal quantile, a dictionary mapping test sample
+        indices to conformal intervals [low, up].
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_test: Test input features.
+        :type x_test: numpy.ndarray
+        :returns: Mapping from nominal quantile index to a mapping of test index to [low, up].
+        :rtype: dict
+        :raises AssertionError: If ``self.conf_thresh`` has not been computed.
         """
         assert self.conf_thresh is not None
         treeID2testID2values = self.preprocess_trees(trees, x_test)
@@ -80,23 +97,27 @@ class Conformalisation_CQR(Conformalisation):
     
     
     def conformalize_split_group_coverage(self, trees, x_calib, y_calib, alpha, nominal_quantiles=None, max_depth_group=None):
-        """
-        Conformalizes the quantile regression predictions using the CQR method with specified nominal quantiles,
-        ensuring group coverage up to a specified maximum group depth.
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.   
-        x_calib : np.ndarray
-            Calibration input data.
-        y_calib : np.ndarray
-            Calibration output data.
-        alpha : float
-            Significance level for conformalization.
-        nominal_quantiles : list or float, optional
-            List of nominal quantiles to conformalize. If a single float is provided, it is converted to a list.
-        max_depth_group : int
-            Maximum depth for group coverage trees.
+        """Compute group-wise CQR thresholds to guarantee group coverage.
+
+        For each nominal quantile and for each group defined by tree
+        partitions up to ``max_depth_group``, compute an empirical threshold
+        stored in ``self.group2conf_thresh``.
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_calib: Calibration input features.
+        :type x_calib: numpy.ndarray
+        :param y_calib: Calibration target values.
+        :type y_calib: numpy.ndarray
+        :param alpha: Significance level for conformalization.
+        :type alpha: float
+        :param nominal_quantiles: Nominal quantile(s) to conformalize.
+        :type nominal_quantiles: float or list of float
+        :param max_depth_group: Maximum depth used to define groups in the tree partitioning.
+        :type max_depth_group: int
+        :returns: None. Sets ``self.group2conf_thresh``.
+        :rtype: None
+        :raises AssertionError: If ``nominal_quantiles`` or ``max_depth_group`` is not provided.
         """
         assert nominal_quantiles is not None, "Please provide nominal_quantiles for CQR conformalization."
         assert max_depth_group is not None, "Please provide max_depth_group for group coverage."
@@ -132,18 +153,18 @@ class Conformalisation_CQR(Conformalisation):
                 self.group2conf_thresh[i_q][group] = conf_scores[int((1-alpha+1/ncal)*ncal)]
 
     def predict_conformal_set_split_group_coverage(self, trees, x_test):
-        """
-        Predicts conformalized quantile regression sets for test data using the CQR method with group coverage.
-        Parameters
-        ----------
-        trees : list
-            List of trained tree models.
-        x_test : np.ndarray
-            Test input data.
-        Returns
-        -------
-        sample2predset : dict
-            Dictionary mapping nominal quantile indices to predicted conformal sets for each test sample.
+        """Predict group-aware conformalized quantile sets for test inputs.
+
+        Uses thresholds in ``self.group2conf_thresh`` to produce per-group
+        conformal intervals for each nominal quantile.
+
+        :param trees: List of trained tree models.
+        :type trees: list
+        :param x_test: Test input features.
+        :type x_test: numpy.ndarray
+        :returns: Tuple ``(treeID2testID2group[0], sample2predset)`` where
+            ``sample2predset`` maps nominal-quantile indices to per-sample [low, up].
+        :rtype: tuple
         """
         sample2predset = {i_q:{} for i_q in range(len(self.nominal_quantiles))}
         treeID2testID2values, treeID2testID2group = self.preprocess_trees_with_groups(trees, x_test, self.max_depth_group)
@@ -163,34 +184,31 @@ class Conformalisation_CQR(Conformalisation):
         return treeID2testID2group[0], sample2predset
 
     def get_low_up_test_i(self, yj, qhat_low, qhat_up, qhat_low_test, qhat_up_test, qmedian, qmedian_test, t=None):
-        """
-        Computes the conformalized lower and upper quantile predictions for a single test sample.
-        Parameters
-        ----------
-        yj : float
-            Calibration output value.
-        qhat_low : float
-            Predicted lower quantile from calibration data.
-        qhat_up : float
-            Predicted upper quantile from calibration data.
-        qhat_low_test : float
-            Predicted lower quantile for the test sample.
-        qhat_up_test : float
-            Predicted upper quantile for the test sample.
-        qmedian : float
-            Predicted median quantile from calibration data.
-        qmedian_test : float
-            Predicted median quantile for the test sample.
-        t : float, optional
-            Conformalization threshold. If None, it will be computed.
-        Returns
-        -------
-        low_test : float
-            Conformalized lower quantile prediction for the test sample.
-        up_test : float
-            Conformalized upper quantile prediction for the test sample.
-        t : float
-            Conformalization threshold used.
+        """Compute conformalized lower and upper quantiles for one test sample.
+
+        Behavior depends on ``self.settings['nested_set']`` and supports
+        variants 'CQR', 'CQR-m', and 'CQR-r'. If ``t`` is not provided the
+        method searches for the smallest adjustment making the calibration
+        value ``yj`` fall inside the adjusted interval.
+
+        :param yj: Calibration output value.
+        :type yj: float
+        :param qhat_low: Predicted lower quantile on calibration data.
+        :type qhat_low: float
+        :param qhat_up: Predicted upper quantile on calibration data.
+        :type qhat_up: float
+        :param qhat_low_test: Predicted lower quantile for the test sample.
+        :type qhat_low_test: float
+        :param qhat_up_test: Predicted upper quantile for the test sample.
+        :type qhat_up_test: float
+        :param qmedian: Predicted median on calibration data.
+        :type qmedian: float
+        :param qmedian_test: Predicted median for the test sample.
+        :type qmedian_test: float
+        :param t: Optional conformalization adjustment parameter; if ``None`` it will be computed.
+        :type t: float or None, optional
+        :returns: ``(low_test, up_test, t)`` where ``low_test`` and ``up_test`` are the adjusted bounds and ``t`` is the used threshold.
+        :rtype: tuple(float, float, float)
         """
         if self.settings['nested_set']=='CQR':
             if t is None:
@@ -222,40 +240,37 @@ class Conformalisation_CQR(Conformalisation):
             return qhat_low_test-t*gap, qhat_up_test+t*gap, t
 
     def get_low_up_score(self, i, q, y_train, sample2calib_trees, treeID2trainID2values_low, treeID2testID2values_low, treeID2trainID2values_up, treeID2testID2values_up, treeID2trainID2values_median, treeID2testID2values_median, t_fixed=None):
-        """
-        Computes the conformalized lower and upper quantile predictions and conformity scores for a test sample.
-        Parameters
-        ----------
-        i : int
-            Index of the test sample.
-        q : float
-            Nominal quantile level.
-        y_train : list
-            List of calibration output values.
-        sample2calib_trees : dict
-            Dictionary mapping calibration sample indices to lists of tree IDs used for calibration.
-        treeID2trainID2values_low : dict
-            Dictionary mapping tree IDs to calibration sample IDs and their corresponding lower quantile leaf values.
-        treeID2testID2values_low : dict
-            Dictionary mapping tree IDs to test sample IDs and their corresponding lower quantile leaf values.
-        treeID2trainID2values_up : dict
-            Dictionary mapping tree IDs to calibration sample IDs and their corresponding upper quantile leaf values.
-        treeID2testID2values_up : dict
-            Dictionary mapping tree IDs to test sample IDs and their corresponding upper quantile leaf values.
-        treeID2trainID2values_median : dict
-            Dictionary mapping tree IDs to calibration sample IDs and their corresponding median quantile leaf values.
-        treeID2testID2values_median : dict
-            Dictionary mapping tree IDs to test sample IDs and their corresponding median quantile leaf values.
-        t_fixed : float, optional
-            Fixed conformalization threshold. If None, it will be computed.
-        Returns
-        -------
-        lower : list
-            List of conformalized lower quantile predictions for the test sample.
-        upper : list
-            List of conformalized upper quantile predictions for the test sample.
-        conf_scores : list
-            List of conformity scores for the calibration samples.
+        """Compute conformalized quantile predictions and conformity scores.
+
+        Aggregates tree-level quantile estimates according to
+        ``self.settings['type_aggregation_trees']`` and for each calibration
+        sample returns a conformalized lower bound, upper bound and a
+        conformity score index.
+
+        :param i: Index of the test sample.
+        :type i: int
+        :param q: Nominal quantile level (e.g. 0.1).
+        :type q: float
+        :param y_train: Calibration output values.
+        :type y_train: list or numpy.ndarray
+        :param sample2calib_trees: Mapping from calibration sample index to list of tree IDs.
+        :type sample2calib_trees: dict
+        :param treeID2trainID2values_low: Mapping of tree ID to training sample IDs to lower quantile leaf values.
+        :type treeID2trainID2values_low: dict
+        :param treeID2testID2values_low: Mapping of tree ID to test sample IDs to lower quantile leaf values.
+        :type treeID2testID2values_low: dict
+        :param treeID2trainID2values_up: Mapping of tree ID to training sample IDs to upper quantile leaf values.
+        :type treeID2trainID2values_up: dict
+        :param treeID2testID2values_up: Mapping of tree ID to test sample IDs to upper quantile leaf values.
+        :type treeID2testID2values_up: dict
+        :param treeID2trainID2values_median: Mapping of tree ID to training sample IDs to median quantile leaf values.
+        :type treeID2trainID2values_median: dict
+        :param treeID2testID2values_median: Mapping of tree ID to test sample IDs to median quantile leaf values.
+        :type treeID2testID2values_median: dict
+        :param t_fixed: Optional fixed conformalization threshold/index. If ``None`` the method will compute it per calibration sample.
+        :type t_fixed: float or None, optional
+        :returns: Tuple ``(lower, upper, conf_scores)`` where each is a list with one entry per calibration sample in ``y_train``.
+        :rtype: tuple(list, list, list)
         """
         # i: index of the test sample
         lower = []
