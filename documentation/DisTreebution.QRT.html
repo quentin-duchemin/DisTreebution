@@ -559,7 +559,7 @@ Strothotte (1986): <a class="reference external" href="https://doi.org/10.1145/6
 <span id="distreebution-qrt-regressiontreequantile-module"></span><h2>DisTreebution.QRT.RegressionTreeQuantile module<a class="headerlink" href="#module-DisTreebution.QRT.RegressionTreeQuantile" title="Link to this heading">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.QRT.RegressionTreeQuantile.</span></span><span class="sig-name descname"><span class="pre">RegressionTreeQuantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_samples_split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_LOO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/QRT/RegressionTreeQuantile.html#RegressionTreeQuantile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DisTreebution.QRT.RegressionTreeQuantile.</span></span><span class="sig-name descname"><span class="pre">RegressionTreeQuantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_samples_split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IG_biais_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/QRT/RegressionTreeQuantile.html#RegressionTreeQuantile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.QRT.RegressionTreeQuantile.RegressionTreeQuantile" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Regression tree that predicts multiple quantiles.</p>
 <p>This tree recursively partitions the feature space to minimize a
@@ -568,13 +568,13 @@ requested quantiles at each leaf.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>quantiles</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> or </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Sequence of quantile levels to predict (values in (0,1)).</p>
+<dt><strong>quantiles</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> or </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Sequence of quantile levels to predict (values in (0,1)).</p>
 </dd>
 <dt><strong>max_depth</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em></span></dt></dt><dd><p>Maximum recursion depth for the tree. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, splitting continues until the sample-size criterion is met.</p>
 </dd>
 <dt><strong>min_samples_split</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>Minimum number of samples required in a node to consider a split.</p>
 </dd>
-<dt><strong>use_LOO</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a></span></dt></dt><dd><p>Whether to use leave-one-out adjustments in entropy computations.</p>
+<dt><strong>IG_biais_correction</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em></span></dt></dt><dd><p>Whether to use leave-one-out or Mallows adjustments in entropy computations.</p>
 </dd>
 </dl>
 </dd>
@@ -590,9 +590,9 @@ the observed <code class="docutils literal notranslate"><span class="pre">y</spa
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
 </dd>
-<dt><strong>y</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Target vector of shape (n_samples,).</p>
+<dt><strong>y</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Target vector of shape (n_samples,).</p>
 </dd>
 <dt><strong>depth</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a></span></dt></dt><dd><p>Current depth in recursion (used internally).</p>
 </dd>
@@ -618,14 +618,14 @@ the observed <code class="docutils literal notranslate"><span class="pre">y</spa
 <p>The method evaluates candidate splits on every feature and returns the
 best (feature_index, threshold) pair that satisfies the minimum
 samples per side criterion and improves the multiquantile entropy
-(when <code class="docutils literal notranslate"><span class="pre">self.use_LOO</span></code> is True the entropy uses leave-one-out
+(when <code class="docutils literal notranslate"><span class="pre">self.IG_biais_correction</span></code> is “LOO” (resp. “Mallows”) the entropy uses leave-one-out (or Mallows correction)
 adjustments).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix for current node.</p>
+<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix for current node.</p>
 </dd>
-<dt><strong>y</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Target values for current node.</p>
+<dt><strong>y</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Target values for current node.</p>
 </dd>
 </dl>
 </dd>
@@ -648,7 +648,7 @@ down to child nodes and assembles per-sample quantile predictions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
 </dd>
 </dl>
 </dd>
@@ -656,7 +656,7 @@ down to child nodes and assembles per-sample quantile predictions.</p>
 <dd class="field-even"><p>Array of shape (n_samples, n_quantiles) with predicted quantile values.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -671,9 +671,9 @@ values stored at that leaf.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
 </dd>
-<dt><strong>indexes</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>Array of original sample indices corresponding to rows in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<dt><strong>indexes</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>Array of original sample indices corresponding to rows in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -696,9 +696,9 @@ truncated at <code class="docutils literal notranslate"><span class="pre">max_de
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
+<dt><strong>X</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a></span></dt></dt><dd><p>Feature matrix of shape (n_samples, n_features).</p>
 </dd>
-<dt><strong>indexes</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>Array of original sample indices corresponding to rows in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<dt><strong>indexes</strong> <span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a></span></dt></dt><dd><p>Array of original sample indices corresponding to rows in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
 </dd>
 <dt><strong>current_group_depth</strong> <span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a></span></dt></dt><dd><p>Current group identifier string (used during recursion).</p>
 </dd>
@@ -757,7 +757,7 @@ truncated at <code class="docutils literal notranslate"><span class="pre">max_de
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DisTreebution.QRT.entropies_MultiQuantiles.entropies_MultiQuantiles">
-<span class="sig-prename descclassname"><span class="pre">DisTreebution.QRT.entropies_MultiQuantiles.</span></span><span class="sig-name descname"><span class="pre">entropies_MultiQuantiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_LOO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/QRT/entropies_MultiQuantiles.html#entropies_MultiQuantiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.QRT.entropies_MultiQuantiles.entropies_MultiQuantiles" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DisTreebution.QRT.entropies_MultiQuantiles.</span></span><span class="sig-name descname"><span class="pre">entropies_MultiQuantiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IG_biais_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/DisTreebution/QRT/entropies_MultiQuantiles.html#entropies_MultiQuantiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DisTreebution.QRT.entropies_MultiQuantiles.entropies_MultiQuantiles" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>

@@ -519,7 +519,7 @@ document.write(`
                 <span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;nested_set&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;groupconf&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="s1">&#39;useLOO&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;IG_biais_correction&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;split&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;crps_value&#39;</span><span class="p">:</span> <span class="n">crps_value</span><span class="p">,</span>
                 <span class="s1">&#39;ntrain&#39;</span><span class="p">:</span> <span class="n">ntrain</span><span class="p">,</span>
@@ -538,7 +538,7 @@ document.write(`
                             <span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">:</span> <span class="n">type_aggregation_trees</span><span class="p">,</span>
                             <span class="s1">&#39;nested_set&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                             <span class="s1">&#39;groupconf&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-                            <span class="s2">&quot;useLOO&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                            <span class="s2">&quot;IG_biais_correction&quot;</span><span class="p">:</span> <span class="s2">&quot;LOO&quot;</span><span class="p">,</span>
                             <span class="s2">&quot;split&quot;</span><span class="p">:</span><span class="n">split</span>
                         <span class="p">}</span>
                     <span class="p">)</span>
@@ -547,15 +547,15 @@ document.write(`
         <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">model_configs</span><span class="p">:</span>
             <span class="n">type_tree</span><span class="p">,</span> <span class="n">type_conformal</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;type_conformal&#39;</span><span class="p">]</span>
             <span class="n">type_aggregation_trees</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">]</span>
-            <span class="n">useLOO</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;useLOO&quot;</span><span class="p">]</span>
+            <span class="n">IG_biais_correction</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;IG_biais_correction&quot;</span><span class="p">]</span>
             <span class="n">split</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">split</span> <span class="ow">and</span> <span class="n">type_tree</span><span class="o">!=</span><span class="s2">&quot;PMQRT&quot;</span><span class="p">:</span>
                 <span class="k">pass</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">type_tree</span><span class="p">,</span> <span class="n">type_conformal</span><span class="p">,</span> <span class="n">nested_set</span><span class="p">,</span> <span class="s2">&quot;useLOO&quot;</span><span class="p">,</span> <span class="n">useLOO</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">type_tree</span><span class="p">,</span> <span class="n">type_conformal</span><span class="p">,</span> <span class="n">nested_set</span><span class="p">,</span> <span class="s2">&quot;IG_biais_correction&quot;</span><span class="p">,</span> <span class="n">IG_biais_correction</span><span class="p">)</span>
 
                 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nTrees&#39;</span><span class="p">:</span> <span class="n">nTrees</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-                            <span class="s1">&#39;use_LOO&#39;</span><span class="p">:</span><span class="n">useLOO</span><span class="p">,</span> <span class="s1">&#39;list_distri_low_quantiles&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]}</span>
+                            <span class="s1">&#39;IG_biais_correction&#39;</span><span class="p">:</span><span class="n">IG_biais_correction</span><span class="p">,</span> <span class="s1">&#39;list_distri_low_quantiles&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]}</span>
 
                 <span class="n">treeID2quantiles_train</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">if</span> <span class="n">type_tree</span> <span class="o">==</span> <span class="s2">&quot;PMQRT&quot;</span><span class="p">:</span>
@@ -581,7 +581,7 @@ document.write(`
                     <span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">:</span> <span class="n">type_aggregation_trees</span><span class="p">,</span>
                     <span class="s1">&#39;nested_set&#39;</span><span class="p">:</span> <span class="n">nested_set</span><span class="p">,</span>
                     <span class="s1">&#39;groupconf&#39;</span><span class="p">:</span> <span class="n">groupconf</span><span class="p">,</span>
-                    <span class="s1">&#39;useLOO&#39;</span><span class="p">:</span> <span class="n">useLOO</span><span class="p">,</span>
+                    <span class="s1">&#39;IG_biais_correction&#39;</span><span class="p">:</span> <span class="n">IG_biais_correction</span><span class="p">,</span>
                     <span class="s1">&#39;split&#39;</span><span class="p">:</span> <span class="n">split</span><span class="p">,</span>
                     <span class="s1">&#39;crps_value&#39;</span><span class="p">:</span> <span class="n">crps_value</span><span class="p">,</span>
                     <span class="s1">&#39;ntrain&#39;</span><span class="p">:</span> <span class="n">ntrain</span><span class="p">,</span>
@@ -661,7 +661,7 @@ document.write(`
                 <span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;nested_set&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;groupconf&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="s1">&#39;useLOO&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;IG_biais_correction&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;split&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;crps_value&#39;</span><span class="p">:</span> <span class="n">crps_value</span><span class="p">,</span>
                 <span class="s1">&#39;ntrain&#39;</span><span class="p">:</span> <span class="n">ntrain</span><span class="p">,</span>
@@ -679,7 +679,7 @@ document.write(`
                             <span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">:</span> <span class="n">type_aggregation_trees</span><span class="p">,</span>
                             <span class="s1">&#39;nested_set&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                             <span class="s1">&#39;groupconf&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-                            <span class="s2">&quot;useLOO&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                            <span class="s2">&quot;IG_biais_correction&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                             <span class="s2">&quot;split&quot;</span><span class="p">:</span><span class="kc">False</span>
                         <span class="p">}</span>
                     <span class="p">)</span>
@@ -688,12 +688,12 @@ document.write(`
         <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">model_configs</span><span class="p">:</span>
             <span class="n">type_tree</span><span class="p">,</span> <span class="n">type_conformal</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;type_tree&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;type_conformal&#39;</span><span class="p">]</span>
             <span class="n">type_aggregation_trees</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">]</span>
-            <span class="n">useLOO</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;useLOO&quot;</span><span class="p">]</span>
+            <span class="n">IG_biais_correction</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;IG_biais_correction&quot;</span><span class="p">]</span>
             <span class="n">split</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;split&quot;</span><span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">type_tree</span><span class="p">,</span> <span class="n">type_conformal</span><span class="p">,</span> <span class="n">nested_set</span><span class="p">,</span> <span class="s2">&quot;useLOO&quot;</span><span class="p">,</span> <span class="n">useLOO</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">type_tree</span><span class="p">,</span> <span class="n">type_conformal</span><span class="p">,</span> <span class="n">nested_set</span><span class="p">,</span> <span class="s2">&quot;IG_biais_correction&quot;</span><span class="p">,</span> <span class="n">IG_biais_correction</span><span class="p">)</span>
 
             <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nTrees&#39;</span><span class="p">:</span> <span class="n">nTrees</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-                        <span class="s1">&#39;use_LOO&#39;</span><span class="p">:</span><span class="n">useLOO</span><span class="p">,</span> <span class="s1">&#39;list_distri_low_quantiles&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]}</span>
+                        <span class="s1">&#39;IG_biais_correction&#39;</span><span class="p">:</span><span class="n">IG_biais_correction</span><span class="p">,</span> <span class="s1">&#39;list_distri_low_quantiles&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]}</span>
 
             <span class="n">model</span> <span class="o">=</span> <span class="n">UQ</span><span class="p">(</span><span class="n">type_tree</span><span class="o">=</span><span class="n">type_tree</span><span class="p">,</span> <span class="n">nested_set</span><span class="o">=</span><span class="n">nested_set</span><span class="p">,</span> <span class="n">type_conformal</span><span class="o">=</span><span class="n">type_conformal</span><span class="p">,</span> <span class="n">group_coverage</span><span class="o">=</span><span class="n">groupconf</span><span class="p">,</span> <span class="n">type_aggregation_trees</span><span class="o">=</span><span class="n">type_aggregation_trees</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 
@@ -711,7 +711,7 @@ document.write(`
                 <span class="s1">&#39;type_aggregation_trees&#39;</span><span class="p">:</span> <span class="n">type_aggregation_trees</span><span class="p">,</span>
                 <span class="s1">&#39;nested_set&#39;</span><span class="p">:</span> <span class="n">nested_set</span><span class="p">,</span>
                 <span class="s1">&#39;groupconf&#39;</span><span class="p">:</span> <span class="n">groupconf</span><span class="p">,</span>
-                <span class="s1">&#39;useLOO&#39;</span><span class="p">:</span> <span class="n">useLOO</span><span class="p">,</span>
+                <span class="s1">&#39;IG_biais_correction&#39;</span><span class="p">:</span> <span class="n">IG_biais_correction</span><span class="p">,</span>
                 <span class="s1">&#39;split&#39;</span><span class="p">:</span> <span class="n">split</span><span class="p">,</span>
                 <span class="s1">&#39;crps_value&#39;</span><span class="p">:</span> <span class="n">crps_value</span><span class="p">,</span>
                 <span class="s1">&#39;ntrain&#39;</span><span class="p">:</span> <span class="n">ntrain</span><span class="p">,</span>

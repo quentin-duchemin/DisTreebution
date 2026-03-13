@@ -417,7 +417,7 @@ document.write(`
 
 <div class="viewcode-block" id="entropies_CRPS">
 <a class="viewcode-back" href="../../../documentation/DisTreebution.CRPSRT.html#DisTreebution.CRPSRT.entropies_CRPS.entropies_CRPS">[docs]</a>
-<span class="k">def</span> <span class="nf">entropies_CRPS</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">use_LOO</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">entropies_CRPS</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">IG_biais_correction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># order: order of the features</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
@@ -493,8 +493,11 @@ document.write(`
         <span class="n">fenwick_tree_up</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">ysort</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
         <span class="n">fenwick_tree_down</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">pos</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ysort</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
         
-        <span class="k">if</span> <span class="p">(</span><span class="n">use_LOO</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)):</span>
-            <span class="n">entropy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">IG_biais_correction</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">IG_biais_correction</span><span class="o">==</span><span class="s2">&quot;LOO&quot;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)):</span>
+                <span class="n">entropy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">IG_biais_correction</span><span class="o">==</span><span class="s2">&quot;Mallows&quot;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)):</span>
+                <span class="n">entropy</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">entropy</span><span class="p">)</span></div>
 

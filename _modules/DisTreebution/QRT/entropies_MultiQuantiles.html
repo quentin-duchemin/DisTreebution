@@ -526,7 +526,7 @@ document.write(`
     
 <div class="viewcode-block" id="entropies_MultiQuantiles">
 <a class="viewcode-back" href="../../../documentation/DisTreebution.QRT.html#DisTreebution.QRT.entropies_MultiQuantiles.entropies_MultiQuantiles">[docs]</a>
-<span class="k">def</span> <span class="nf">entropies_MultiQuantiles</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">use_LOO</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">entropies_MultiQuantiles</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">IG_biais_correction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># order: order of the features</span>
     
     <span class="n">heaps</span> <span class="o">=</span> <span class="p">[]</span>
@@ -590,7 +590,7 @@ document.write(`
         
         <span class="n">entropy_idx</span> <span class="o">=</span> <span class="n">get_entropy_multiquantiles</span><span class="p">(</span><span class="n">heap2sum</span><span class="p">,</span> <span class="n">heaps</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1">#         if use_LOO and (min([idx,len(order)-1-idx])&gt;=2):</span>
-        <span class="k">if</span> <span class="n">use_LOO</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">IG_biais_correction</span><span class="o">==</span><span class="s1">&#39;LOO&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">):</span>
             <span class="n">entropy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LOO_quantiles</span><span class="p">(</span><span class="n">ysort</span><span class="p">[:</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">entropy_idx</span><span class="p">,</span> <span class="n">quantiles</span><span class="p">,</span> <span class="n">heaps</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">entropy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entropy_idx</span><span class="p">)</span>
