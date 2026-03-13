@@ -15,11 +15,11 @@ class RegressionTreeQuantile:
     :type max_depth: int or None
     :param min_samples_split: Minimum number of samples required in a node to consider a split.
     :type min_samples_split: int
-    :param use_LOO: Whether to use leave-one-out adjustments in entropy computations.
-    :type use_LOO: bool
+    :param IG_biais_correction: Whether to use leave-one-out or Mallows adjustments in entropy computations.
+    :type IG_biais_correction: str or None
     """
 
-    def __init__(self, quantiles, max_depth=None, min_samples_split=2, use_LOO=True):
+    def __init__(self, quantiles, max_depth=None, min_samples_split=2, IG_biais_correction=None):
         """Initialize a :class:`RegressionTreeQuantile` instance.
 
         :param quantiles: See class description.
@@ -28,13 +28,13 @@ class RegressionTreeQuantile:
         :type max_depth: int or None
         :param min_samples_split: See class description.
         :type min_samples_split: int
-        :param use_LOO: See class description.
-        :type use_LOO: bool
+        :param IG_biais_correction: See class description.
+        :type IG_biais_correction: str
         """
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
         self.quantiles = quantiles
-        self.use_LOO = use_LOO
+        self.IG_biais_correction = IG_biais_correction
 
     def fit(self, X, y, depth=0, ref_tree=None, max_depth_ref_tree=-1):
         """Fit the regression-quantile tree to data.
@@ -79,8 +79,8 @@ class RegressionTreeQuantile:
             right_mask = ~left_mask            
             
 
-            self.left = RegressionTreeQuantile(self.quantiles, max_depth=self.max_depth, min_samples_split=self.min_samples_split, use_LOO=self.use_LOO)
-            self.right = RegressionTreeQuantile(self.quantiles, max_depth=self.max_depth, min_samples_split=self.min_samples_split, use_LOO=self.use_LOO)
+            self.left = RegressionTreeQuantile(self.quantiles, max_depth=self.max_depth, min_samples_split=self.min_samples_split, IG_biais_correction=self.IG_biais_correction)
+            self.right = RegressionTreeQuantile(self.quantiles, max_depth=self.max_depth, min_samples_split=self.min_samples_split, IG_biais_correction=self.IG_biais_correction)
 
             self.left.fit(X[left_mask,:], y[left_mask], depth + 1, ref_tree=ref_tree_left, max_depth_ref_tree=max_depth_ref_tree)
             self.right.fit(X[right_mask,:], y[right_mask], depth + 1, ref_tree=ref_tree_right, max_depth_ref_tree=max_depth_ref_tree)
@@ -95,7 +95,7 @@ class RegressionTreeQuantile:
         The method evaluates candidate splits on every feature and returns the
         best (feature_index, threshold) pair that satisfies the minimum
         samples per side criterion and improves the multiquantile entropy
-        (when ``self.use_LOO`` is True the entropy uses leave-one-out
+        (when ``self.IG_biais_correction`` is "LOO" (resp. "Mallows") the entropy uses leave-one-out (or Mallows correction)
         adjustments).
 
         :param X: Feature matrix for current node.
@@ -114,8 +114,8 @@ class RegressionTreeQuantile:
 
         for feature_index in range(num_features):
             order = np.argsort(X[:, feature_index])
-            entropies_up = entropies_MultiQuantiles(order, y, self.quantiles, use_LOO=self.use_LOO)
-            entropies_down = entropies_MultiQuantiles(np.flip(order), y, self.quantiles, use_LOO=self.use_LOO)
+            entropies_up = entropies_MultiQuantiles(order, y, self.quantiles, IG_biais_correction=self.IG_biais_correction)
+            entropies_down = entropies_MultiQuantiles(np.flip(order), y, self.quantiles, IG_biais_correction=self.IG_biais_correction)
             
             weights = np.cumsum(np.ones(len(entropies_up)-1))
             weights = np.concatenate((np.array([0]), weights), axis=0)
@@ -133,7 +133,7 @@ class RegressionTreeQuantile:
 
                     nb_left_leaves = np.sum(X[:, feature_index] <= threshold)
                     if (nb_left_leaves>=self.min_samples_split) and (num_samples-nb_left_leaves>=self.min_samples_split):
-                        if self.use_LOO:
+                        if self.IG_biais_correction is not None:
                             # Check if the split will lead to decrease the entropy
                             if score<global_score:
                                 if (best_score is None) or (best_score > score):

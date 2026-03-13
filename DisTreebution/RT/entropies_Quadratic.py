@@ -2,8 +2,7 @@ import numpy as np
 import math
 
 
-
-def entropies_Quadratic(order, y, use_LOO=True):
+def entropies_Quadratic(order, y, IG_biais_correction=None):
     # order: order of the features
 
 
@@ -16,10 +15,10 @@ def entropies_Quadratic(order, y, use_LOO=True):
 
     for idx in range(1,len(order)): 
 #         if use_LOO and (min([idx,len(order)-1-idx])>=2):
-        if use_LOO and (idx>=2):
+        if IG_biais_correction in ["Mallows","LOO"] and (idx>=2):
             # use of Mallows Cp
             sigma2 = np.var(ysort[:idx+1], ddof=1) # unbiased variance estimate
-            entropy.append(np.mean((ysort[:idx+1]-np.mean(ysort[:idx+1]))**2) + 2*sigma2/(idx+1))
+            entropy.append(np.mean((ysort[:idx+1]-np.mean(ysort[:idx+1]))**2) + 2*sigma2/(idx+1))            
         else:
             entropy.append(np.mean((ysort[:idx+1]-np.mean(ysort[:idx+1]))**2))
     return np.array(entropy)

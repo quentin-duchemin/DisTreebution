@@ -34,7 +34,7 @@ available_settings['type_conformal'] = [None, 'split']
 available_settings['group_coverage'] = [False, True]
 
 # Hyperparameters to train the regression trees
-all_params = ['nTrees', 'treeID2quantiles_train', 'max_depth', 'use_LOO', 'min_samples_split', 'max_depth_group', 'list_distri_low_quantiles']
+all_params = ['nTrees', 'treeID2quantiles_train', 'max_depth', 'IG_biais_correction', 'min_samples_split', 'max_depth_group', 'list_distri_low_quantiles']
 
 
 class UQ():
@@ -83,7 +83,7 @@ class UQ():
         - ``'treeID2quantiles_train'`` – mapping tree IDs → quantiles (for PMQRT)
         - ``'max_depth'`` – maximum depth for trees
         - ``'min_samples_split'`` – minimum samples to split
-        - ``'use_LOO'`` – whether to use leave-one-out info gains
+        - ``'IG_biais_correction'`` – whether to use leave-one-out or Mallows Cp to correct the estimate of information gains
         - ``'max_depth_group'`` – max depth for group coverage trees
         - ``'list_distri_low_quantiles'`` – lower quantiles for distributional conformal prediction
 
@@ -123,7 +123,13 @@ class UQ():
         self.settings['group_coverage'] = group_coverage
         self.settings['type_aggregation_trees'] = type_aggregation_trees
         self.params = params
-        
+        if self.params.get('IG_biais_correction') is not None:
+            correction = self.params['IG_biais_correction']
+            assert correction in ['LOO', 'Mallows'], "IG_biais_correction must be either 'LOO' or 'Mallows'"
+            
+            if correction == "Mallows":
+                if type_tree in ['PQRT', 'PMQRT']:
+                    raise ValueError("Mallows-style correction of information gains is only available for CRPS-RTs or standard RTs")        
         # used to query quantiles without conformalization
         settings_noconf = copy.deepcopy(self.settings)
         settings_noconf['nested_set'] = 'CQR'
@@ -240,11 +246,11 @@ class UQ():
             if self.settings['type_tree']=='PMQRT':
                 vals = list(self.conf.treeID2quantiles_train.values())
                 assert len(set(map(str, vals))) == 1, "All trees should be trained using the same set of quantiles if one want to use group conformal prediction"
-                ref_tree = RegressionTreeQuantile(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], quantiles=self.conf.treeID2quantiles_train[0], use_LOO=self.params.get('use_LOO', True))
+                ref_tree = RegressionTreeQuantile(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], quantiles=self.conf.treeID2quantiles_train[0], IG_biais_correction=self.params.get('IG_biais_correction', None))
             elif self.settings['type_tree']=='CRPS':
-                ref_tree = RegressionTree(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], limit_use_CRPS=self.params.get('limit_use_CRPS', None), quantiles=self.conf.treeID2quantiles_train.get(0, None), use_LOO=self.params.get('use_LOO', True))
+                ref_tree = RegressionTree(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], limit_use_CRPS=self.params.get('limit_use_CRPS', None), quantiles=self.conf.treeID2quantiles_train.get(0, None), IG_biais_correction=self.params.get('IG_biais_correction', None))
             elif self.settings['type_tree']=='RT':
-                ref_tree = RegressionTreeQuadratic(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], use_LOO=self.params.get('use_LOO', True))
+                ref_tree = RegressionTreeQuadratic(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], IG_biais_correction=self.params.get('IG_biais_correction', None))
             ref_tree.fit(x_train, y_train)
         for l in tqdm(range(nTrees)):
             random.shuffle(indexes)
@@ -254,11 +260,11 @@ class UQ():
             index_train, index_calib = indexes[:ntrain_tree], indexes[ntrain_tree:]
 
             if self.settings['type_tree']=='PMQRT':
-                tree = RegressionTreeQuantile(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], quantiles=self.conf.treeID2quantiles_train[l], use_LOO=self.params.get('use_LOO', True))
+                tree = RegressionTreeQuantile(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], quantiles=self.conf.treeID2quantiles_train[l], IG_biais_correction=self.params.get('IG_biais_correction', None))
             elif self.settings['type_tree']=='CRPS':
-                tree = RegressionTree(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], limit_use_CRPS=self.params.get('limit_use_CRPS', None), quantiles=self.conf.treeID2quantiles_train.get(l, None), use_LOO=self.params.get('use_LOO', True))
+                tree = RegressionTree(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], limit_use_CRPS=self.params.get('limit_use_CRPS', None), quantiles=self.conf.treeID2quantiles_train.get(l, None), IG_biais_correction=self.params.get('IG_biais_correction', None))
             elif self.settings['type_tree']=='RT':
-                tree = RegressionTreeQuadratic(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], use_LOO=self.params.get('use_LOO', True))
+                tree = RegressionTreeQuadratic(max_depth=self.params['max_depth'], min_samples_split=self.params['min_samples_split'], IG_biais_correction=self.params.get('IG_biais_correction', None))
             tree.fit(x_train[index_train,:], y_train[index_train], ref_tree=ref_tree, max_depth_ref_tree=max_depth_ref_tree)
             trees.append(tree)
             for icalib in index_calib:

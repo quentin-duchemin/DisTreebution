@@ -4,10 +4,10 @@ from .entropies_Quadratic import entropies_Quadratic
 import matplotlib.pyplot as plt
 
 class RegressionTreeQuadratic:
-    def __init__(self, max_depth=None, min_samples_split=2, use_LOO=True):
+    def __init__(self, max_depth=None, min_samples_split=2, IG_biais_correction=None):
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
-        self.use_LOO = use_LOO
+        self.IG_biais_correction = IG_biais_correction
 
     def fit(self, X, y, depth=0, ref_tree=None, max_depth_ref_tree=-1):
         if depth == self.max_depth or X.shape[0] < self.min_samples_split:
@@ -32,8 +32,8 @@ class RegressionTreeQuadratic:
             right_mask = ~left_mask
             
 
-            self.left = RegressionTreeQuadratic(max_depth=self.max_depth, min_samples_split=self.min_samples_split, use_LOO=self.use_LOO)
-            self.right = RegressionTreeQuadratic(max_depth=self.max_depth, min_samples_split=self.min_samples_split, use_LOO=self.use_LOO)
+            self.left = RegressionTreeQuadratic(max_depth=self.max_depth, min_samples_split=self.min_samples_split, IG_biais_correction=self.IG_biais_correction)
+            self.right = RegressionTreeQuadratic(max_depth=self.max_depth, min_samples_split=self.min_samples_split, IG_biais_correction=self.IG_biais_correction)
 
             self.left.fit(X[left_mask,:], y[left_mask], depth + 1, ref_tree=ref_tree_left, max_depth_ref_tree=max_depth_ref_tree)
             self.right.fit(X[right_mask,:], y[right_mask], depth + 1, ref_tree=ref_tree_right, max_depth_ref_tree=max_depth_ref_tree)
@@ -51,8 +51,8 @@ class RegressionTreeQuadratic:
 
         for feature_index in range(num_features):
             order = np.argsort(X[:, feature_index])
-            entropies_up = entropies_Quadratic(order, y, use_LOO=self.use_LOO)
-            entropies_down = entropies_Quadratic(np.flip(order), y, use_LOO=self.use_LOO)
+            entropies_up = entropies_Quadratic(order, y, IG_biais_correction=self.IG_biais_correction)
+            entropies_down = entropies_Quadratic(np.flip(order), y, IG_biais_correction=self.IG_biais_correction)
             weights = np.cumsum(np.ones(len(entropies_up)-1))
             weights = np.concatenate((np.array([0]), weights), axis=0)
             
@@ -69,7 +69,7 @@ class RegressionTreeQuadratic:
 
                     nb_left_leaves = np.sum(X[:, feature_index] <= threshold)
                     if (nb_left_leaves>=self.min_samples_split) and (num_samples-nb_left_leaves>=self.min_samples_split):
-                        if self.use_LOO:
+                        if self.IG_biais_correction is not None:
                             # Check if the split will lead to decrease the entropy
                             if score<global_score:
                                 if (best_score is None) or (best_score > score):

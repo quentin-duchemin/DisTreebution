@@ -22,8 +22,8 @@ class RegressionTree:
     :param list or None quantiles:
         List of quantiles to use for the multiple quantile loss. Required if ``limit_use_CRPS`` is set.
 
-    :param bool use_LOO: (default=True)
-        Whether to use leave-one-out estimation in the entropy/loss calculation.
+    :param str IG_biais_correction: (default=None)
+        Whether to use leave-one-out or Mallows estimation in the entropy/loss calculation.
 
     .. rubric:: Attributes
 
@@ -64,11 +64,11 @@ class RegressionTree:
     - This implementation supports custom loss functions CRPS for splitting.
     - The tree can optionally follow the structure of a reference tree up to a certain depth.
     """
-    def __init__(self, max_depth=None, min_samples_split=2, limit_use_CRPS=None, quantiles=None, use_LOO=True):
+    def __init__(self, max_depth=None, min_samples_split=2, limit_use_CRPS=None, quantiles=None, IG_biais_correction=None):
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
         self.limit_use_CRPS = limit_use_CRPS
-        self.use_LOO = use_LOO
+        self.IG_biais_correction = IG_biais_correction
         if not(limit_use_CRPS is None) and (quantiles is None):
             assert False, ("You need to provide a list of quantiles if you plan to use the Multiple Quantile loss at node with a large number of samples")
         else:
@@ -123,8 +123,8 @@ class RegressionTree:
             left_mask = X[:, feature_index] <= threshold
             right_mask = ~left_mask
 
-            self.left = RegressionTree(max_depth=self.max_depth, min_samples_split=self.min_samples_split, limit_use_CRPS=self.limit_use_CRPS, quantiles=self.quantiles, use_LOO=self.use_LOO)
-            self.right = RegressionTree(max_depth=self.max_depth, min_samples_split=self.min_samples_split, limit_use_CRPS=self.limit_use_CRPS, quantiles=self.quantiles, use_LOO=self.use_LOO)
+            self.left = RegressionTree(max_depth=self.max_depth, min_samples_split=self.min_samples_split, limit_use_CRPS=self.limit_use_CRPS, quantiles=self.quantiles, IG_biais_correction=self.IG_biais_correction)
+            self.right = RegressionTree(max_depth=self.max_depth, min_samples_split=self.min_samples_split, limit_use_CRPS=self.limit_use_CRPS, quantiles=self.quantiles, IG_biais_correction=self.IG_biais_correction)
 
             self.left.fit(X[left_mask], y[left_mask], depth + 1, ref_tree=ref_tree_left, max_depth_ref_tree=max_depth_ref_tree)
             self.right.fit(X[right_mask], y[right_mask], depth + 1, ref_tree=ref_tree_right, max_depth_ref_tree=max_depth_ref_tree)
@@ -162,11 +162,11 @@ class RegressionTree:
             order = np.argsort(X[:, feature_index])
             
             if (self.limit_use_CRPS is None) or (len(y)<=self.limit_use_CRPS):
-                entropies_up = entropies_CRPS(order, y, use_LOO=self.use_LOO)
-                entropies_down = entropies_CRPS(np.flip(order), y, use_LOO=self.use_LOO)
+                entropies_up = entropies_CRPS(order, y, IG_biais_correction=self.IG_biais_correction)
+                entropies_down = entropies_CRPS(np.flip(order), y, IG_biais_correction=self.IG_biais_correction)
             else:
-                entropies_up = entropies_MultiQuantiles(order, y, self.quantiles, use_LOO=self.use_LOO)
-                entropies_down = entropies_MultiQuantiles(np.flip(order), y, self.quantiles, use_LOO=self.use_LOO)
+                entropies_up = entropies_MultiQuantiles(order, y, self.quantiles, IG_biais_correction=self.IG_biais_correction)
+                entropies_down = entropies_MultiQuantiles(np.flip(order), y, self.quantiles, IG_biais_correction=self.IG_biais_correction)
                 
             weights = np.cumsum(np.ones(len(entropies_up)-1))
             weights = np.concatenate((np.array([0]), weights), axis=0)

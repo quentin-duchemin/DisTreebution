@@ -3,7 +3,7 @@ from .FenwickTree import FenwickTree
 from .WBTree import WBTree
 
 
-def entropies_CRPS(order, y, use_LOO=True):
+def entropies_CRPS(order, y, IG_biais_correction=None):
     # order: order of the features
     N = len(y)
 
@@ -79,8 +79,11 @@ def entropies_CRPS(order, y, use_LOO=True):
         fenwick_tree_up.add(pos[idx], ysort[idx])
         fenwick_tree_down.add(N-pos[idx]-1, ysort[idx])
         
-        if (use_LOO and (idx>=2)):
-            entropy[-1] *= (n+1)**2 / (n**2)
+        if IG_biais_correction is not None:
+            if (IG_biais_correction=="LOO" and (idx>=2)):
+                entropy[-1] *= (n+1)**2 / (n**2)
+            elif (IG_biais_correction=="Mallows" and (idx>=2)):
+                entropy[-1] *= (n+2) / (n)
 
     return np.array(entropy)
 

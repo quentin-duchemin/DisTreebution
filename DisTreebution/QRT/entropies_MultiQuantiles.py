@@ -91,7 +91,7 @@ def LOO_quantiles(y, entropy, quantiles, heaps):
 
     
     
-def entropies_MultiQuantiles(order, y, quantiles, use_LOO=True):
+def entropies_MultiQuantiles(order, y, quantiles, IG_biais_correction=None):
     # order: order of the features
     
     heaps = []
@@ -155,7 +155,7 @@ def entropies_MultiQuantiles(order, y, quantiles, use_LOO=True):
         
         entropy_idx = get_entropy_multiquantiles(heap2sum, heaps, quantiles, idx+1)
 #         if use_LOO and (min([idx,len(order)-1-idx])>=2):
-        if use_LOO and (idx>=2):
+        if (IG_biais_correction=='LOO') and (idx>=2):
             entropy.append(LOO_quantiles(ysort[:idx+1], entropy_idx, quantiles, heaps))
         else:
             entropy.append(entropy_idx)
