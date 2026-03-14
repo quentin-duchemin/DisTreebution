@@ -142,6 +142,7 @@ If you use `DisTreebution` in your work, please cite our publication.
     
     presentation
     repository
+    algorithms
     documentation/modules
     tutorials/index
     developer/index
