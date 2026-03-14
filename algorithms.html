@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>References &#8212; DisTreebution</title>
+    <title>Algorithms Unravelled &#8212; DisTreebution</title>
   
   
   
@@ -47,11 +47,13 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'references';</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algorithms';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Team" href="team.html" />
-    <link rel="prev" title="Developer" href="developer/index.html" />
+    <link rel="next" title="DisTreebution" href="documentation/modules.html" />
+    <link rel="prev" title="GitHub Repository" href="repository.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,8 +163,8 @@
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="algorithms.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     Algorithms Unravelled
   </a>
 </li>
@@ -194,8 +196,8 @@
 </li>
 
 
-<li class=" current active">
-  <a class="nav-link dropdown-item nav-internal" href="#">
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="references.html">
     References
   </a>
 </li>
@@ -308,8 +310,8 @@ document.write(`
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="algorithms.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
     Algorithms Unravelled
   </a>
 </li>
@@ -336,8 +338,8 @@ document.write(`
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
     References
   </a>
 </li>
@@ -416,7 +418,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">References</li>
+    <li class="breadcrumb-item active" aria-current="page">Algorithms...</li>
   </ul>
 </nav>
 </div>
@@ -433,35 +435,47 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="references">
-<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
-<div role="list" class="citation-list">
-<div class="citation" id="duchemin2025" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Duchemin2025<span class="fn-bracket">]</span></span>
-<p>Duchemin Q. and Obozinski G. (2025).
-<em>Efficient distributional regression trees learning algorithms for calibrated non-parametric probabilistic forecasts</em>.</p>
-</div>
-<div class="citation" id="bhat2015" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Bhat2015<span class="fn-bracket">]</span></span>
-<p>Bhat, H.S. and al (2015).
-<em>Towards scalable quantile regression trees.</em></p>
-</div>
-<div class="citation" id="romano2019" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Romano2019<span class="fn-bracket">]</span></span>
-<p>Romano, Y., Patterson, E., and Candes, E. (2019).
-<em>Conformalized Quantile Regression.</em></p>
-</div>
-<div class="citation" id="angelopoulos2021" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Angelopoulos2021<span class="fn-bracket">]</span></span>
-<p>Angelopoulos, A. and Bates, S. (2021).
-<em>Distribution-free uncertainty quantification for deep learning.</em></p>
-</div>
-<div class="citation" id="gneiting2007" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Gneiting2007<span class="fn-bracket">]</span></span>
-<p>Gneiting, T. and Raftery, A.E. (2007).
-* Evaluating epidemic forecasts in an interval format*</p>
-</div>
-</div>
+  <section id="algorithms-unravelled">
+<h1>Algorithms Unravelled<a class="headerlink" href="#algorithms-unravelled" title="Link to this heading">#</a></h1>
+<p>This section describes the concrete implementation of node splitting for the WIS and CRPS loss functions.</p>
+<p>Regression trees are constructed using a greedy procedure: at each current leaf, if the stopping criteria are not met, the algorithm must identify the best split of the data to generate two child nodes. To do this, one typically evaluates the information gain for all candidate features $j$ and, for each feature, all potential split points $s_{j}$.</p>
+<p>This process can become computationally prohibitive when the loss function is expensive to evaluate, which is often the case for naïve implementations of certain loss functions such as the sum of pinball losses or the CRPS. Fortunately, as we demonstrate in our paper, it is possible to efficiently find the optimal split for these two loss functions by leveraging carefully chosen data structures: min-max heaps for the sum of pinball losses and a Fenwick tree for the CRPS.</p>
+<p>Below, we illustrate the algorithm on concrete examples. For a fixed feature $j$, we detail the full update of the corresponding data structure used to compute the information gains across all possible splits, demonstrating how the algorithm achieves efficiency in practice.</p>
+<p>To perform these iterations efficiently,</p>
+<section id="sum-of-pinball-losses-quantile-regression">
+<h2>1. Sum of Pinball Losses (Quantile Regression)<a class="headerlink" href="#sum-of-pinball-losses-quantile-regression" title="Link to this heading">#</a></h2>
+<p>When building PMQRTs, the split criterion minimizes the sum of pinball losses in order to estimate specific quantiles.</p>
+<section id="mechanism">
+<h3>Mechanism<a class="headerlink" href="#mechanism" title="Link to this heading">#</a></h3>
+<p>To maintain <span class="math notranslate nohighlight">\(O(N \log N)\)</span> efficiency, the algorithm avoids recomputing the loss from scratch at every candidate split. Instead, it relies on min-max heaps to update the required statistics incrementally.</p>
+</section>
+<section id="procedural-steps">
+<h3>Procedural steps<a class="headerlink" href="#procedural-steps" title="Link to this heading">#</a></h3>
+<p>Refer to the diagram below for the step-by-step update rules of the weighted sums of residuals on a concrete example.</p>
+<p>We consider the sum of pinball losses with quantile levels $0.3$ and $0.7$.  We assume that we need to identify the best split for a given feature $j$ for which $x_{1,j} \leq \dots \leq x_{7,j}$ with corresponding observations $\textbf y= [0,1,2,3,-1,-2,-3]$.</p>
+<p>We comment step 6. At step 6, we need to insert $y_6 = -2$ into the min-max heaps.</p>
+<p>Heap $\mathcal{H}_{1}$ must contain $\lceil \tau_1 \times 6 \rceil = 2$ elements and it already contains two elements. Since $-2$ is smaller than the current maximum element of $\mathcal{H}_1$ (namely $0$), we pop out $0$ and insert $-2$ into $\mathcal{H}_1$.</p>
+<p>Next, we need to insert $0$ into one of the remaining heaps $\mathcal{H}_2, \mathcal{H}_3$. Heap $\mathcal{H}_2$ must contain
+$$
+\lceil \tau_{2} \times 6 \rceil - \lceil \tau_1 \times 6 \rceil = 5 - 2 = 3
+$$
+elements, and it currently contains 2 elements. Since $0$ is smaller than the current maximum value in $\mathcal{H}_2$ (namely $2$), we insert $0$ into $\mathcal{H}_2$ and the update is completed.</p>
+<iframe src="_static/heaps.pdf" width="100%" height="600px" style="border: none;"></iframe></section>
+</section>
+<section id="continuous-ranked-probability-score-crps">
+<h2>2. Continuous Ranked Probability Score (CRPS)<a class="headerlink" href="#continuous-ranked-probability-score-crps" title="Link to this heading">#</a></h2>
+<p>The Continuous Ranked Probability Score (CRPS) is a standard scoring rule for probabilistic forecasting.</p>
+<p>Using CRPS as a split criterion encourages child nodes that are both sharp and well-calibrated.</p>
+<section id="id1">
+<h3>Mechanism<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Unlike the mean squared error (MSE), which only depends on the conditional mean, the CRPS evaluates the entire predictive distribution of the target variable $y$.</p>
+</section>
+<section id="id2">
+<h3>Procedural steps<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Refer to the diagram below for the step-by-step update rules for the CRPS loss on a concrete example.</p>
+<p>We assume that we need to identify the best split for a given feature $j$ for which $x_{1,j} \leq \dots \leq x_{6,j}$ with corresponding observations $\textbf y= [2,1,3,-1,-3,-2]$.</p>
+<iframe src="_static/fenwick.pdf" width="100%" height="600px" style="border: none;"></iframe></section>
+</section>
 </section>
 
 
@@ -475,20 +489,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="developer/index.html"
+       href="repository.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Developer</p>
+        <p class="prev-next-title">GitHub Repository</p>
       </div>
     </a>
     <a class="right-next"
-       href="team.html"
+       href="documentation/modules.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Team</p>
+        <p class="prev-next-title">DisTreebution</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -503,9 +517,30 @@ document.write(`
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-of-pinball-losses-quantile-regression">1. Sum of Pinball Losses (Quantile Regression)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism">Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedural-steps">Procedural steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-ranked-probability-score-crps">2. Continuous Ranked Probability Score (CRPS)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Mechanism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Procedural steps</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="_sources/references.rst.txt">
+    <a href="_sources/algorithms.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
