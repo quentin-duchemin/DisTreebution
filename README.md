@@ -3,6 +3,10 @@
 
 # DisTreebution
 
+## Documentation
+
+For detailed documentation and tutorials, visit: [Documentation](https://quentin-duchemin.github.io/DisTreebution/)
+
 
 **DisTreebution** fits **distributional regression trees and forests** to generate **calibrated probabilistic forecasts**.
 
