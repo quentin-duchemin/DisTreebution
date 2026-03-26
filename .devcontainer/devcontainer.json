@@ -1,0 +1,35 @@
+{
+    "name": "DisTreebution Development",
+    "image": "quentinduchemin/distreebution:latest",
+
+    // Features add extra capabilities to the container. 
+    // Even if they are in the image, declaring them here ensures VS Code integration.
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:1": {
+            "configureZshAsDefaultShell": true
+        }
+    },
+
+    // Configure tool-specific settings
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",         // Python language support
+                "ms-python.vscode-pylance", // Type checking and intellisense
+                "ms-toolsai.jupyter",       // Required if you use [notebook] extras
+                "charliermarsh.ruff"        // Fast linting (optional but recommended)
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.analysis.typeCheckingMode": "basic"
+            }
+        }
+    },
+
+    // Use 'postCreateCommand' to ensure your local changes are linked as editable
+    // every time the container is created/rebuilt.
+    "postCreateCommand": "pip install -e .",
+
+    // Remote user is 'vscode' by default in Microsoft's Python images
+    "remoteUser": "vscode"
+}
