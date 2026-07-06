@@ -17,6 +17,27 @@
 
 # DisTreebution
 
+## 🌳 Branching Out: The New Rust Implementation
+
+We have turned a new leaf! `DisTreebution` now features a high-performance backend rewritten from the ground up in **Rust**, powered by **PyO3** and **Rayon**. 
+
+This new implementation roots out Python's CPU bottlenecks, bringing massive parallel processing capabilities directly to your workflows while keeping the exact same user-friendly Python API.
+
+### 🚀 Key Improvements
+* **10–100× Wall-Clock Speedup:** Tree fitting is massively accelerated.
+* **GIL-Free Parallelism:** Powered by **Rayon** to scale feature searches across all available CPU cores.
+* **Cache-Optimized Storage:** Features are stored **column-major** to ensure per-feature scans stay in CPU cache.
+* **Seamless Integration:** Built with **PyO3** for zero-overhead type conversion.
+* **Identical Math:** Maintains the exact same \(O(N \log N)\) Fenwick tree (CRPS-RF) and min-max heap (PMQRF) algorithms.
+
+### ⚡ Integration & Usage
+
+You can start using the Rust engine without installing any compiler. Prebuilt wheels are fully available.
+
+Head over to the [distreebution-rs repository](https://github.com/quentin-duchemin/distreebution-rs) to get the installation commands and see how to use it as a drop-in replacement for your existing Python code.
+
+
+
 ## Documentation
 
 For detailed documentation and tutorials, visit: [Documentation](https://quentin-duchemin.github.io/DisTreebution/)
